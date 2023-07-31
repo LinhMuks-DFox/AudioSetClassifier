@@ -1,0 +1,5 @@
+poetry.lock
+.env/
+dataset/
+data/
+.idea/

@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "audiosetclassifier"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+torch = "^2.0.1"
+torchaudio = "^2.0.2"
+torchvision = "^0.15.2"
+numpy = "^1.25.1"
+matplotlib = "^3.7.2"
+jupyter = "^1.0.0"
+sox = "^1.4.1"
+soundfile = "^0.12.1"
+tqdm = "^4.65.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
