@@ -1,13 +1,14 @@
 import sys
 
-import torch.nn
-import tqdm
-import numpy as np
-from train_config import *
-from src import AudioSetForResNet18Classifier
-from torchvision.models import resnet18
-import torch.utils.data as util_data
 import matplotlib.pyplot as plt
+import numpy as np
+import torch.nn
+import torch.utils.data as util_data
+import tqdm
+from torchvision.models import resnet18
+
+from src import AudioSetForResNet18Classifier
+from train_config import *
 
 device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
 # device = torch.device("cpu")

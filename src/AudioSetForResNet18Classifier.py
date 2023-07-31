@@ -1,11 +1,11 @@
 import typing
 
 import torch
-
-from AudioSet.IO.JsonBasedAudioSet import JsonBasedAudioSet
 import torch.utils.data as data
-import AudioSet.transform.transforms as sc_transforms
 import torchaudio.transforms as tch_audio_trans
+
+import AudioSet.transform.transforms as sc_transforms
+from AudioSet.IO.JsonBasedAudioSet import JsonBasedAudioSet
 
 
 class AudioSetForResNet18Classifier(data.Dataset):
