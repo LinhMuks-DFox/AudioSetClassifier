@@ -4,3 +4,4 @@ dataset/
 data/
 .idea/
 *.pt
+__pycache__/
