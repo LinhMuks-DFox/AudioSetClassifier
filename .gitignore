@@ -5,3 +5,4 @@ data/
 .idea/
 *.pt
 __pycache__/
+demo/
