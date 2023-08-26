@@ -2,7 +2,7 @@ import os.path
 import sys
 import datetime
 
-IN_DOCKER: bool = True
+IN_DOCKER: bool = os.environ.get("IN_DOCKER_CONTAINER", False)
 if "win" in sys.platform or not IN_DOCKER:
     DATA_SET_PATH: str = r"F:\DataSets\Audioset\balanced\segments\AudioSet.json"
 else:
