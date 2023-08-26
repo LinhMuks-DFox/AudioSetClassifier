@@ -7,13 +7,13 @@ import torch.utils.data as util_data
 import tqdm
 from torchvision.models import resnet18
 
-from src import AudioSetForResNet18Classifier
+from src import FullSpectroAudioSet
 from train_config import *
 
 device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
 # device = torch.device("cpu")
 # torch.set_num_threads(23)
-dataset = AudioSetForResNet18Classifier(DATA_SET_PATH)
+dataset = FullSpectroAudioSet(DATA_SET_PATH)
 dataset = util_data.Subset(dataset, range(5000))
 data_loader = util_data.DataLoader(dataset, shuffle=False, batch_size=100)
 
