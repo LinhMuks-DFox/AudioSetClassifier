@@ -8,13 +8,12 @@ import AudioSet.transform.transforms as sc_transforms
 from AudioSet.IO.JsonBasedAudioSet import JsonBasedAudioSet
 
 
-class AudioSetForResNet18Classifier(data.Dataset):
+class FullSpectroAudioSet(data.Dataset):
     def __init__(self, path: str):
         super().__init__()
         self.audio_fetcher_ = JsonBasedAudioSet(path)
         self.track_selector_ = sc_transforms.SoundTrackSelector("mix")
         self.resampler_ = tch_audio_trans.Resample(orig_freq=44100, new_freq=16000)
-        self.length_fixer = sc_transforms.TimeSequenceLengthFixer(5, 16000)
         self.spectrogram_converter_ = tch_audio_trans.Spectrogram(n_fft=512,
                                                                   hop_length=256,
                                                                   win_length=512,
@@ -33,8 +32,8 @@ class AudioSetForResNet18Classifier(data.Dataset):
         label = self.label_digit2tensor(label_digits)
         track = self.track_selector_(sample)
         resampled_track = self.resampler_(track)
-        fixed_track = self.length_fixer(resampled_track)
-        spectrogram = self.spectrogram_converter_(fixed_track)
+        # fixed_track = self.length_fixer(resampled_track)
+        spectrogram = self.spectrogram_converter_(resampled_track)
         db_spe = self.amplitude_trans(spectrogram)
         return db_spe, label
 

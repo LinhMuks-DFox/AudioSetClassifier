@@ -1,5 +1,8 @@
-from .AudioSetForResNet18Classifier import AudioSetForResNet18Classifier
-
+from .FullSpectroAudioSet import FullSpectroAudioSet
+from .SoundPowerAudioSet import SoundPowerAudioSet
+from .AutoEncodedAudioSet import AutoEncodedAudioSet
 __all__ = [
-    "AudioSetForResNet18Classifier"
+    "FullSpectroAudioSet",
+    "SoundPowerAudioSet",
+    "AutoEncodedAudioSet"
 ]
