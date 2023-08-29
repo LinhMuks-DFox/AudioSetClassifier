@@ -6,6 +6,7 @@ import hyper_para
 from src.AutoEncodedAudioSet import AutoEncodedAudioSet
 from src.FullSpectroAudioSet import FullSpectroAudioSet
 from src.SoundPowerAudioSet import SoundPowerAudioSet
+import platform
 
 
 def make_model():
@@ -51,3 +52,9 @@ def make_optimizer(model):
 
 def make_scheduler(optimizer):
     return torch.optim.lr_scheduler.StepLR(optimizer, step_size=hyper_para.STEP_SIZE, gamma=hyper_para.GAMMA)
+
+
+def select_device():
+    if hyper_para.DEVICE == "cuda" and "mac" in platform.platform().lower():
+        return torch.device("mps")
+    return torch.device(hyper_para.DEVICE)
