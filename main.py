@@ -7,7 +7,7 @@ import torch
 import hyper_para
 import train_config
 import train_prepare
-import src.util
+import src.tags
 
 logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',

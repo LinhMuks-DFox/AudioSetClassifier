@@ -6,8 +6,10 @@ import torchaudio.transforms as tch_audio_trans
 
 import AudioSet.transform.transforms as sc_transforms
 from AudioSet.IO.JsonBasedAudioSet import JsonBasedAudioSet
+import tags
 
 
+@util.stable_api
 class FullSpectroAudioSet(data.Dataset):
     def __init__(self, path: str):
         super().__init__()

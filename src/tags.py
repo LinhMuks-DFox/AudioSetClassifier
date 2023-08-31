@@ -14,3 +14,10 @@ def untested(func):
         return func(*args, **kwargs)
 
     return new_func
+
+
+def stable_api(func):
+    @functools.wraps(func)
+    def new_func(*args, **kwargs):
+        return func(*args, **kwargs)
+

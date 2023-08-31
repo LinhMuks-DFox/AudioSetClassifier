@@ -1,6 +1,6 @@
 import torch
 import sklearn.metrics as metrics
-import util
+import tags
 
 
 class ClassifierTester:
