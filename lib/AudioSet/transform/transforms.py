@@ -2,7 +2,7 @@ import random
 
 import torch
 
-from AudioSet.utils import tensor_masking, create_mask_chunk_2d
+from lib.AudioSet.utils import tensor_masking, create_mask_chunk_2d
 
 
 class TimeSequenceLengthFixer(torch.nn.Module):
