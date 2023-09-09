@@ -19,7 +19,7 @@ logging.basicConfig(
 )
 log = logging.info
 
-model = train_prepare.make_model()
+model = train_prepare.make_classifier()
 dataset = train_prepare.make_dataset()
 train_loader, validate_loader, test_loader = train_prepare.make_dataloader(dataset)
 device = train_prepare.select_device()

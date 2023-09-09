@@ -1,11 +1,8 @@
-import typing
-
-import torch
 import torch.utils.data as data
 import torchaudio.transforms as tch_audio_trans
 
-import AudioSet.transform.transforms as sc_transforms
-from AudioSet.IO.JsonBasedAudioSet import JsonBasedAudioSet
+from lib import AudioSet as sc_transforms
+from lib.AudioSet.IO import JsonBasedAudioSet
 import tags
 from util import label_digit2tensor
 
