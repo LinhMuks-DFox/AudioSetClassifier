@@ -20,6 +20,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                  hop_length: int,
                  win_length: int,
                  normalized: bool,
+                 sample_seconds: int = 10
                  ):
         self.auto_encoder: torch.nn.Module = make_auto_encoder_from_hyperparameter(auto_encoder_hypers)
         self.auto_encoder.load_state_dict(torch.load(encoder_model_path))
@@ -39,12 +40,14 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         self.hop_length_ = hop_length
         self.win_length_ = win_length
         self.normalized_ = normalized
+        self.sample_seconds_ = sample_seconds
         self.amplitude_trans_ = tch_audio_trans.AmplitudeToDB()
+        self._split_i = self.sample_seconds_ * self.new_freq_ // 2
 
     def __len__(self):
         return len(self.audio_fetcher_)
 
-    @tags.unfinished_api
+    @tags.untested
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         label = label_digit2tensor(label_digits)
@@ -52,7 +55,9 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         track = self.resampler_(track)
 
         # TODO: split sound to 5 seconds
-        prev5s, post5s = track[0], track[0]
+        _i = self.sample_seconds_ * self.new_freq_
+        prev5s, post5s = (track[0:self._split_i // 2],
+                          track[self._split_i // 2:])  # 10s * 16000Hz = 160000 samples
 
         prev5s_spe = self.spectrogram_converter_(prev5s)
         post5s_spe = self.spectrogram_converter_(post5s)
