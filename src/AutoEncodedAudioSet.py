@@ -10,18 +10,36 @@ import tags
 
 @tags.untested
 class AutoEncodedAudioSet(torch.utils.data.Dataset):
-    def __init__(self, auto_encoder_hypers, encoder_model_path, path: str):
+    def __init__(self, auto_encoder_hypers,
+                 encoder_model_path,
+                 path: str,
+                 sound_track: str,
+                 orig_freq: int,
+                 new_freq: int,
+                 n_fft: int,
+                 hop_length: int,
+                 win_length: int,
+                 normalized: bool,
+                 ):
         self.auto_encoder: torch.nn.Module = make_auto_encoder_from_hyperparameter(auto_encoder_hypers)
         self.auto_encoder.load_state_dict(torch.load(encoder_model_path))
 
         self.audio_fetcher_ = JsonBasedAudioSet(path)
-        self.track_selector_ = sc_transforms.SoundTrackSelector("mix")
-        self.resampler_ = tch_audio_trans.Resample(orig_freq=44100, new_freq=16000)
-        self.spectrogram_converter_ = tch_audio_trans.Spectrogram(n_fft=512,
-                                                                  hop_length=256,
-                                                                  win_length=512,
-                                                                  normalized=True)
-        self.amplitude_trans = tch_audio_trans.AmplitudeToDB()
+        self.track_selector_ = sc_transforms.SoundTrackSelector(sound_track)
+        self.resampler_ = tch_audio_trans.Resample(orig_freq=orig_freq, new_freq=new_freq)
+        self.spectrogram_converter_ = tch_audio_trans.Spectrogram(n_fft=n_fft,
+                                                                  hop_length=hop_length,
+                                                                  win_length=win_length,
+                                                                  normalized=normalized)
+
+        self.sound_track_ = sound_track
+        self.orig_freq_ = orig_freq
+        self.new_freq_ = new_freq
+        self.n_fft_ = n_fft
+        self.hop_length_ = hop_length
+        self.win_length_ = win_length
+        self.normalized_ = normalized
+        self.amplitude_trans_ = tch_audio_trans.AmplitudeToDB()
 
     def __len__(self):
         return len(self.audio_fetcher_)

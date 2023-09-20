@@ -9,10 +9,14 @@ from util import label_digit2tensor
 
 @tags.untested
 class SoundPowerAudioSet(tch_data.Dataset):
-    def __init__(self, path: str):
+    def __init__(self, path: str,
+                 sound_track: str,
+                 orig_freq: int,
+                 new_freq: int,
+                 ):
         self.audio_fetcher_ = JsonBasedAudioSet(path)
-        self.track_selector_ = sc_transforms.SoundTrackSelector("mix")
-        self.resampler_ = tch_audio_trans.Resample(orig_freq=44100, new_freq=16000)
+        self.track_selector_ = sc_transforms.SoundTrackSelector(sound_track)
+        self.resampler_ = tch_audio_trans.Resample(orig_freq=orig_freq, new_freq=new_freq)
 
     def __len__(self):
         return len(self.audio_fetcher_)
@@ -22,7 +26,7 @@ class SoundPowerAudioSet(tch_data.Dataset):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         # split sample to 800 chunks
         reshaped_sample = sample.reshape(800, 200)  # 16000Hz * 10s // 800 = 200
-        sound_power = torch.sum(reshaped_sample ** 2, dim=1)\
+        sound_power = torch.sum(reshaped_sample ** 2, dim=1) \
             .reshape(80, 10)
         label = label_digit2tensor(label_digits)
 
