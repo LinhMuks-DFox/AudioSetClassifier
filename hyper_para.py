@@ -11,6 +11,19 @@ GAMMA = 0.99
 DATA_SET = "best"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 
+AUDIO_PRE_TRANSFORM = {
+    "sound_track": "mix",
+    "resample": {
+        "orig_freq": 44100,
+        "new_freq": 16000},
+    "fft": {
+        "n_fft": 512,
+        "hop_length": 256,
+        "win_length": 128,
+        "normalized": True, }
+
+}
+
 AUTO_ENCODER_MODEL = {
     "conv_kernel_size": np.array([[3, 3],
                                   [5, 5],

@@ -2,6 +2,8 @@ import torch.nn
 import torch.utils.data as tch_data
 import torchvision
 from typing import Tuple
+
+import train_config
 from lib.AutoEncoder.AudioEncoder import AudioEncoder
 from lib.AutoEncoder.AudioDecoder import AudioDecoder
 from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparameter
@@ -25,15 +27,40 @@ def make_classifier():
 
 
 def make_dataset():
-    _CASE = {
-        "best": FullSpectroAudioSet,
-        "auto-encoder": AutoEncodedAudioSet,
-        "sound-power": SoundPowerAudioSet
-    }
-    if hyper_para.DATA_SET not in _CASE.keys():
-        raise ValueError("Only support best, auto-encoder, sound-power")
-    _kernel = _CASE.get(hyper_para.DATA_SET)
-    return _kernel()
+    if hyper_para.DATA_SET == "ideal":
+        return FullSpectroAudioSet(
+            path=train_config.DATA_SET_PATH,
+            sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
+            orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
+            new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
+            n_fft=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("n_fft"),
+            hop_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("hop_length"),
+            win_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("win_length"),
+            normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
+        )
+    elif hyper_para.DATA_SET == "sound_power":
+        return SoundPowerAudioSet(
+            path=train_config.DATA_SET_PATH,
+            sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
+            orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
+            new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
+        )
+    elif hyper_para.DATA_SET == "encoded":
+        return AutoEncodedAudioSet(
+            auto_encoder_hypers=hyper_para.AUTO_ENCODER_MODEL,
+            encoder_model_path=train_config.AUTO_ENCODER_MODEL_PATH,
+            path=train_config.DATA_SET_PATH,
+            sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
+            orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
+            new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
+            n_fft=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("n_fft"),
+            hop_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("hop_length"),
+            win_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("win_length"),
+            normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
+        )
+
+    else:
+        raise ValueError("Unknown data set type")
 
 
 def make_dataloader(dataset):
