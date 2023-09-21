@@ -4,8 +4,8 @@ from lib.AutoEncoder import *
 from lib.AudioSet.IO import JsonBasedAudioSet
 import lib.AudioSet.transform as sc_transforms
 import torchaudio.transforms as tch_audio_trans
-from src.util import label_digit2tensor
-import tags
+from .util import label_digit2tensor
+from . import tags
 
 
 @tags.untested

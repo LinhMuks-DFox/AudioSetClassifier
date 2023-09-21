@@ -3,8 +3,8 @@ import torchaudio.transforms as tch_audio_trans
 
 from lib import AudioSet as sc_transforms
 from lib.AudioSet.IO import JsonBasedAudioSet
-import tags
-from util import label_digit2tensor
+from . import tags
+from .util import label_digit2tensor
 
 
 @tags.stable_api
