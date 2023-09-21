@@ -10,7 +10,7 @@ ARG RUN_POETRY_INSTALL_AT_BUILD_TIME="false"
 ENV HOME=/root
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Tokyo
-
+ENV IN_DOCKER_CONTAINER="true"
 # --- Change repository ---
 # RUN sed -i.org -e 's|archive.ubuntu.com|ubuntutym.u-toyama.ac.jp|g' /etc/apt/sources.list && \
 #     apt-get clean
