@@ -3,17 +3,24 @@ import os.path
 import sys
 
 import torch
-
+import json
 import hyper_para
 import train_config
 import train_prepare
 import src.tags
+from src.ClassifierTester import ClassifierTester
+
+
+# region init
+def compose_path(file):
+    return os.path.join(train_config.DUMP_PATH, file)
+
 
 logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     level=logging.INFO,
     handlers=[
-        logging.FileHandler(os.path.join(train_config.DUMP_PATH, 'train.log')),
+        logging.FileHandler(compose_path("train.log")),
         logging.StreamHandler(sys.stdout)
     ]
 )
@@ -28,6 +35,8 @@ optimizer = train_prepare.make_optimizer(model)
 scheduler = train_prepare.make_scheduler(optimizer)
 validata_loss, train_loss, test_loss = [torch.empty(0).to(device) for _ in range(3)]
 
+
+# endregion
 
 @src.util.untested
 def train():
@@ -72,6 +81,23 @@ def test():
             test_loss = torch.hstack((test_loss, loss))
 
 
+def eval_model():
+    with open(compose_path("model_eval.txt")) as f:
+        model_scores = (ClassifierTester(model)
+                        .set_dataloader(test_loader)
+                        .calculate_confusion_matrix()
+                        .calculate_accuracy()
+                        .calculate_precision()
+                        .calculate_recall()
+                        .calculate_f1_score()
+                        .status_map())
+        json.dump(model_scores, f)
+
+
 @src.util.untested
 def main():
-    pass
+    log("train start.")
+    train()
+    test()
+    eval_model()
+    log("train end.")
