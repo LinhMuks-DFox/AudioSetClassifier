@@ -8,7 +8,7 @@ class ClassifierTester:
     def __init__(self, model: torch.nn.Module):
         self.model_ = model
         self.model_.eval()
-        self.dataset_ = None
+        self.dataloader_ = None
         self.n_classes_ = None
 
         self.confusion_matrix_ = None
@@ -19,33 +19,52 @@ class ClassifierTester:
 
         self.y_predict_ = None
 
-    def set_dataset(self, dataset, n_classes: int):
-        self.dataset_ = dataset
+    def set_dataloader(self, dataset, n_classes: int) -> "ClassifierTester":
+        self.dataloader_ = dataset
         self.n_classes_ = n_classes
+        return self
 
-    @util.untested()
-    def fit(self):
+    @tags.untested()
+    def eval(self) -> "ClassifierTester":
         with torch.no_grad():
-            for i, (x, y) in enumerate(self.dataset_):
+            for i, (x, y) in enumerate(self.dataloader_):
                 y_predict = self.model_(x)
                 y_predict = torch.argmax(y_predict, dim=1)
                 if i == 0:
                     self.y_predict_ = y_predict
                 else:
                     self.y_predict_ = torch.cat((self.y_predict_, y_predict), dim=0)
+        return self
 
-    # Create a confusion matrix
-    def confusion_matrix(self):
-        pass
+    @tags.untested
+    def calculate_confusion_matrix(self) -> "ClassifierTester":
+        self.confusion_matrix_ = metrics.confusion_matrix(self.dataloader_.dataset.y, self.y_predict_)
+        return self
 
-    def accuracy(self):
-        pass
+    @tags.untested
+    def calculate_accuracy(self) -> "ClassifierTester":
+        self.accuracy_ = metrics.accuracy_score(self.dataloader_.dataset.y, self.y_predict_)
 
-    def precision(self):
-        pass
+    @tags.untested
+    def calculate_precision(self) -> "ClassifierTester":
+        self.precision_ = metrics.precision_score(self.dataloader_.dataset.y, self.y_predict_, average='macro')
+        return self
 
-    def recall(self):
-        pass
+    @tags.untested
+    def calculate_recall(self) -> "ClassifierTester":
+        self.recall_ = metrics.recall_score(self.dataloader_.dataset.y, self.y_predict_, average='macro')
+        return self
 
-    def f1_score(self):
-        pass
+    @tags.untested
+    def calculate_f1_score(self) -> "ClassifierTester":
+        self.f1_score_ = metrics.f1_score(self.dataloader_.dataset.y, self.y_predict_, average='macro')
+        return self
+
+    def status_map(self) -> dict:
+        return {
+            "confusion_matrix": self.confusion_matrix_,
+            "accuracy": self.accuracy_,
+            "precision": self.precision_,
+            "recall": self.recall_,
+            "f1_score": self.f1_score_
+        }
