@@ -11,10 +11,15 @@ import src.tags
 from src.ClassifierTester import ClassifierTester
 
 
-# region init
 def compose_path(file):
     return os.path.join(train_config.DUMP_PATH, file)
 
+
+if not os.path.exists(train_config.DUMP_PATH):
+    print("DUMP PATH NOT EXISTS, CREATING...")
+    os.makedirs(train_config.DUMP_PATH)
+else:
+    print("DUMP PATH EXISTS, SKIPPING...")
 
 logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -24,7 +29,11 @@ logging.basicConfig(
         logging.StreamHandler(sys.stdout)
     ]
 )
+
 log = logging.info
+
+# region init
+
 
 model = train_prepare.make_classifier()
 dataset = train_prepare.make_dataset()
@@ -96,12 +105,7 @@ def eval_model():
 
 @src.tags.unfinished_api
 def main():
-    log("Train start.")
     log(train_config.TRAIN_CONFIG_SUMMARY)
-    # train()
-    # test()
-    # eval_model()
-    log("train end.")
 
 
 if __name__ == '__main__':
