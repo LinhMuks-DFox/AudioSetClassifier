@@ -24,7 +24,7 @@ class ClassifierTester:
         self.n_classes_ = n_classes
         return self
 
-    @tags.untested()
+    @tags.untested
     def eval(self) -> "ClassifierTester":
         with torch.no_grad():
             for i, (x, y) in enumerate(self.dataloader_):

@@ -38,9 +38,9 @@ validata_loss, train_loss, test_loss = [torch.empty(0).to(device) for _ in range
 
 # endregion
 
-@src.util.untested
+@src.tags.untested
 def train():
-    for epoch in range(hyper_para.EPOCH):
+    for epoch in range(hyper_para.EPOCHS):
         log(f"Epoch {epoch} start.")
         _epoch_loss = torch.empty(0)
         for i, (data, label) in enumerate(train_loader):
@@ -54,7 +54,7 @@ def train():
         log(f"Epoch {epoch} end.")
 
 
-@src.util.untested
+@src.tags.untested
 def one_step_loss(data: torch.Tensor, label: torch.Tensor):
     data = data.to(device)
     label = label.to(device)
@@ -63,7 +63,7 @@ def one_step_loss(data: torch.Tensor, label: torch.Tensor):
     return loss
 
 
-@src.util.untested
+@src.tags.untested
 def validate():
     with torch.no_grad():
         _vali_loss = torch.empty(0)
@@ -73,7 +73,7 @@ def validate():
         validata_loss.append(torch.mean(_vali_loss))
 
 
-@src.util.untested
+@src.tags.untested
 def test():
     with torch.no_grad():
         for i, (data, label) in enumerate(validate_loader):
@@ -84,7 +84,7 @@ def test():
 def eval_model():
     with open(compose_path("model_eval.txt")) as f:
         model_scores = (ClassifierTester(model)
-                        .set_dataloader(test_loader)
+                        .set_dataloader(test_loader, hyper_para.CLASS_CNT)
                         .calculate_confusion_matrix()
                         .calculate_accuracy()
                         .calculate_precision()
@@ -94,10 +94,15 @@ def eval_model():
         json.dump(model_scores, f)
 
 
-@src.util.untested
+@src.tags.unfinished_api
 def main():
-    log("train start.")
-    train()
-    test()
-    eval_model()
+    log("Train start.")
+    log(train_config.TRAIN_CONFIG_SUMMARY)
+    # train()
+    # test()
+    # eval_model()
     log("train end.")
+
+
+if __name__ == '__main__':
+    main()
