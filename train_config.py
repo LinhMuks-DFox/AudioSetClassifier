@@ -1,6 +1,6 @@
+import datetime
 import os.path
 import sys
-import datetime
 
 IN_DOCKER: bool = os.environ.get("IN_DOCKER_CONTAINER", False)
 

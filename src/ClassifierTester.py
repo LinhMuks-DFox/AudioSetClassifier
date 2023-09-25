@@ -1,7 +1,8 @@
 import typing
 
-import torch
 import sklearn.metrics as metrics
+import torch
+
 from . import tags
 
 

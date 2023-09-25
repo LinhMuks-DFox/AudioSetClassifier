@@ -1,17 +1,18 @@
+import platform
+from typing import Tuple
+
 import torch.nn
 import torch.utils.data as tch_data
 import torchvision
-from typing import Tuple
 
-import train_config
-from lib.AutoEncoder.AudioEncoder import AudioEncoder
-from lib.AutoEncoder.AudioDecoder import AudioDecoder
-from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparameter
 import hyper_para
+import train_config
+from lib.AutoEncoder.AudioDecoder import AudioDecoder
+from lib.AutoEncoder.AudioEncoder import AudioEncoder
+from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparameter
 from src.AutoEncodedAudioSet import AutoEncodedAudioSet
 from src.FullSpectroAudioSet import FullSpectroAudioSet
 from src.SoundPowerAudioSet import SoundPowerAudioSet
-import platform
 
 
 def make_classifier():

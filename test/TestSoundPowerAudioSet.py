@@ -1,7 +1,8 @@
 import unittest
+
+import hyper_para
 import train_config
 from src.SoundPowerAudioSet import SoundPowerAudioSet
-import hyper_para
 
 
 class MyTestCase(unittest.TestCase):

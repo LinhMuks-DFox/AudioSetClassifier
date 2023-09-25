@@ -1,7 +1,8 @@
 import unittest
-from src.FullSpectroAudioSet import FullSpectroAudioSet
-import train_config
+
 import hyper_para
+import train_config
+from src.FullSpectroAudioSet import FullSpectroAudioSet
 
 
 class MyTestCase(unittest.TestCase):

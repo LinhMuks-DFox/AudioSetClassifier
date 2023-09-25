@@ -1,7 +1,8 @@
 import unittest
-from src.AutoEncodedAudioSet import AutoEncodedAudioSet
-import train_config
+
 import hyper_para
+import train_config
+from src.AutoEncodedAudioSet import AutoEncodedAudioSet
 
 
 class MyTestCase(unittest.TestCase):

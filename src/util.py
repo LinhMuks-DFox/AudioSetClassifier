@@ -1,5 +1,6 @@
-import torch
 import typing
+
+import torch
 
 
 def label_digit2tensor(label: typing.List[int], class_num=527) -> torch.Tensor:

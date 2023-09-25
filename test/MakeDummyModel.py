@@ -1,10 +1,8 @@
-import tqdm
-
-from src.ClassifierTester import ClassifierTester
 import torch.nn as nn
-import torchvision.transforms as transforms
-import torchvision.datasets as datasets
 import torch.utils.data
+import torchvision.datasets as datasets
+import torchvision.transforms as transforms
+import tqdm
 
 
 class DummyModelForMNIST(nn.Module):

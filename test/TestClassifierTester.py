@@ -1,10 +1,12 @@
 import unittest
-from src.ClassifierTester import ClassifierTester
-from MakeDummyModel import DummyModelForMNIST
+
 import torch
 import torch.utils.data
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
+
+from MakeDummyModel import DummyModelForMNIST
+from src.ClassifierTester import ClassifierTester
 
 
 class MyTestCase(unittest.TestCase):

@@ -1,13 +1,13 @@
 import torch.nn
 import torch.utils.data
-from lib.AutoEncoder import *
-from lib.AudioSet.IO import JsonBasedAudioSet
-import lib.AudioSet.transform as sc_transforms
 import torchaudio.transforms as tch_audio_trans
-from .util import label_digit2tensor
-from . import tags
-from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparameter
+
+import lib.AudioSet.transform as sc_transforms
+from lib.AudioSet.IO import JsonBasedAudioSet
 from lib.AutoEncoder.AudioEncoder import AudioEncoder
+from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparameter
+from . import tags
+from .util import label_digit2tensor
 
 
 @tags.stable_api
