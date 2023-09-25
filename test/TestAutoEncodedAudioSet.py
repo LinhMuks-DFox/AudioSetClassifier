@@ -27,8 +27,6 @@ class MyTestCase(unittest.TestCase):
     def test_getitem(self):
         sample, label = self.dataset[0]
         print(sample.shape)
-        with open("../pre_trained_encoder/tensor.txt", "w") as f:
-            f.write(str(sample))
 
 
 if __name__ == '__main__':
