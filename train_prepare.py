@@ -58,7 +58,6 @@ def make_dataset():
             win_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("win_length"),
             normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
         )
-
     else:
         raise ValueError("Unknown data set type")
 
