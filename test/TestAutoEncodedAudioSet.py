@@ -5,6 +5,11 @@ import hyper_para
 
 
 class MyTestCase(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.dataset = None
+        self.test_build_up()
+
     def test_build_up(self) -> None:
         self.dataset = AutoEncodedAudioSet(
             auto_encoder_hypers=hyper_para.AUTO_ENCODER_MODEL,
@@ -19,8 +24,11 @@ class MyTestCase(unittest.TestCase):
             normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
         )
 
-    def test_something(self):
-        pass
+    def test_getitem(self):
+        sample, label = self.dataset[0]
+        print(sample.shape)
+        with open("../pre_trained_encoder/tensor.txt", "w") as f:
+            f.write(str(sample))
 
 
 if __name__ == '__main__':

@@ -10,7 +10,10 @@ from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparam
 from lib.AutoEncoder.AudioEncoder import AudioEncoder
 
 
+@tags.stable_api
 class AutoEncodedAudioSet(torch.utils.data.Dataset):
+
+    @tags.stable_api
     def __init__(self, auto_encoder_hypers,
                  encoder_model_path,
                  path: str,
@@ -46,9 +49,11 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                                                                                 auto_encoder_hypers)[0]
         self.auto_encoder.load_state_dict(torch.load(encoder_model_path))
 
+    @tags.stable_api
     def __len__(self):
         return len(self.audio_fetcher_)
 
+    @tags.stable_api
     def _data_shape_(self):
         sample = self.audio_fetcher_[0][0]
         sample = self.track_selector_(sample)
@@ -58,29 +63,26 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         sample = self.amplitude_trans_(sample)
         return sample.shape
 
-    @tags.untested
+    @tags.stable_api
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         label = label_digit2tensor(label_digits)
         track = self.track_selector_(sample)
         track = self.resampler_(track)
 
-        # TODO: split sound to 5 seconds
-        _i = self.sample_seconds_ * self.new_freq_
-        prev5s, post5s = (track[0:self._split_i // 2],
-                          track[self._split_i // 2:])  # 10s * 16000Hz = 160000 samples
+        prev5s, post5s = track[:, :80000], track[:, 80000:]  # 10s * 16000Hz = 160000 samples
 
         prev5s_spe = self.spectrogram_converter_(prev5s)
         post5s_spe = self.spectrogram_converter_(post5s)
         x = self.spectrogram_converter_(post5s)
         #
-        prev5s_spe_db = self.amplitude_trans(prev5s_spe)
-        post5s_spe_db = self.amplitude_trans(post5s_spe)
+        prev5s_spe_db = self.amplitude_trans_(prev5s_spe)
+        post5s_spe_db = self.amplitude_trans_(post5s_spe)
 
         pres5s_auto_encoded = self.auto_encoder(prev5s_spe_db)
         posts5s_auto_encoded = self.auto_encoder(post5s_spe_db)
 
         # concat
-        x = torch.cat([pres5s_auto_encoded, posts5s_auto_encoded], dim=0)
+        x = torch.hstack([pres5s_auto_encoded, posts5s_auto_encoded])
         x.reshape(10, 80)
         return x, label
