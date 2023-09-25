@@ -15,11 +15,13 @@ class SoundPowerAudioSet(tch_data.Dataset):
                  sound_track: str,
                  orig_freq: int,
                  new_freq: int,
+                 output_size: tuple = (10, 80)
                  ):
         self.audio_fetcher_ = JsonBasedAudioSet(path)
         self.track_selector_ = sc_transforms.SoundTrackSelector(sound_track)
         self.resampler_ = tch_audio_trans.Resample(orig_freq=orig_freq, new_freq=new_freq)
         self.reshape_size_ = (800, 200)
+        self.output_size_ = output_size
 
     @tags.stable_api
     def __len__(self):
@@ -34,4 +36,4 @@ class SoundPowerAudioSet(tch_data.Dataset):
         reshaped_sample = sample.reshape(*self.reshape_size_)  # 16000Hz * 10s // 800 = 200
         sound_power = torch.sum(reshaped_sample ** 2, dim=1)
         label = label_digit2tensor(label_digits)
-        return sound_power.reshape((80, 10)), label
+        return sound_power.reshape(self.output_size_), label

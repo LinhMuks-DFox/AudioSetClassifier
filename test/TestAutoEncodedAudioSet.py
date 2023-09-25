@@ -22,6 +22,7 @@ class MyTestCase(unittest.TestCase):
             hop_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("hop_length"),
             win_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("win_length"),
             normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
+            output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE
         )
 
     def test_getitem(self):

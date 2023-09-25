@@ -24,7 +24,8 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                  hop_length: int,
                  win_length: int,
                  normalized: bool,
-                 sample_seconds: int = 10
+                 sample_seconds: int = 10,
+                 output_size: tuple = (10, 80)
                  ):
         self.audio_fetcher_ = JsonBasedAudioSet(path)
         self.track_selector_ = sc_transforms.SoundTrackSelector(sound_track)
@@ -44,6 +45,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         self.normalized_ = normalized
         self.sample_seconds_ = sample_seconds
         self._split_i = self.sample_seconds_ * self.new_freq_ // 2
+        self.output_size_ = output_size
 
         self.auto_encoder: AudioEncoder = make_auto_encoder_from_hyperparameter(self._data_shape_(),
                                                                                 auto_encoder_hypers)[0]
@@ -83,4 +85,4 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
 
         x = torch.hstack([pres5s_auto_encoded, posts5s_auto_encoded])
         # x.reshape(80, 10)
-        return x.reshape(80, 10), label
+        return x.reshape(*self.output_size_), label

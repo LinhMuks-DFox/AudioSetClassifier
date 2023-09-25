@@ -15,6 +15,7 @@ class MyTestCase(unittest.TestCase):
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
+            output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE
         )
 
     def test_getitem(self):
