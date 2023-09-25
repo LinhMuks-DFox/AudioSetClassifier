@@ -14,7 +14,7 @@ DRY_RUN: bool = True
 DRY_RUN_DATE_SET_LENGTH: int = 80
 TRAIN_ID = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
 DUMP_PATH = f"./pth_bin/{TRAIN_ID}"
-
+AUTO_ENCODER_MODEL_PATH = r"pre_trained_encoder/2023-08-04-09-49-03/encoder.pth"
 TRAIN_CONFIG_SUMMARY = f"""
 Train config summary of {TRAIN_ID}:
 IN_DOCKER : {IN_DOCKER}

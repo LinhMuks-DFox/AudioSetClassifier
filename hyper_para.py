@@ -55,3 +55,7 @@ AUTO_ENCODER_MODEL = {
     "conv_output_channel": np.array([1, 8, 32, 16, 8, 1]),
     "conv_type": torch.nn.Conv2d
 }
+
+# region DRY_RUN
+DRY_RUN_EPOCHS = 3
+DYR_RUN_BATCH_SIZE = 30
