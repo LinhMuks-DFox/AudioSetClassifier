@@ -5,6 +5,7 @@ import sklearn.metrics as metrics
 from . import tags
 
 
+@tags.stable_api
 class ClassifierTester:
 
     def __init__(self, model: torch.nn.Module):
@@ -22,13 +23,13 @@ class ClassifierTester:
         self.y_predict_ = torch.empty(0)
         self.y_true_ = torch.empty(0)
 
-
+    @tags.stable_api
     def set_dataloader(self, dataset, n_classes: int) -> "ClassifierTester":
         self.dataloader_ = dataset
         self.n_classes_ = n_classes
         return self
 
-    @tags.untested
+    @tags.stable_api
     def predict_all(self) -> "ClassifierTester":
         with torch.no_grad():
             for x, y in self.dataloader_:
@@ -38,31 +39,32 @@ class ClassifierTester:
                 self.y_predict_ = torch.hstack((self.y_predict_, y_predict))
         return self
 
-    @tags.untested
+    @tags.stable_api
     def calculate_confusion_matrix(self) -> "ClassifierTester":
         self.confusion_matrix_ = metrics.confusion_matrix(self.y_true_, self.y_predict_)
         return self
 
-    @tags.untested
+    @tags.stable_api
     def calculate_accuracy(self) -> "ClassifierTester":
         self.accuracy_ = metrics.accuracy_score(self.y_true_, self.y_predict_)
         return self
 
-    @tags.untested
+    @tags.stable_api
     def calculate_precision(self) -> "ClassifierTester":
         self.precision_ = metrics.precision_score(self.y_true_, self.y_predict_, average='macro')
         return self
 
-    @tags.untested
+    @tags.stable_api
     def calculate_recall(self) -> "ClassifierTester":
         self.recall_ = metrics.recall_score(self.y_true_, self.y_predict_, average='macro')
         return self
 
-    @tags.untested
+    @tags.stable_api
     def calculate_f1_score(self) -> "ClassifierTester":
         self.f1_score_ = metrics.f1_score(self.y_true_, self.y_predict_, average='macro')
         return self
 
+    @tags.stable_api
     def status_map(self) -> dict:
         return {
             "confusion_matrix": self.confusion_matrix_,
@@ -72,6 +74,7 @@ class ClassifierTester:
             "f1_score": self.f1_score_
         }
 
+    @tags.stable_api
     def evaluate_model(self) -> typing.Dict[str, typing.Any]:
         self.predict_all()
         self.calculate_confusion_matrix()
