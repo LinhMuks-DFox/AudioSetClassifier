@@ -22,8 +22,9 @@ def make_classifier():
     }
     if hyper_para.MODEL not in _CASE.keys():
         raise ValueError("Only support RES18, RES34, RES50")
-    _kernel = _CASE.get(hyper_para.MODEL)
-    return _kernel(num_classes=hyper_para.CLASS_CNT)
+    _res_net = _CASE.get(hyper_para.MODEL)
+    _projection = torch.nn.Conv2d(kernel_size=(1, 1), in_channels=1, out_channels=3)
+    return torch.nn.Sequential(_projection, _res_net(num_classes=hyper_para.CLASS_CNT))
 
 
 def make_dataset():
