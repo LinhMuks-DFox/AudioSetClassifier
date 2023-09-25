@@ -32,8 +32,6 @@ class SoundPowerAudioSet(tch_data.Dataset):
         sample = self.resampler_(sample)
         # split sample to 800 chunks
         reshaped_sample = sample.reshape(*self.reshape_size_)  # 16000Hz * 10s // 800 = 200
-        sound_power = torch.sum(reshaped_sample ** 2, dim=1) \
-            .reshape(80, 10)
+        sound_power = torch.sum(reshaped_sample ** 2, dim=1)
         label = label_digit2tensor(label_digits)
-
-        return sound_power, label
+        return sound_power.reshape((80, 10)), label

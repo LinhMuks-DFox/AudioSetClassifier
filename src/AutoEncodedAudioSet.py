@@ -74,15 +74,13 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
 
         prev5s_spe = self.spectrogram_converter_(prev5s)
         post5s_spe = self.spectrogram_converter_(post5s)
-        x = self.spectrogram_converter_(post5s)
-        #
+
         prev5s_spe_db = self.amplitude_trans_(prev5s_spe)
         post5s_spe_db = self.amplitude_trans_(post5s_spe)
 
         pres5s_auto_encoded = self.auto_encoder(prev5s_spe_db)
         posts5s_auto_encoded = self.auto_encoder(post5s_spe_db)
 
-        # concat
         x = torch.hstack([pres5s_auto_encoded, posts5s_auto_encoded])
-        x.reshape(10, 80)
-        return x, label
+        # x.reshape(80, 10)
+        return x.reshape(80, 10), label
