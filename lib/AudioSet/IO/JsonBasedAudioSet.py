@@ -27,7 +27,8 @@ class JsonBasedAudioSet(Dataset):
             self.json_name, self.audio_sample_folder = json_file_path, audio_sample_folder
         else:
             self.audio_sample_folder, self.json_name = os.path.split(json_file_path)
-        self.json_obj = json.load(open(json_file_path, "r"))
+        with open(json_file_path, "r") as f:
+            self.json_obj = json.load(f)
 
     def __getitem__(self, idx: int) -> JsonBasedAudioGetItemType:
         sample_path = self.splice_audio_path(idx)

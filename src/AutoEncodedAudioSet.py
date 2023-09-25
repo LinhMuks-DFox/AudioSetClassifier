@@ -6,9 +6,10 @@ import lib.AudioSet.transform as sc_transforms
 import torchaudio.transforms as tch_audio_trans
 from .util import label_digit2tensor
 from . import tags
+from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparameter
+from lib.AutoEncoder.AudioEncoder import AudioEncoder
 
 
-@tags.untested
 class AutoEncodedAudioSet(torch.utils.data.Dataset):
     def __init__(self, auto_encoder_hypers,
                  encoder_model_path,
@@ -22,9 +23,6 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                  normalized: bool,
                  sample_seconds: int = 10
                  ):
-        self.auto_encoder: torch.nn.Module = make_auto_encoder_from_hyperparameter(auto_encoder_hypers)
-        self.auto_encoder.load_state_dict(torch.load(encoder_model_path))
-
         self.audio_fetcher_ = JsonBasedAudioSet(path)
         self.track_selector_ = sc_transforms.SoundTrackSelector(sound_track)
         self.resampler_ = tch_audio_trans.Resample(orig_freq=orig_freq, new_freq=new_freq)
@@ -32,7 +30,8 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                                                                   hop_length=hop_length,
                                                                   win_length=win_length,
                                                                   normalized=normalized)
-
+        self.amplitude_trans_ = tch_audio_trans.AmplitudeToDB()
+        # self.time_zone_selector_ = sc_transforms.TimeZoneSelector(sample_seconds)
         self.sound_track_ = sound_track
         self.orig_freq_ = orig_freq
         self.new_freq_ = new_freq
@@ -41,11 +40,23 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         self.win_length_ = win_length
         self.normalized_ = normalized
         self.sample_seconds_ = sample_seconds
-        self.amplitude_trans_ = tch_audio_trans.AmplitudeToDB()
         self._split_i = self.sample_seconds_ * self.new_freq_ // 2
+
+        self.auto_encoder: AudioEncoder = make_auto_encoder_from_hyperparameter(self._data_shape_(),
+                                                                                auto_encoder_hypers)[0]
+        self.auto_encoder.load_state_dict(torch.load(encoder_model_path))
 
     def __len__(self):
         return len(self.audio_fetcher_)
+
+    def _data_shape_(self):
+        sample = self.audio_fetcher_[0][0]
+        sample = self.track_selector_(sample)
+        sample = self.resampler_(sample)
+        sample = sample[:, :80000]
+        sample = self.spectrogram_converter_(sample)
+        sample = self.amplitude_trans_(sample)
+        return sample.shape
 
     @tags.untested
     def __getitem__(self, index: int):
