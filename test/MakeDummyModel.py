@@ -46,7 +46,7 @@ class Trainer:
 
     def main(self):
         self.model.to(self.device)
-        for epoch in tqdm.tqdm(range(10)):
+        for epoch in range(10):
             print(f"epoch {epoch} start")
             _epoch_loss = torch.empty(0).to(self.device)
             for x, y in tqdm.tqdm(self.train_loader):
@@ -58,7 +58,7 @@ class Trainer:
                 loss.backward()
                 self.optimizer.step()
                 _epoch_loss = torch.hstack((_epoch_loss, loss))
-            print(f"epoch {epoch} end, loss: {torch.mean(_epoch_loss).item()}")
+            print(f"\nepoch {epoch} end, loss: {torch.mean(_epoch_loss).item()}")
 
         torch.save(self.model.state_dict(), "dummy_model.pt")
 
