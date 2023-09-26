@@ -1,26 +1,30 @@
 import torch
 import numpy as np
 
-MODEL = "RES18"
+import train_config
+
+MODEL = "RES34"
 CLASS_CNT = 527  # Audio set contains 527 class labels
 DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 32
 EPOCHS = 100
 LEARNING_RATE = 1e-5
-GAMMA = 0.99
-DATA_SET = "sound_power"
+SCHEDULAR_GAMMA = 0.99
+DATA_SET = "ideal"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 
 AUDIO_PRE_TRANSFORM = {
     "sound_track": "mix",
     "resample": {
         "orig_freq": 44100,
-        "new_freq": 16000},
+        "new_freq": 16000
+    },
     "fft": {
         "n_fft": 512,
         "hop_length": 256,
         "win_length": 128,
-        "normalized": True, }
+        "normalized": True,
+    }
 
 }
 
@@ -60,3 +64,21 @@ ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE = (10, 80)  # 5s -> 400, 10s -> 800
 DRY_RUN_EPOCHS = 3
 DYR_RUN_BATCH_SIZE = 30
 DRY_RUN_DATE_SET_LENGTH: int = 80
+
+TRAIN_HYPER_PARA_MESSAGE = \
+    f"""model: {MODEL}
+class count: {CLASS_CNT}
+device: {DEVICE}(when device=cuda, and using platform mac-m1: using mps)
+batch size: {BATCH_SIZE}
+learning rate: {LEARNING_RATE}
+schedular gamma: {SCHEDULAR_GAMMA}
+data set: {DATA_SET}
+train test validate split: {TRAIN_TEST_VALIDATE_SPLIT}
+"""
+DRY_RUN_MESSAGE = \
+    f"""dry run epochs: {DRY_RUN_EPOCHS}
+dry run batch size: {DYR_RUN_BATCH_SIZE}
+dry run data set length: {DRY_RUN_DATE_SET_LENGTH}
+"""
+if train_config.DRY_RUN:
+    TRAIN_HYPER_PARA_MESSAGE += DRY_RUN_MESSAGE
