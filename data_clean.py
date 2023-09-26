@@ -1,4 +1,3 @@
-import torch
 import torchaudio.transforms
 import torch.utils.data
 
