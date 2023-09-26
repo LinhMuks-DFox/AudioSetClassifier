@@ -2,7 +2,7 @@ import random
 
 import torch
 
-from lib.AudioSet.utils import tensor_masking, create_mask_chunk_2d
+from lib.AudioSet.utils import create_mask_chunk_2d, tensor_masking
 
 
 class TimeSequenceLengthFixer(torch.nn.Module):
@@ -14,24 +14,34 @@ class TimeSequenceLengthFixer(torch.nn.Module):
     >>> fixed_wav_form = fixer(wav_form)
     >>> fixed_wav_form.shape
     """
+    _FIX_MODE = {
+        "random", "r", "random-timezone",
+        "s", "start",
+        "e", "end"
+    }
 
-    def __init__(self, fixed_length: int, sample_rate: int):
+    def __init__(self, fixed_length: int, sample_rate: int, mode="r"):
         super().__init__()
+        if mode not in self._FIX_MODE:
+            raise ValueError(f"Invalid mode:{mode}, mode shall be {self._FIX_MODE}")
+        self.mode_ = mode
         self.fixed_length = fixed_length * sample_rate
 
     def forward(self, audio_data: torch.Tensor) -> torch.Tensor:
-        return self.choose_random_time_zone(audio_data)[0]
+        if self.mode_ in {"r", "random", "random-timezone"}:
+            return self.select_time_zone(audio_data, random.randint(0, audio_data.shape[1] - self.fixed_length))[0]
+        if self.mode_ in {"s", "start"}:
+            return self.select_time_zone(audio_data, 0)[0]
+        if self.mode_ in {"e", "end"}:
+            return self.select_time_zone(audio_data, audio_data.shape[1] - self.fixed_length)[0]
+        else:
+            raise ValueError(f"Invalid mode:{self.mode_}")
 
-    def choose_random_time_zone(self, audio_data: torch.Tensor):
-        # if audio date not long enough, pad it
+    def select_time_zone(self, audio_data: torch.Tensor, start_time: int):
         if audio_data.shape[1] < self.fixed_length:
             audio_data = torch.nn.functional.pad(audio_data,
                                                  (0, self.fixed_length - audio_data.shape[1]))
-
-        # choose a random start time
-        random_start_time = random.randint(0, audio_data.shape[1] - self.fixed_length)
-        # random_start_time = torch.randint(0, audio_data.shape[1] - self.fixed_length, (1,)).item()
-        return audio_data[:, random_start_time: random_start_time + self.fixed_length], random_start_time
+        return audio_data[: start_time: start_time + self.fixed_length], start_time
 
 
 class SoundTrackSelector(torch.nn.Module):
