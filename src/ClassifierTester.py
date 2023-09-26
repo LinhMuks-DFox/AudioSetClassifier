@@ -39,8 +39,8 @@ class ClassifierTester:
                 self.y_true_ = torch.hstack((self.y_true_, y))
                 x = x.to(self.device_)
                 out = self.model_(x)
-                y_predict = torch.argmax(out, dim=1)
-                self.y_predict_ = torch.hstack((self.y_predict_, y_predict[:]))
+                # y_predict = torch.argmax(out, dim=1)
+                self.y_predict_ = torch.hstack((self.y_predict_, out))
         assert self.y_predict_.shape == self.y_true_.shape, \
             f"y_predict({self.y_predict_.shape}) and y_true({self.y_true_.shape}) shape mismatch."
         self.y_predict_ = self.y_predict_.detach().cpu().numpy()
