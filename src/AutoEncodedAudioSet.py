@@ -7,7 +7,7 @@ from lib.AudioSet.IO import JsonBasedAudioSet
 from lib.AutoEncoder.AudioEncoder import AudioEncoder
 from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparameter
 from . import tags
-from .util import label_digit2tensor
+from .util import label_digit2tensor, fix_length
 
 
 @tags.stable_api
@@ -46,7 +46,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         self.sample_seconds_ = sample_seconds
         self._split_i = self.sample_seconds_ * self.new_freq_ // 2
         self.output_size_ = output_size
-
+        self.sample_length_ = self.sample_seconds_ * self.new_freq_
         self.auto_encoder: AudioEncoder = make_auto_encoder_from_hyperparameter(self._data_shape_(),
                                                                                 auto_encoder_hypers)[0]
         self.auto_encoder.load_state_dict(torch.load(encoder_model_path))
@@ -60,6 +60,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         sample = self.audio_fetcher_[0][0]
         sample = self.track_selector_(sample)
         sample = self.resampler_(sample)
+        sample = fix_length(sample, self.sample_length_)
         sample = sample[:, :80000]
         sample = self.spectrogram_converter_(sample)
         sample = self.amplitude_trans_(sample)
@@ -71,7 +72,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         label = label_digit2tensor(label_digits)
         track = self.track_selector_(sample)
         track = self.resampler_(track)
-
+        track = fix_length(track, self.sample_length_)
         prev5s, post5s = track[:, :80000], track[:, 80000:]  # 10s * 16000Hz = 160000 samples
 
         prev5s_spe = self.spectrogram_converter_(prev5s)
