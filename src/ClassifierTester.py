@@ -9,10 +9,12 @@ from . import tags
 @tags.stable_api
 class ClassifierTester:
 
-    def __init__(self, model: torch.nn.Module):
+    def __init__(self, model: torch.nn.Module, device):
         self.model_ = model
         self.model_.eval()
         self.dataloader_ = None
+        self.device_ = device
+
         self.n_classes_ = None
 
         self.confusion_matrix_ = None
@@ -21,7 +23,7 @@ class ClassifierTester:
         self.recall_ = None
         self.f1_score_ = None
 
-        self.y_predict_ = torch.empty(0)
+        self.y_predict_ = torch.empty(0).to(self.device_)
         self.y_true_ = torch.empty(0)
 
     @tags.stable_api
@@ -30,14 +32,19 @@ class ClassifierTester:
         self.n_classes_ = n_classes
         return self
 
-    @tags.stable_api
+    @tags.unfinished_api
     def predict_all(self) -> "ClassifierTester":
         with torch.no_grad():
             for x, y in self.dataloader_:
                 self.y_true_ = torch.hstack((self.y_true_, y))
-                y_predict = self.model_(x)
-                y_predict = torch.argmax(y_predict, dim=1)
-                self.y_predict_ = torch.hstack((self.y_predict_, y_predict))
+                x = x.to(self.device_)
+                out = self.model_(x)
+                y_predict = torch.argmax(out, dim=1)
+                self.y_predict_ = torch.hstack((self.y_predict_, y_predict[:]))
+        assert self.y_predict_.shape == self.y_true_.shape, \
+            f"y_predict({self.y_predict_.shape}) and y_true({self.y_true_.shape}) shape mismatch."
+        self.y_predict_ = self.y_predict_.detach().cpu().numpy()
+        self.y_true_ = self.y_true_.detach().cpu().numpy()
         return self
 
     @tags.stable_api
