@@ -9,7 +9,7 @@ from . import tags
 @tags.stable_api
 class ClassifierTester:
 
-    def __init__(self, model: torch.nn.Module, device):
+    def __init__(self, model: torch.nn.Module, device, multi_label=True):
         self.model_ = model
         self.model_.eval()
         self.dataloader_ = None
@@ -25,6 +25,17 @@ class ClassifierTester:
 
         self.y_predict_ = torch.empty(0).to(self.device_)
         self.y_true_ = torch.empty(0)
+        self.multi_label_ = multi_label
+
+        self.confusion_calculate_kernel_ = {
+            True: metrics.multilabel_confusion_matrix,
+            False: metrics.confusion_matrix
+        }.get(self.multi_label_)
+
+        self.accuracy_calculate_kernel_ = {
+            True: metrics.accuracy_score,
+            False: metrics.accuracy_score
+        }
 
     @tags.stable_api
     def set_dataloader(self, dataset, n_classes: int) -> "ClassifierTester":
@@ -32,24 +43,26 @@ class ClassifierTester:
         self.n_classes_ = n_classes
         return self
 
-    @tags.unfinished_api
+    @tags.stable_api
     def predict_all(self) -> "ClassifierTester":
         with torch.no_grad():
             for x, y in self.dataloader_:
                 self.y_true_ = torch.hstack((self.y_true_, y))
                 x = x.to(self.device_)
-                out = self.model_(x)
-                # y_predict = torch.argmax(out, dim=1)
-                self.y_predict_ = torch.hstack((self.y_predict_, out))
+                y_predict = self.model_(x)
+                if not self.multi_label_:
+                    y_predict = torch.argmax(y_predict, dim=1)
+                self.y_predict_ = torch.hstack((self.y_predict_, y_predict))
         assert self.y_predict_.shape == self.y_true_.shape, \
             f"y_predict({self.y_predict_.shape}) and y_true({self.y_true_.shape}) shape mismatch."
-        self.y_predict_ = self.y_predict_.detach().cpu().numpy()
-        self.y_true_ = self.y_true_.detach().cpu().numpy()
+        self.y_predict_ = self.y_predict_.detach().cpu().to(torch.int).numpy()
+        self.y_true_ = self.y_true_.detach().cpu().to(torch.int).numpy()
+
         return self
 
     @tags.stable_api
     def calculate_confusion_matrix(self) -> "ClassifierTester":
-        self.confusion_matrix_ = metrics.confusion_matrix(self.y_true_, self.y_predict_)
+        self.confusion_matrix_ = self.confusion_calculate_kernel_(self.y_true_, self.y_predict_)
         return self
 
     @tags.stable_api

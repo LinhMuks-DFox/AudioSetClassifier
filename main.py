@@ -52,7 +52,7 @@ class TrainApp:
         self.optimizer = train_prepare.make_optimizer(self.model)
         self.scheduler = train_prepare.make_scheduler(self.optimizer)
         self.validate_loss, self.train_loss = [torch.empty(0).to(self.device) for _ in range(2)]
-        self.classifier_tester = ClassifierTester(self.model, self.device)
+        self.classifier_tester: ClassifierTester = ClassifierTester(self.model, self.device, True)
 
         self.model.to(self.device)
         self.check_point_iota_: int = 0
@@ -71,7 +71,7 @@ class TrainApp:
     def train(self):
         epoch_cnt = hyper_para.DRY_RUN_EPOCHS if train_config.DRY_RUN else hyper_para.EPOCHS
         for epoch in range(epoch_cnt):
-            print(f"train epoch: {epoch} start.")
+            log(f"train epoch: {epoch} start.")
             epoch_loss = torch.empty(0).to(self.device)
             loss: torch.Tensor
 
@@ -85,8 +85,8 @@ class TrainApp:
             self.epoch_validate()
             self.scheduler.step()
             self.train_loss = torch.hstack((self.train_loss, mean_loss := torch.mean(epoch_loss)))
-            print(f"train epoch: {epoch}, mean loss: {mean_loss}")
-            print(f"train epoch: {epoch} end.")
+            log(f"train epoch: {epoch}, mean loss: {mean_loss}")
+            log(f"train epoch: {epoch} end.")
 
     @src.tags.stable_api
     def epoch_validate(self):
@@ -127,7 +127,7 @@ class TrainApp:
         # plt.matshow(self.eval_result["confusion_matrix"])
         # plt.savefig(compose_path("confusion_matrix.png"), dpi=300)
         # plt.clf()
-        print(self.eval_result)
+        log(self.eval_result)
         plt.plot(self.train_loss.detach().cpu().numpy())
         plt.plot(self.validate_loss.detach().cpu().numpy())
         plt.savefig(compose_path("train_validate_loss.png"), dpi=300)
@@ -175,7 +175,13 @@ class TrainApp:
             log(e, exc_info=True)
             log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
             self.dump_checkpoint()
-            self.dump_result()
+            log(
+                f"classifier_tester.multi_label_: {self.classifier_tester.multi_label_}\n"
+                f"classifier_tester.confusion_calculate_kernel_: {self.classifier_tester.confusion_calculate_kernel_}\n"
+                f"classifier_tester.y_predict_.shape: {self.classifier_tester.y_predict_.shape}\n"
+                f"self.classifier_tester.y_true_.shape: {self.classifier_tester.y_true_.shape}\n"
+            )
+
             exit(-1)
         # endregion
         log("Training finished.")

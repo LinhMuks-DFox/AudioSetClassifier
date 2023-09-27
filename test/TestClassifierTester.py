@@ -21,7 +21,7 @@ class MyTestCase(unittest.TestCase):
         ])
         self.dataset = datasets.MNIST(root='data', train=True, transform=self.transform, download=True)
         self.dataset = torch.utils.data.Subset(self.dataset, range(10))
-        self.classifier_tester: ClassifierTester = ClassifierTester(self.model, "cpu")
+        self.classifier_tester: ClassifierTester = ClassifierTester(self.model, "cpu", multi_label=False)
         self.test_loader = torch.utils.data.DataLoader(self.dataset, batch_size=10, shuffle=True)
         self.classifier_tester.set_dataloader(self.test_loader, 10)
 
