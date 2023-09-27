@@ -32,11 +32,6 @@ class ClassifierTester:
             False: metrics.confusion_matrix
         }.get(self.multi_label_)
 
-        self.accuracy_calculate_kernel_ = {
-            True: metrics.accuracy_score,
-            False: metrics.accuracy_score
-        }
-
     @tags.stable_api
     def set_dataloader(self, dataset, n_classes: int) -> "ClassifierTester":
         self.dataloader_ = dataset
