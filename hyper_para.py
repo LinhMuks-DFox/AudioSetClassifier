@@ -12,7 +12,9 @@ LEARNING_RATE = 1e-5
 SCHEDULAR_GAMMA = 0.99
 DATA_SET = "ideal"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
-
+OPTIMIZER = "Adam"
+LOSS_FUNCTION = "BCEWithLogitsLoss"
+SCHEDULER = "StepLR"
 AUDIO_PRE_TRANSFORM = {
     "sound_track": "mix",
     "resample": {
@@ -70,6 +72,10 @@ TRAIN_HYPER_PARA_MESSAGE = \
 class count: {CLASS_CNT}
 device: {DEVICE}(when device=cuda, and using platform mac-m1: using mps)
 batch size: {BATCH_SIZE}
+optimizer: {OPTIMIZER}
+loss function: {LOSS_FUNCTION}
+schedular: {SCHEDULER}
+epochs: {EPOCHS}
 learning rate: {LEARNING_RATE}
 schedular gamma: {SCHEDULAR_GAMMA}
 data set: {DATA_SET}

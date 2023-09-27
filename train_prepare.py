@@ -76,17 +76,22 @@ def make_dataloader(dataset):
 
 
 def make_loss_function():
-    return torch.nn.BCEWithLogitsLoss()
+    return {
+        "BCEWithLogitsLoss": torch.nn.BCEWithLogitsLoss
+    }.get(hyper_para.LOSS_FUNCTION)()
 
 
 def make_optimizer(model):
-    return torch.optim.Adam(model.parameters(), lr=hyper_para.LEARNING_RATE)
+    return {
+        "Adam": torch.optim.Adam,
+        "SGD": torch.optim.SGD,
+    }.get(hyper_para.OPTIMIZER)(model.parameters(), lr=hyper_para.LEARNING_RATE)
 
 
 def make_scheduler(optimizer):
-    return torch.optim.lr_scheduler.StepLR(optimizer,
-                                           step_size=hyper_para.SCHEDULAR_GAMMA,
-                                           gamma=hyper_para.SCHEDULAR_GAMMA)
+    return {
+        "StepLR": torch.optim.lr_scheduler.StepLR
+    }.get(hyper_para.SCHEDULER)(optimizer, step_size=hyper_para.SCHEDULAR_GAMMA, gamma=hyper_para.SCHEDULAR_GAMMA)
 
 
 def select_device():
