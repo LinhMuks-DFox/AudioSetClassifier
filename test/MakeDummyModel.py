@@ -4,6 +4,8 @@ import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 import tqdm
 
+import train_prepare
+
 
 class DummyModelForMNIST(nn.Module):
 
@@ -42,7 +44,7 @@ class Trainer:
         self.model = DummyModelForMNIST()
         self.loss = nn.CrossEntropyLoss()
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.001)
-        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+        self.device = train_prepare.select_device()
 
     def main(self):
         self.model.to(self.device)
