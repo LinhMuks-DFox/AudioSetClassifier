@@ -5,7 +5,7 @@ import train_config
 
 MODEL = "RES34"
 CLASS_CNT = 527  # Audio set contains 527 class labels
-DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
+DEVICE = "cuda:0"
 BATCH_SIZE = 32
 EPOCHS = 100
 LEARNING_RATE = 1e-5

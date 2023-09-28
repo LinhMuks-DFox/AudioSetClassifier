@@ -95,8 +95,10 @@ def make_scheduler(optimizer):
 
 
 def select_device():
-    if hyper_para.DEVICE == "cuda" and "mac" in platform.platform().lower() and "arm" in platform.platform().lower():
-        return torch.device("mps")
+    if ("cuda" in hyper_para.DEVICE and
+            "mac" in platform.platform().lower()):
+        if torch.backends.mps.is_available():
+            return torch.device("mps")
     return torch.device(hyper_para.DEVICE)
 
 
