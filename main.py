@@ -135,13 +135,17 @@ class TrainApp:
 
     @src.tags.stable_api
     def main(self):
-        # region log config
+        # region log configures
         log(train_config.TRAIN_CONFIG_SUMMARY)
         log(hyper_para.TRAIN_HYPER_PARA_MESSAGE)
-        log("Running Dry Run Mode" if train_config.DRY_RUN else "Running Normal Mode")
-        log("Dataset length: " + str(len(self.dataset_)))
-        log("Datashape: " + str(self.dataset_[0][0].shape))
-        log("Back up train_config.py and hyper_para.py")
+        log(
+            "Train config summary: \n"
+            f"Device selected: {self.device_}\n"
+            f"{'Running Dry Run Mode' if train_config.DRY_RUN else 'Running Normal Mode'}\n"
+            f"Dataset length: {len(self.dataset_)}\n"
+            f"Datashape: {self.dataset_[0][0].shape}\n"
+            f"Back up train_config.py and hyper_para.py\n"
+        )
         # endregion
 
         # region backup
@@ -158,8 +162,7 @@ class TrainApp:
         try:
             self.train()
         except Exception as e:
-            log("Training failed. Error as follows:")
-            log(e, exc_info=True)
+            log("Training failed. Error as follows:\n" + f"{e}", exc_info=True)
             log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
             self.dump_checkpoint()
             exit(-1)
@@ -171,8 +174,7 @@ class TrainApp:
             self.dump_result()
 
         except Exception as e:
-            log("Model evaluation failed. Error as follows:")
-            log(e, exc_info=True)
+            log("Eval failed. Error as follows:\n" + f"{e}", exc_info=True)
             log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
             self.dump_checkpoint()
             log(
