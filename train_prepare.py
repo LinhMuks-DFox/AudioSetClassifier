@@ -113,3 +113,15 @@ def make_auto_encoder_model(data_shape) -> Tuple[AudioEncoder, AudioDecoder]:
     """
     _encoder, _decoder = make_auto_encoder_from_hyperparameter(data_shape, hyper_para.AUTO_ENCODER_MODEL)
     return _encoder, _decoder
+
+
+def set_torch_random_seed():
+    _device = select_device()
+    torch.manual_seed(hyper_para.RANDOM_SEED)
+    if "cuda" in f"{_device}":
+        torch.cuda.manual_seed(hyper_para.RANDOM_SEED)
+        torch.cuda.manual_seed_all(hyper_para.RANDOM_SEED)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+    if "mps" in f"{_device}":
+        torch.mps.manual_seed(hyper_para.RANDOM_SEED)

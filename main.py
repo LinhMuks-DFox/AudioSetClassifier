@@ -58,6 +58,7 @@ class TrainApp:
         self.check_point_iota_: int = 0
 
         self.eval_result_ = None
+        train_prepare.set_torch_random_seed()
 
     @src.tags.stable_api
     def one_step_loss(self, data: torch.Tensor, label: torch.Tensor):
@@ -145,6 +146,7 @@ class TrainApp:
             f"Dataset length: {len(self.dataset_)}\n"
             f"Datashape: {self.dataset_[0][0].shape}\n"
             f"Back up train_config.py and hyper_para.py\n"
+            f"Random seed: {hyper_para.RANDOM_SEED}\n"
         )
         # endregion
 

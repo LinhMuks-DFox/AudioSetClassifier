@@ -89,3 +89,5 @@ dry run data set length: {DRY_RUN_DATE_SET_LENGTH}
 """
 if train_config.DRY_RUN:
     TRAIN_HYPER_PARA_MESSAGE += DRY_RUN_MESSAGE
+
+RANDOM_SEED = 0
