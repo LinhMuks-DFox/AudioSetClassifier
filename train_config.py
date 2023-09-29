@@ -1,17 +1,17 @@
 import datetime
 import os.path
-import sys
+import platform
 
 IN_DOCKER: bool = os.environ.get("IN_DOCKER_CONTAINER", False)
 
-if "win" in sys.platform:
+if "win" in (plf := platform.platform().lower()):
     DATA_SET_PATH: str = r"F:\DataSets\Audioset\balanced\segments\AudioSet.json"
-elif "mac" in sys.platform:
-    DATA_SET_PATH: str = r"/Volumes/PortMux/DataSet/Audioset/balanced/segments/AudioSet.json"
+elif "mac" in plf:
+    DATA_SET_PATH: str = r"/Volumes/PortMux/DataSet/Audioset/segments/AudioSet.json"
 else:
     DATA_SET_PATH: str = r"data/audio_set/AudioSet.json"
 
-PLATFORM: str = sys.platform
+PLATFORM: str = plf
 DRY_RUN: bool = True
 TRAIN_ID = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
 DUMP_PATH = f"./pth_bin/{TRAIN_ID}"
