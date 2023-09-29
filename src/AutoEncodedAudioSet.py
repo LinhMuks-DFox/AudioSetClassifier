@@ -25,7 +25,8 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                  win_length: int,
                  normalized: bool,
                  sample_seconds: int = 10,
-                 output_size: tuple = (10, 80)
+                 output_size: tuple = (10, 80),
+                 device: torch.device = torch.device('cpu')
                  ):
         self.audio_fetcher_ = JsonBasedAudioSet(path)
         self.track_selector_ = sc_transforms.SoundTrackSelector(sound_track)
@@ -49,7 +50,10 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         self.sample_length_ = self.sample_seconds_ * self.new_freq_
         self.auto_encoder: AudioEncoder = make_auto_encoder_from_hyperparameter(self._data_shape_(),
                                                                                 auto_encoder_hypers)[0]
-        self.auto_encoder.load_state_dict(torch.load(encoder_model_path))
+        self.device_ = device
+        self.auto_encoder.load_state_dict(
+            torch.load(encoder_model_path, map_location=self.device_)
+        )
 
     @tags.stable_api
     def __len__(self):
