@@ -68,9 +68,10 @@ DYR_RUN_BATCH_SIZE = 30
 DRY_RUN_DATE_SET_LENGTH: int = 80
 
 TRAIN_HYPER_PARA_MESSAGE = \
-    f"""model: {MODEL}
+    f"""Hyperparameter summary: 
+model: {MODEL}
 class count: {CLASS_CNT}
-device: {DEVICE}(when device=cuda, and using platform mac-m1: using mps)
+device(in-hyperparameter): {DEVICE}
 batch size: {BATCH_SIZE}
 optimizer: {OPTIMIZER}
 loss function: {LOSS_FUNCTION}
