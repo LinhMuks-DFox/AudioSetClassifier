@@ -137,7 +137,7 @@ class TrainApp:
     def main(self):
         # region log configures
         log(train_config.TRAIN_CONFIG_SUMMARY)
-        log(hyper_para.TRAIN_HYPER_PARA_MESSAGE)
+        log(hyper_para.TRAIN_HYPER_PARA_SUMMARY)
         log(
             "Train config summary: \n"
             f"Device selected: {self.device_}\n"

@@ -67,7 +67,7 @@ DRY_RUN_EPOCHS = 3
 DYR_RUN_BATCH_SIZE = 30
 DRY_RUN_DATE_SET_LENGTH: int = 80
 
-TRAIN_HYPER_PARA_MESSAGE = \
+TRAIN_HYPER_PARA_SUMMARY = \
     f"""Hyperparameter summary: 
 model: {MODEL}
 class count: {CLASS_CNT}
@@ -88,6 +88,6 @@ dry run batch size: {DYR_RUN_BATCH_SIZE}
 dry run data set length: {DRY_RUN_DATE_SET_LENGTH}
 """
 if train_config.DRY_RUN:
-    TRAIN_HYPER_PARA_MESSAGE += DRY_RUN_MESSAGE
+    TRAIN_HYPER_PARA_SUMMARY += DRY_RUN_MESSAGE
 
 RANDOM_SEED = 0
