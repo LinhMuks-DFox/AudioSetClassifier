@@ -100,7 +100,7 @@ def select_device(device=None):
     if "cuda" in _device and "mac" in platform.platform().lower():
         if torch.backends.mps.is_available():
             return torch.device("mps")
-    return torch.device(hyper_para.TRAIN_DEVICE)
+    return torch.device(_device)
 
 
 def make_auto_encoder_model(data_shape) -> Tuple[AudioEncoder, AudioDecoder]:
