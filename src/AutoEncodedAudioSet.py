@@ -82,6 +82,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         track = self.track_selector_(sample)
         track = self.resampler_(track)
         track = fix_length(track, self.sample_length_)
+        track = track.to(self.device_)
         prev5s, post5s = track[:, :80000], track[:, 80000:]  # 10s * 16000Hz = 160000 samples
 
         prev5s_spe = self.spectrogram_converter_(prev5s)
