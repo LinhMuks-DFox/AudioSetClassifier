@@ -99,10 +99,13 @@ class TrainApp:
             self.validate_loss_ = torch.hstack((self.validate_loss_, torch.mean(_vali_loss)))
 
     @src.tags.stable_api
-    def eval_model(self):
+    def eval_model_dump_eval_result(self):
         self.eval_result_ = (self.classifier_tester_
                              .set_dataloader(self.test_loader_, hyper_para.CLASS_CNT)
                              .evaluate_model())
+        with open(compose_path("eval_result.txt"), "w") as eval_f:
+            for measure, score in self.eval_result_.items():
+                eval_f.write(f"{measure}: {score}\n")
 
     @src.tags.stable_api
     def dump_checkpoint(self):
@@ -112,15 +115,11 @@ class TrainApp:
     @src.tags.stable_api
     def dump_result(self):
         with open(compose_path("train_loss.txt"), "w") as train_f, \
-                open(compose_path("validate_loss.txt"), "w") as vali_f, \
-                open(compose_path("eval_result.txt"), "w") as eval_f:
+                open(compose_path("validate_loss.txt"), "w") as vali_f:
             train_f.write("\n".join([f"epoch: {idx}, train loss: {item}"
                                      for idx, item in enumerate(self.train_loss.tolist())]))
             vali_f.write("\n".join([f"epoch: {idx}, validate loss: {item}"
                                     for idx, item in enumerate(self.validate_loss_.tolist())]))
-
-            for measure, score in self.eval_result_.items():
-                eval_f.write(f"{measure}: {score}\n")
 
         torch.save(self.train_loss, compose_path("train_loss.pt"))
         torch.save(self.validate_loss_, compose_path("validate_loss.pt"))
@@ -170,22 +169,23 @@ class TrainApp:
             exit(-1)
         # endregion
 
-        # region eval
-        try:
-            self.eval_model()
-            self.dump_result()
+        # region eval and dump checkpoint
+        # try:
+        #     self.eval_model_dump_eval_result()
+        # except Exception as e:
+        #     log("Eval failed. Error as follows:\n" + f"{e}", exc_info=True)
+        #     log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
+        #     self.dump_checkpoint()
+        #     exit(-1)
+        # endregion
 
+        # region dump result
+        try:
+            self.dump_result()
         except Exception as e:
-            log("Eval failed. Error as follows:\n" + f"{e}", exc_info=True)
+            log("Dump result failed. Error as follows:\n" + f"{e}", exc_info=True)
             log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
             self.dump_checkpoint()
-            log(
-                f"classifier_tester.multi_label_: {self.classifier_tester_.multi_label_}\n"
-                f"classifier_tester.confusion_calculate_kernel_: {self.classifier_tester_.confusion_calculate_kernel_}\n"
-                f"classifier_tester.y_predict_.shape: {self.classifier_tester_.y_predict_.shape}\n"
-                f"self.classifier_tester.y_true_.shape: {self.classifier_tester_.y_true_.shape}\n"
-            )
-
             exit(-1)
         # endregion
         log("Training finished.")
