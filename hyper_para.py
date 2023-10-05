@@ -5,7 +5,8 @@ import train_config
 
 MODEL = "RES34"
 CLASS_CNT = 527  # Audio set contains 527 class labels
-DEVICE = "cuda:0"
+TRAIN_DEVICE = "cuda:0"
+DATA_TRANSFORM_DEVICE = "cuda:1"
 BATCH_SIZE = 32
 EPOCHS = 100
 LEARNING_RATE = 1e-5
@@ -71,7 +72,8 @@ TRAIN_HYPER_PARA_SUMMARY = \
     f"""Hyperparameter summary: 
 model: {MODEL}
 class count: {CLASS_CNT}
-device(in-hyperparameter): {DEVICE}
+device(in-hyperparameter): {TRAIN_DEVICE}
+encoder dataset device: {DATA_TRANSFORM_DEVICE}
 batch size: {BATCH_SIZE}
 optimizer: {OPTIMIZER}
 loss function: {LOSS_FUNCTION}
