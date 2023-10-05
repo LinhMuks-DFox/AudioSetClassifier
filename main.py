@@ -16,13 +16,15 @@ from src.ClassifierTester import ClassifierTester
 
 
 # region logger config
-def compose_path(file):
-    return os.path.join(train_config.DUMP_PATH, file)
+def compose_path(file=None):
+    if file is None:
+        return f"{train_config.DUMP_PATH}/{hyper_para.DATA_SET}"
+    return os.path.join(f"{train_config.DUMP_PATH}/{hyper_para.DATA_SET}", file)
 
 
 if not os.path.exists(train_config.DUMP_PATH):
     print("DUMP PATH NOT EXISTS, CREATING...")
-    os.makedirs(train_config.DUMP_PATH)
+    os.makedirs(compose_path())
 else:
     print("DUMP PATH EXISTS, SKIPPING...")
 
