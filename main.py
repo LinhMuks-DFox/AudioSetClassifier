@@ -142,7 +142,7 @@ class TrainApp:
         log(hyper_para.TRAIN_HYPER_PARA_SUMMARY)
         log(
             "Train config summary: \n"
-            f"Device selected: {self.device_}\n"
+            f"Selected train device(selected by train_prepare.select_device()): {self.device_}\n"
             f"{'Running Dry Run Mode' if train_config.DRY_RUN else 'Running Normal Mode'}\n"
             f"Dataset length: {len(self.dataset_)}\n"
             f"Datashape: {self.dataset_[0][0].shape}\n"

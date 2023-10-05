@@ -72,8 +72,8 @@ TRAIN_HYPER_PARA_SUMMARY = \
     f"""Hyperparameter summary: 
 model: {MODEL}
 class count: {CLASS_CNT}
-device(in-hyperparameter): {TRAIN_DEVICE}
-encoder dataset device: {DATA_TRANSFORM_DEVICE}
+train device(in-hyperparameter): {TRAIN_DEVICE}
+data transforming device(in-hyperparameter): {DATA_TRANSFORM_DEVICE}
 batch size: {BATCH_SIZE}
 optimizer: {OPTIMIZER}
 loss function: {LOSS_FUNCTION}
