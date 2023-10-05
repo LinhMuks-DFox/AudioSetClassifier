@@ -144,7 +144,7 @@ class TrainApp:
             "Train config summary: \n"
             f"Selected train device(selected by train_prepare.select_device()): {self.device_}\n"
             f"{'Running Dry Run Mode' if train_config.DRY_RUN else 'Running Normal Mode'}\n"
-            f"Dataset length: {len(self.dataset_)}\n"
+            f"Dataset: {str(self.dataset_)}\n"
             f"Datashape: {self.dataset_[0][0].shape}\n"
             f"Back up train_config.py and hyper_para.py\n"
             f"Random seed: {hyper_para.RANDOM_SEED}\n"
