@@ -61,8 +61,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         return len(self.audio_fetcher_)
 
     def __str__(self):
-        return f"AutoEncodedAudioSet: length({len(self)})\n" \
-               f"Device: {self.device_}\n"
+        return f"AutoEncodedAudioSet: length({len(self)}), using device: {self.device_}\n"
 
     @tags.stable_api
     def _data_shape_(self):
