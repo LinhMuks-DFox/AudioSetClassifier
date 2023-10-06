@@ -27,6 +27,8 @@ if not os.path.exists(train_config.DUMP_PATH):
     os.makedirs(compose_path())
 else:
     print("DUMP PATH EXISTS, SKIPPING...")
+if "win" in train_config.PLATFORM:
+    torch.set_num_threads(train_config.CPU_N_WORKERS)
 
 logging.basicConfig(
     format='%(asctime)s: \n%(message)s',
