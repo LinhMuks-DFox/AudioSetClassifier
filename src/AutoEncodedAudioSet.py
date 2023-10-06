@@ -28,6 +28,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                  output_size: tuple = (10, 80),
                  encoder_device: torch.device = torch.device('cpu'),
                  ):
+        # region data fetch-transform
         self.audio_fetcher_ = JsonBasedAudioSet(path)
         self.track_selector_ = sc_transforms.SoundTrackSelector(sound_track)
         self.resampler_ = tch_audio_trans.Resample(orig_freq=orig_freq, new_freq=new_freq)
@@ -36,7 +37,9 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                                                                   win_length=win_length,
                                                                   normalized=normalized)
         self.amplitude_trans_ = tch_audio_trans.AmplitudeToDB()
-        # self.time_zone_selector_ = sc_transforms.TimeZoneSelector(sample_seconds)
+        # endregion
+
+        # region properties
         self.sound_track_ = sound_track
         self.orig_freq_ = orig_freq
         self.new_freq_ = new_freq
@@ -48,13 +51,17 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         self._split_i = self.sample_seconds_ * self.new_freq_ // 2
         self.output_size_ = output_size
         self.sample_length_ = self.sample_seconds_ * self.new_freq_
+        self.device_ = encoder_device
+        # endregion
+
+        # region load encoder
         self.auto_encoder: AudioEncoder = make_auto_encoder_from_hyperparameter(self._data_shape_(),
                                                                                 auto_encoder_hypers)[0]
-        self.device_ = encoder_device
         self.auto_encoder.load_state_dict(
             torch.load(encoder_model_path, map_location=self.device_)
         )
         self.auto_encoder.to(self.device_)
+        # endregion
 
     @tags.stable_api
     def __len__(self):
