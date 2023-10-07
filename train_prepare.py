@@ -124,7 +124,5 @@ def set_torch_random_seed():
     if "cuda" in f"{_device}":
         torch.cuda.manual_seed(hyper_para.RANDOM_SEED)
         torch.cuda.manual_seed_all(hyper_para.RANDOM_SEED)
-        torch.backends.cudnn.deterministic = True
-        torch.backends.cudnn.benchmark = False
     if "mps" in f"{_device}":
         torch.mps.manual_seed(hyper_para.RANDOM_SEED)
