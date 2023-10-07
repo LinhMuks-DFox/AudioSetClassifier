@@ -86,15 +86,16 @@ class TrainApp:
                 self.optimizer_.zero_grad()
                 self.optimizer_.step()
                 epoch_loss = torch.hstack((epoch_loss, loss.detach().clone()))
-
+                log(epoch_loss)
+            self.train_loss = torch.hstack((self.train_loss, mean_loss := torch.mean(epoch_loss)))
             self.epoch_validate()
             self.scheduler_.step()
-            self.train_loss = torch.hstack((self.train_loss, mean_loss := torch.mean(epoch_loss)))
-            log(f"train epoch: {epoch}, mean loss: {mean_loss}")
-            log(f"train epoch: {epoch} end.")
+            log(f"train epoch: {epoch} end, mean loss: {mean_loss}")
+            log(self.train_loss)
 
     @src.tags.stable_api
     def epoch_validate(self):
+        log("epoch validate start.")
         with torch.no_grad():
             _vali_loss = torch.empty(0).to(self.device_)
             for i, (data, label) in enumerate(self.validate_loader_):
