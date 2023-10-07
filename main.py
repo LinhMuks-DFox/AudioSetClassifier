@@ -65,7 +65,7 @@ class TrainApp:
         train_prepare.set_torch_random_seed()
 
     @src.tags.stable_api
-    def one_step_loss(self, data: torch.Tensor, label: torch.Tensor):
+    def one_step_loss(self, data: torch.Tensor, label: torch.Tensor) -> torch.Tensor:
         data = data.to(self.device_)
         label = label.to(self.device_)
         output = self.model_(data)
@@ -81,11 +81,11 @@ class TrainApp:
             loss: torch.Tensor
 
             for x, y in tqdm.tqdm(self.train_loader_):
-                loss: torch.Tensor = self.one_step_loss(x, y)
+                loss = self.one_step_loss(x, y)
                 loss.backward()
                 self.optimizer_.zero_grad()
                 self.optimizer_.step()
-                epoch_loss = torch.hstack((epoch_loss, loss))
+                epoch_loss = torch.hstack((epoch_loss, loss.detach().clone()))
 
             self.epoch_validate()
             self.scheduler_.step()
