@@ -16,15 +16,19 @@ from src.ClassifierTester import ClassifierTester
 
 
 # region logger config
-def compose_path(file):
-    return os.path.join(train_config.DUMP_PATH, file)
+def compose_path(file=None):
+    if file is None:
+        return f"{train_config.DUMP_PATH}/{hyper_para.DATA_SET}"
+    return os.path.join(f"{train_config.DUMP_PATH}/{hyper_para.DATA_SET}", file)
 
 
 if not os.path.exists(train_config.DUMP_PATH):
     print("DUMP PATH NOT EXISTS, CREATING...")
-    os.makedirs(train_config.DUMP_PATH)
+    os.makedirs(compose_path())
 else:
     print("DUMP PATH EXISTS, SKIPPING...")
+if "win" in train_config.PLATFORM:
+    torch.set_num_threads(train_config.CPU_N_WORKERS)
 
 logging.basicConfig(
     format='%(asctime)s: \n%(message)s',
@@ -99,10 +103,13 @@ class TrainApp:
             self.validate_loss_ = torch.hstack((self.validate_loss_, torch.mean(_vali_loss)))
 
     @src.tags.stable_api
-    def eval_model(self):
+    def eval_model_dump_eval_result(self):
         self.eval_result_ = (self.classifier_tester_
                              .set_dataloader(self.test_loader_, hyper_para.CLASS_CNT)
                              .evaluate_model())
+        with open(compose_path("eval_result.txt"), "w") as eval_f:
+            for measure, score in self.eval_result_.items():
+                eval_f.write(f"{measure}: {score}\n")
 
     @src.tags.stable_api
     def dump_checkpoint(self):
@@ -112,15 +119,11 @@ class TrainApp:
     @src.tags.stable_api
     def dump_result(self):
         with open(compose_path("train_loss.txt"), "w") as train_f, \
-                open(compose_path("validate_loss.txt"), "w") as vali_f, \
-                open(compose_path("eval_result.txt"), "w") as eval_f:
+                open(compose_path("validate_loss.txt"), "w") as vali_f:
             train_f.write("\n".join([f"epoch: {idx}, train loss: {item}"
                                      for idx, item in enumerate(self.train_loss.tolist())]))
             vali_f.write("\n".join([f"epoch: {idx}, validate loss: {item}"
                                     for idx, item in enumerate(self.validate_loss_.tolist())]))
-
-            for measure, score in self.eval_result_.items():
-                eval_f.write(f"{measure}: {score}\n")
 
         torch.save(self.train_loss, compose_path("train_loss.pt"))
         torch.save(self.validate_loss_, compose_path("validate_loss.pt"))
@@ -138,12 +141,12 @@ class TrainApp:
     def main(self):
         # region log configures
         log(train_config.TRAIN_CONFIG_SUMMARY)
-        log(hyper_para.TRAIN_HYPER_PARA_MESSAGE)
+        log(hyper_para.TRAIN_HYPER_PARA_SUMMARY)
         log(
             "Train config summary: \n"
-            f"Device selected: {self.device_}\n"
+            f"Selected train device(selected by train_prepare.select_device()): {self.device_}\n"
             f"{'Running Dry Run Mode' if train_config.DRY_RUN else 'Running Normal Mode'}\n"
-            f"Dataset length: {len(self.dataset_)}\n"
+            f"Dataset: {str(self.dataset_)}\n"
             f"Datashape: {self.dataset_[0][0].shape}\n"
             f"Back up train_config.py and hyper_para.py\n"
             f"Random seed: {hyper_para.RANDOM_SEED}\n"
@@ -170,22 +173,23 @@ class TrainApp:
             exit(-1)
         # endregion
 
-        # region eval
-        try:
-            self.eval_model()
-            self.dump_result()
+        # region eval and dump checkpoint
+        # try:
+        #     self.eval_model_dump_eval_result()
+        # except Exception as e:
+        #     log("Eval failed. Error as follows:\n" + f"{e}", exc_info=True)
+        #     log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
+        #     self.dump_checkpoint()
+        #     exit(-1)
+        # endregion
 
+        # region dump result
+        try:
+            self.dump_result()
         except Exception as e:
-            log("Eval failed. Error as follows:\n" + f"{e}", exc_info=True)
+            log("Dump result failed. Error as follows:\n" + f"{e}", exc_info=True)
             log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
             self.dump_checkpoint()
-            log(
-                f"classifier_tester.multi_label_: {self.classifier_tester_.multi_label_}\n"
-                f"classifier_tester.confusion_calculate_kernel_: {self.classifier_tester_.confusion_calculate_kernel_}\n"
-                f"classifier_tester.y_predict_.shape: {self.classifier_tester_.y_predict_.shape}\n"
-                f"self.classifier_tester.y_true_.shape: {self.classifier_tester_.y_true_.shape}\n"
-            )
-
             exit(-1)
         # endregion
         log("Training finished.")

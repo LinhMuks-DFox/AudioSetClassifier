@@ -5,12 +5,13 @@ import train_config
 
 MODEL = "RES34"
 CLASS_CNT = 527  # Audio set contains 527 class labels
-DEVICE = "cuda:0"
+TRAIN_DEVICE = "cuda:0"
+DATA_TRANSFORM_DEVICE = "cuda:1"
 BATCH_SIZE = 32
 EPOCHS = 100
 LEARNING_RATE = 1e-5
 SCHEDULAR_GAMMA = 0.99
-DATA_SET = "ideal"
+DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 OPTIMIZER = "Adam"
 LOSS_FUNCTION = "BCEWithLogitsLoss"
@@ -61,17 +62,18 @@ AUTO_ENCODER_MODEL = {
     "conv_output_channel": np.array([1, 8, 32, 16, 8, 1]),
     "conv_type": torch.nn.Conv2d
 }
-ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE = (10, 80)  # 5s -> 400, 10s -> 800; 10 * 80 => 80floats per second
+ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE = (1, 10, 80)  # 5s -> 400, 10s -> 800; 10 * 80 => 80floats per second
 # region DRY_RUN
 DRY_RUN_EPOCHS = 3
 DYR_RUN_BATCH_SIZE = 30
 DRY_RUN_DATE_SET_LENGTH: int = 80
 
-TRAIN_HYPER_PARA_MESSAGE = \
+TRAIN_HYPER_PARA_SUMMARY = \
     f"""Hyperparameter summary: 
 model: {MODEL}
 class count: {CLASS_CNT}
-device(in-hyperparameter): {DEVICE}
+train device(in-hyperparameter): {TRAIN_DEVICE}
+data transforming device(in-hyperparameter): {DATA_TRANSFORM_DEVICE}
 batch size: {BATCH_SIZE}
 optimizer: {OPTIMIZER}
 loss function: {LOSS_FUNCTION}
@@ -88,6 +90,6 @@ dry run batch size: {DYR_RUN_BATCH_SIZE}
 dry run data set length: {DRY_RUN_DATE_SET_LENGTH}
 """
 if train_config.DRY_RUN:
-    TRAIN_HYPER_PARA_MESSAGE += DRY_RUN_MESSAGE
+    TRAIN_HYPER_PARA_SUMMARY += DRY_RUN_MESSAGE
 
 RANDOM_SEED = 0

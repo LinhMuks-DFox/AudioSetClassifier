@@ -61,7 +61,7 @@ def make_dataset():
             win_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("win_length"),
             normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
             output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE,
-            device=select_device()
+            encoder_device=select_device(hyper_para.DATA_TRANSFORM_DEVICE),
         )
     else:
         raise ValueError("Unknown data set type")
@@ -78,7 +78,9 @@ def make_dataloader(dataset):
 
 def make_loss_function():
     return {
-        "BCEWithLogitsLoss": torch.nn.BCEWithLogitsLoss
+        "BCEWithLogitsLoss": torch.nn.BCEWithLogitsLoss,
+        "BCELoss": torch.nn.BCELoss,
+        "MultiLabelSoftMarginLoss": torch.nn.MultiLabelSoftMarginLoss,
     }.get(hyper_para.LOSS_FUNCTION)()
 
 
@@ -95,12 +97,12 @@ def make_scheduler(optimizer):
     }.get(hyper_para.SCHEDULER)(optimizer, step_size=hyper_para.SCHEDULAR_GAMMA, gamma=hyper_para.SCHEDULAR_GAMMA)
 
 
-def select_device():
-    if ("cuda" in hyper_para.DEVICE and
-            "mac" in platform.platform().lower()):
+def select_device(device=None):
+    _device = device if device is not None else hyper_para.TRAIN_DEVICE
+    if "cuda" in _device and "mac" in platform.platform().lower():
         if torch.backends.mps.is_available():
             return torch.device("mps")
-    return torch.device(hyper_para.DEVICE)
+    return torch.device(_device)
 
 
 def make_auto_encoder_model(data_shape) -> Tuple[AudioEncoder, AudioDecoder]:
