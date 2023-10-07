@@ -97,7 +97,7 @@ class TrainApp:
         log("epoch validate start.")
         with torch.no_grad():
             _vali_loss = torch.empty(0).to(self.device_)
-            for label, data in tqdm.tqdm(self.validate_loader_):
+            for data, label in tqdm.tqdm(self.validate_loader_):
                 loss = self.one_step_loss(data, label)
                 _vali_loss = torch.hstack((_vali_loss, loss))
             self.validate_loss_ = torch.hstack((self.validate_loss_, torch.mean(_vali_loss)))
