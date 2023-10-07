@@ -7,3 +7,4 @@ data/
 __pycache__/
 demo/
 pre_trained_encoder/
+/pth_bin/
