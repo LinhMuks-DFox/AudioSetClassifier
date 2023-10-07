@@ -61,7 +61,7 @@ def make_dataset():
             win_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("win_length"),
             normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
             output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE,
-            encoder_device=select_device(hyper_para.DATA_TRANSFORM_DEVICE),
+            transform_device=select_device(hyper_para.DATA_TRANSFORM_DEVICE),
         )
     else:
         raise ValueError("Unknown data set type")
