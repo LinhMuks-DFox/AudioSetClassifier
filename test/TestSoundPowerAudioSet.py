@@ -1,5 +1,7 @@
 import unittest
 
+import torch
+
 import hyper_para
 import train_config
 import train_prepare
@@ -20,11 +22,17 @@ class MyTestCase(unittest.TestCase):
             output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE,
             transform_device=train_prepare.select_device(hyper_para.DATA_TRANSFORM_DEVICE)
         )
+        self.data_on_device = (torch.empty(0)
+                               .to(train_prepare.select_device(hyper_para.DATA_TRANSFORM_DEVICE)))
 
     def test_getitem(self):
-        sample, label = self.dataset[0]
-        print(sample.device)
-        print(sample.shape)
+        self.sample0, self.label0 = self.dataset[0]
+
+    def test_device(self):
+        self.test_getitem()
+        print(self.sample0.device)
+        print(self.data_on_device.device)
+        self.assertTrue(self.sample0.device == self.data_on_device.device)
 
 
 if __name__ == '__main__':
