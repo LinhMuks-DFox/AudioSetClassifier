@@ -81,7 +81,7 @@ def make_loss_function():
         "BCEWithLogitsLoss": torch.nn.BCEWithLogitsLoss,
         "BCELoss": torch.nn.BCELoss,
         "MultiLabelSoftMarginLoss": torch.nn.MultiLabelSoftMarginLoss,
-    }.get(hyper_para.LOSS_FUNCTION)()
+    }.get(hyper_para.LOSS_FUNCTION.get("name"))(**hyper_para.LOSS_FUNCTION.get("arg"))
 
 
 def make_optimizer(model):

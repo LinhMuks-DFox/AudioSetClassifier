@@ -3,18 +3,21 @@ import numpy as np
 
 import train_config
 
-MODEL = "RES34"
+MODEL = "RES18"
 CLASS_CNT = 527  # Audio set contains 527 class labels
 TRAIN_DEVICE = "cuda:0"
 DATA_TRANSFORM_DEVICE = "cuda:1"
-BATCH_SIZE = 32
-EPOCHS = 100
+BATCH_SIZE = 120
+EPOCHS = 180
 LEARNING_RATE = 1e-5
 SCHEDULAR_GAMMA = 0.99
 DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 OPTIMIZER = "Adam"
-LOSS_FUNCTION = "BCEWithLogitsLoss"
+LOSS_FUNCTION = {
+    "name": "BCEWithLogitsLoss",
+    "arg": {"reduction": "sum"}
+}
 SCHEDULER = "StepLR"
 AUDIO_PRE_TRANSFORM = {
     "sound_track": "mix",
@@ -92,4 +95,4 @@ dry run data set length: {DRY_RUN_DATE_SET_LENGTH}
 if train_config.DRY_RUN:
     TRAIN_HYPER_PARA_SUMMARY += DRY_RUN_MESSAGE
 
-RANDOM_SEED = 0
+RANDOM_SEED = 3407
