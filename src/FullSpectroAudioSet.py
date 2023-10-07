@@ -56,3 +56,6 @@ class FullSpectroAudioSet(data.Dataset):
     @tags.stable_api
     def __len__(self):
         return len(self.audio_fetcher_)
+
+    def __str__(self):
+        return f"FullSpectroAudioSet(length={len(self)}), at {hex(id(self))}"
