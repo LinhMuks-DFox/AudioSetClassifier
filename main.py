@@ -82,8 +82,8 @@ class TrainApp:
 
             for x, y in tqdm.tqdm(self.train_loader_):
                 loss = self.one_step_loss(x, y)
-                loss.backward()
                 self.optimizer_.zero_grad()
+                loss.backward()
                 self.optimizer_.step()
                 epoch_loss = torch.hstack((epoch_loss, loss.detach().clone()))
             self.train_loss = torch.hstack((self.train_loss, mean_loss := torch.mean(epoch_loss)))
