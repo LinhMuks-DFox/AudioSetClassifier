@@ -1,7 +1,8 @@
 import unittest
-
+import torch
 import hyper_para
 import train_config
+import train_prepare
 from src.FullSpectroAudioSet import FullSpectroAudioSet
 
 
@@ -9,6 +10,8 @@ class MyTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         self.test_build_up()
+        self.data_on_device = (torch.empty(0)
+                               .to(train_prepare.select_device(hyper_para.DATA_TRANSFORM_DEVICE)))
 
     def test_build_up(self):
         self.dataset = FullSpectroAudioSet(
@@ -20,11 +23,18 @@ class MyTestCase(unittest.TestCase):
             hop_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("hop_length"),
             win_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("win_length"),
             normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
+            transform_device=train_prepare.select_device(hyper_para.DATA_TRANSFORM_DEVICE)
         )
 
     def test_getitem(self):
-        sample, label = self.dataset[0]
-        print(sample.shape)
+        self.sample0, self.label0 = self.dataset[0]
+        print(self.sample0.shape)
+
+    def test_device(self):
+        self.test_getitem()
+        print(self.sample0.device)
+        print(self.data_on_device.device)
+        self.assertTrue(self.sample0.device == self.data_on_device.device)
 
 
 if __name__ == '__main__':

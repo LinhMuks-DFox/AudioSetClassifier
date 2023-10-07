@@ -1,3 +1,4 @@
+import torch
 import torch.utils.data as data
 import torchaudio.transforms as tch_audio_trans
 
@@ -17,16 +18,18 @@ class FullSpectroAudioSet(data.Dataset):
                  hop_length: int,
                  win_length: int,
                  normalized: bool,
-                 sample_seconds: int = 10
+                 sample_seconds: int = 10,
+                 transform_device: torch.device = torch.device("cpu")
                  ):
         super().__init__()
+        self.transform_device_ = transform_device
         self.audio_fetcher_ = JsonBasedAudioSet(path)
         self.track_selector_ = sc_transforms.SoundTrackSelector(sound_track)
-        self.resampler_ = tch_audio_trans.Resample(orig_freq=orig_freq, new_freq=new_freq)
+        self.resampler_ = tch_audio_trans.Resample(orig_freq=orig_freq, new_freq=new_freq).to(self.transform_device_)
         self.spectrogram_converter_ = tch_audio_trans.Spectrogram(n_fft=n_fft,
                                                                   hop_length=hop_length,
                                                                   win_length=win_length,
-                                                                  normalized=normalized)
+                                                                  normalized=normalized).to(self.transform_device_)
         self.sound_track_ = sound_track
         self.orig_freq_ = orig_freq
         self.new_freq_ = new_freq
@@ -34,12 +37,13 @@ class FullSpectroAudioSet(data.Dataset):
         self.hop_length_ = hop_length
         self.win_length_ = win_length
         self.normalized_ = normalized
-        self.amplitude_trans = tch_audio_trans.AmplitudeToDB()
+        self.amplitude_trans = tch_audio_trans.AmplitudeToDB().to(self.transform_device_)
         self.sample_seconds_ = sample_seconds
 
     @tags.stable_api
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
+        sample: torch.Tensor = sample.to(self.transform_device_)
         label = label_digit2tensor(label_digits)
         track = self.track_selector_(sample)
         resampled_track = self.resampler_(track)
