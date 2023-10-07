@@ -86,7 +86,6 @@ class TrainApp:
                 self.optimizer_.zero_grad()
                 self.optimizer_.step()
                 epoch_loss = torch.hstack((epoch_loss, loss.detach().clone()))
-                log(epoch_loss)
             self.train_loss = torch.hstack((self.train_loss, mean_loss := torch.mean(epoch_loss)))
             self.epoch_validate()
             self.scheduler_.step()
