@@ -33,6 +33,10 @@ class SoundPowerAudioSet(tch_data.Dataset):
     def __len__(self):
         return len(self.audio_fetcher_)
 
+    def __str__(self):
+        return f"SoundPowerAudioSet: {len(self)}, device: {self.transform_device_}, " \
+               f"sample length: {self.sample_length_}, output size: {self.output_size_}"
+
     @tags.stable_api
     def __getitem__(self, index):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
