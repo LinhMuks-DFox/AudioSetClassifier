@@ -12,6 +12,8 @@ class MyTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         self.test_build_up()
+        self.data_on_device = (torch.empty(0)
+                               .to(train_prepare.select_device(hyper_para.DATA_TRANSFORM_DEVICE)))
 
     def test_build_up(self):
         self.dataset = SoundPowerAudioSet(
@@ -22,8 +24,6 @@ class MyTestCase(unittest.TestCase):
             output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE,
             transform_device=train_prepare.select_device(hyper_para.DATA_TRANSFORM_DEVICE)
         )
-        self.data_on_device = (torch.empty(0)
-                               .to(train_prepare.select_device(hyper_para.DATA_TRANSFORM_DEVICE)))
 
     def test_getitem(self):
         self.sample0, self.label0 = self.dataset[0]
