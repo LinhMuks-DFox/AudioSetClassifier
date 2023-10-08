@@ -6,17 +6,18 @@ import train_config
 MODEL = "RES18"
 CLASS_CNT = 527  # Audio set contains 527 class labels
 TRAIN_DEVICE = "cuda:0"
-DATA_TRANSFORM_DEVICE = "cuda:1"
-BATCH_SIZE = 120
-EPOCHS = 180
-LEARNING_RATE = 1e-5
-SCHEDULAR_GAMMA = 0.99
-DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
+DATA_TRANSFORM_DEVICE = "cuda:0"
+BATCH_SIZE = 180
+EPOCHS = 100
+LEARNING_RATE = 1e-6
+SCHEDULAR_GAMMA = 0.9
+SCHEDULAR_STEP_SIZE = 1
+DATA_SET = "encoded"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 OPTIMIZER = "Adam"
 LOSS_FUNCTION = {
     "name": "BCEWithLogitsLoss",
-    "arg": {"reduction": "sum"}
+    "arg": {"reduction": "mean"}
 }
 SCHEDULER = "StepLR"
 AUDIO_PRE_TRANSFORM = {
@@ -37,32 +38,31 @@ AUDIO_PRE_TRANSFORM = {
 AUTO_ENCODER_MODEL = {
     "conv_kernel_size": np.array([[3, 3],
                                   [5, 5],
+                                  [11, 11],
+                                  [7, 7],
                                   [3, 3],
-                                  [5, 5],
-                                  [3, 3],
-                                  [3, 3]]),
-
+                                  [5, 5]]),
     "conv_padding": np.array(((0, 0),
                               (0, 0),
                               (0, 0),
                               (0, 0),
                               (0, 0),
-                              (0, 0))),
+                              (0, 0),)),
     "conv_stride": np.array(((1, 1),
                              (1, 1),
                              (1, 1),
                              (1, 1),
                              (1, 1),
-                             (1, 1))),
+                             (1, 1),)),
     "conv_dilation": np.array(((1, 1),
                                (1, 1),
                                (1, 1),
                                (1, 1),
                                (1, 1),
-                               (1, 1))),
+                               (1, 1),)),
     "encoder_output_feature": 400,  # ((CAMERA_FPS * FIX_LENGTH) // 3) * 2 * BLINKY_LED_CNT
     "convolution_times": 6,
-    "conv_output_channel": np.array([1, 8, 32, 16, 8, 1]),
+    "conv_output_channel": np.array([1, 8, 64, 32, 8, 1]),
     "conv_type": torch.nn.Conv2d
 }
 ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE = (1, 10, 80)  # 5s -> 400, 10s -> 800; 10 * 80 => 80floats per second
