@@ -69,7 +69,7 @@ class TrainApp:
         data = data.to(self.device_)
         label = label.to(self.device_)
         output = self.model_(data)
-        loss = self.loss_function_(label, output)
+        loss = self.loss_function_(output, label)
         return loss
 
     @src.tags.stable_api
@@ -79,7 +79,7 @@ class TrainApp:
             log(f"train epoch: {epoch} start.")
             epoch_loss = torch.empty(0).to(self.device_)
             loss: torch.Tensor
-
+            log(f"learning rate in this epoch: {self.optimizer_.param_groups[0]['lr']}")
             for x, y in tqdm.tqdm(self.train_loader_):
                 loss = self.one_step_loss(x, y)
                 self.optimizer_.zero_grad()
@@ -87,10 +87,9 @@ class TrainApp:
                 self.optimizer_.step()
                 epoch_loss = torch.hstack((epoch_loss, loss.detach().clone()))
             self.train_loss = torch.hstack((self.train_loss, mean_loss := torch.mean(epoch_loss)))
+            log(f"train epoch: {epoch} end, mean loss: {mean_loss}")
             self.epoch_validate()
             self.scheduler_.step()
-            log(f"train epoch: {epoch} end, mean loss: {mean_loss}")
-            log(self.train_loss)
 
     @src.tags.stable_api
     def epoch_validate(self):
@@ -198,6 +197,14 @@ class TrainApp:
             exit(-1)
         # endregion
         log("Training finished.")
+
+        try:
+            log("Dumping train model's checkpoint...")
+            self.dump_checkpoint()
+            log("Dump done.")
+        except Exception as e:
+            log("Dump checkpoint failed. Error as follows:\n" + f"{e}", exc_info=True)
+            exit(-1)
 
 
 if __name__ == '__main__':
