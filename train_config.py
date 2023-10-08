@@ -12,11 +12,11 @@ else:
     DATA_SET_PATH: str = r"data/audio_set/AudioSet.json"
 
 PLATFORM: str = plf
-DRY_RUN: bool = True
+DRY_RUN: bool = False
 CPU_N_WORKERS: int = 23
 TRAIN_ID = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
 DUMP_PATH = f"./pth_bin/{TRAIN_ID}"
-AUTO_ENCODER_MODEL_PATH = r"pre_trained_encoder/2023-08-04-09-49-03/encoder.pth"
+AUTO_ENCODER_MODEL_PATH = r"pre_trained_encoder/2023-7-27-ablation/normal/encoder.pth"
 TRAIN_CONFIG_SUMMARY = f"""
 Train config summary of {TRAIN_ID}:
 IN_DOCKER : {IN_DOCKER}
