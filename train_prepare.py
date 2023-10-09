@@ -34,9 +34,10 @@ def make_classifier():
     return torch.nn.Sequential(_projection, _res_net(num_classes=hyper_para.CLASS_CNT))
 
 
-def make_dataset(path: str = None):
+def make_dataset(path: str = None, dataset_type: str = None):
     path = path if path is not None else train_config.DATA_SET_PATH
-    if hyper_para.DATA_SET == "ideal":
+    dataset_type = dataset_type if dataset_type is not None else hyper_para.DATA_SET
+    if dataset_type == "ideal":
         return FullSpectroAudioSet(
             path=path,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
@@ -47,7 +48,7 @@ def make_dataset(path: str = None):
             win_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("win_length"),
             normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
         )
-    elif hyper_para.DATA_SET == "sound_power":
+    elif dataset_type == "sound_power":
         return SoundPowerAudioSet(
             path=path,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
@@ -55,7 +56,7 @@ def make_dataset(path: str = None):
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
             output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE
         )
-    elif hyper_para.DATA_SET == "encoded":
+    elif dataset_type == "encoded":
         return AutoEncodedAudioSet(
             auto_encoder_hypers=hyper_para.AUTO_ENCODER_MODEL,
             encoder_model_path=train_config.AUTO_ENCODER_MODEL_PATH,
