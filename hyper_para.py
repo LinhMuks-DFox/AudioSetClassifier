@@ -12,9 +12,10 @@ EPOCHS = 100
 LEARNING_RATE = 1e-6
 SCHEDULAR_GAMMA = 0.9
 SCHEDULAR_STEP_SIZE = 1
-DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
+DATA_SET = "sound_power"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 OPTIMIZER = "Adam"
+THRESHOLD = 0.5
 LOSS_FUNCTION = {
     "name": "BCEWithLogitsLoss",
     "arg": {"reduction": "mean"}
