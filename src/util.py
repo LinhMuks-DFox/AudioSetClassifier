@@ -1,13 +1,14 @@
 import typing
 
 import torch
+import numpy as np
 
 
-def label_digit2tensor(label: typing.List[int], class_num=527) -> torch.Tensor:
-    t = torch.zeros(class_num)
-    idx = torch.tensor(label)
-    t[idx] = 1
-    return t
+def label_digit2tensor(label_digits: typing.List[int], class_num=527) -> torch.Tensor:
+    label_digits: np.ndarray = np.array(label_digits)
+    label: np.ndarray = np.zeros(class_num, dtype=np.int32)
+    label[label_digits] = 1
+    return torch.tensor(label)
 
 
 def fix_length(audio_data: torch.Tensor, sample_length: int) -> torch.Tensor:

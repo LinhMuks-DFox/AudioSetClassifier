@@ -1,7 +1,7 @@
 import unittest
 
 import torch
-
+import numpy as np
 import src.util as util
 
 
@@ -10,8 +10,8 @@ class MyTestCase(unittest.TestCase):
         label = [1, 3, 5]
         t = util.label_digit2tensor(label, class_num=10)
         self.assertEqual(t.shape, torch.Size([10]))
-        excepted = torch.tensor([0, 1, 0, 1, 0, 1, 0, 0, 0, 0])
-        self.assertTrue(torch.all(excepted == t))
+        excepted = np.array([0, 1, 0, 1, 0, 1, 0, 0, 0, 0])
+        self.assertTrue(np.all(excepted == t))
 
     def test_fix_length(self):
         tensor_shape = [1000, 2000, 3000, 4000]
