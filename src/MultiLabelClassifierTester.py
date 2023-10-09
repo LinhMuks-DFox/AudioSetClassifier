@@ -23,8 +23,8 @@ class ClassifierTester:
         self.recall_ = None
         self.f1_score_ = None
 
-        self.y_predict_ = torch.empty(0).to(self.device_)
-        self.y_true_ = torch.empty(0)
+        self.y_predict_ = None
+        self.y_true_ = None
         self.multi_label_ = multi_label
         self.verbose_ = verbose
         self.verbose_fn_ = verbose_fn
@@ -34,28 +34,23 @@ class ClassifierTester:
             False: metrics.confusion_matrix
         }.get(self.multi_label_)
 
-    def set_dataloader(self, dataset, n_classes: int) -> "ClassifierTester":
-        self.dataloader_ = dataset
+    def set_dataloader(self, dataloader, n_classes: int) -> "ClassifierTester":
+        self.dataloader_ = dataloader
         self.n_classes_ = n_classes
+        self.y_true_ = torch.empty(1, n_classes, dtype=torch.int).to(self.device_)
+        self.y_predict_ = torch.empty(1, n_classes, dtype=torch.int).to(self.device_)
         return self
 
     def predict_all(self) -> "ClassifierTester":
         self._check_verbose("predicting all in torch.no_grad()...")
         with torch.no_grad():
             for x, y in self.dataloader_:
-                self.y_true_ = torch.hstack((self.y_true_, y))
+                y = y.to(self.device_)
                 x = x.to(self.device_)
+                self.y_true_ = torch.cat((self.y_true_, y))
                 y_predict = self.model_(x)
-                if not self.multi_label_:
-                    y_predict = torch.argmax(y_predict, dim=1)
-                self.y_predict_ = torch.hstack((self.y_predict_, y_predict))
-                self._check_verbose(f"y_predict(shape:{y_predict.shape}): {y_predict}")
-        if self.y_predict_.shape != self.y_true_.shape:
-            raise RuntimeError(f"y_predict({self.y_predict_.shape}) "
-                               f"and y_true({self.y_true_.shape}) shape mismatch.")
-        self.y_predict_ = self.y_predict_.detach().cpu().to(torch.int).numpy()
-        self.y_true_ = self.y_true_.detach().cpu().to(torch.int).numpy()
-
+                y_predict = y_predict if self.multi_label_ else torch.argmax(y_predict, dim=1)
+                self.y_predict_ = torch.cat((self.y_predict_, y_predict))
         return self
 
     def calculate_confusion_matrix(self) -> "ClassifierTester":
