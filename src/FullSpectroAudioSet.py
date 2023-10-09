@@ -8,7 +8,7 @@ from . import tags
 from .util import label_digit2tensor, fix_length
 
 
-@tags.stable_api
+
 class FullSpectroAudioSet(data.Dataset):
     def __init__(self, path: str,
                  sound_track: str,
@@ -40,7 +40,7 @@ class FullSpectroAudioSet(data.Dataset):
         self.amplitude_trans = tch_audio_trans.AmplitudeToDB().to(self.transform_device_)
         self.sample_seconds_ = sample_seconds
 
-    @tags.stable_api
+
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         sample: torch.Tensor = sample.to(self.transform_device_)
@@ -53,7 +53,7 @@ class FullSpectroAudioSet(data.Dataset):
         db_spe = self.amplitude_trans(spectrogram)
         return db_spe, label
 
-    @tags.stable_api
+
     def __len__(self):
         return len(self.audio_fetcher_)
 

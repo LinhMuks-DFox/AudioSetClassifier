@@ -8,7 +8,7 @@ from . import tags
 from .util import label_digit2tensor, fix_length
 
 
-@tags.stable_api
+
 class SoundPowerAudioSet(tch_data.Dataset):
     def __init__(self, path: str,
                  sound_track: str,
@@ -29,7 +29,7 @@ class SoundPowerAudioSet(tch_data.Dataset):
         self.output_size_ = output_size
         self.sample_length_ = self.sample_seconds_ * self.new_freq_
 
-    @tags.stable_api
+    
     def __len__(self):
         return len(self.audio_fetcher_)
 
@@ -37,7 +37,7 @@ class SoundPowerAudioSet(tch_data.Dataset):
         return f"SoundPowerAudioSet: {len(self)}, device: {self.transform_device_}, " \
                f"sample length: {self.sample_length_}, output size: {self.output_size_}"
 
-    @tags.stable_api
+    
     def __getitem__(self, index):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         sample: torch.Tensor = self.track_selector_(sample)

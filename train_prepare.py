@@ -28,10 +28,11 @@ def make_classifier():
     return torch.nn.Sequential(_projection, _res_net(num_classes=hyper_para.CLASS_CNT))
 
 
-def make_dataset():
+def make_dataset(path: str = None):
+    path = path if path is not None else train_config.DATA_SET_PATH
     if hyper_para.DATA_SET == "ideal":
         return FullSpectroAudioSet(
-            path=train_config.DATA_SET_PATH,
+            path=path,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
@@ -42,7 +43,7 @@ def make_dataset():
         )
     elif hyper_para.DATA_SET == "sound_power":
         return SoundPowerAudioSet(
-            path=train_config.DATA_SET_PATH,
+            path=path,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
@@ -52,7 +53,7 @@ def make_dataset():
         return AutoEncodedAudioSet(
             auto_encoder_hypers=hyper_para.AUTO_ENCODER_MODEL,
             encoder_model_path=train_config.AUTO_ENCODER_MODEL_PATH,
-            path=train_config.DATA_SET_PATH,
+            path=path,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),

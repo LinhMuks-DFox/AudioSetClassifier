@@ -64,7 +64,7 @@ class TrainApp:
         self.eval_result_ = None
         train_prepare.set_torch_random_seed()
 
-    @src.tags.stable_api
+    
     def one_step_loss(self, data: torch.Tensor, label: torch.Tensor) -> torch.Tensor:
         data = data.to(self.device_)
         label = label.to(self.device_)
@@ -72,7 +72,7 @@ class TrainApp:
         loss = self.loss_function_(output, label)
         return loss
 
-    @src.tags.stable_api
+    
     def train(self):
         epoch_cnt = hyper_para.DRY_RUN_EPOCHS if train_config.DRY_RUN else hyper_para.EPOCHS
         for epoch in range(epoch_cnt):
@@ -91,7 +91,7 @@ class TrainApp:
             self.epoch_validate()
             self.scheduler_.step()
 
-    @src.tags.stable_api
+    
     def epoch_validate(self):
         log("epoch validate start.")
         with torch.no_grad():
@@ -102,7 +102,7 @@ class TrainApp:
             self.validate_loss_ = torch.hstack((self.validate_loss_, torch.mean(_vali_loss)))
             log(f"validate done, validate loss: {torch.mean(_vali_loss)}")
 
-    @src.tags.stable_api
+    
     def eval_model_dump_eval_result(self):
         self.eval_result_ = (self.classifier_tester_
                              .set_dataloader(self.test_loader_, hyper_para.CLASS_CNT)
@@ -111,12 +111,12 @@ class TrainApp:
             for measure, score in self.eval_result_.items():
                 eval_f.write(f"{measure}: {score}\n")
 
-    @src.tags.stable_api
+    
     def dump_checkpoint(self):
         torch.save(self.model_.state_dict(), compose_path(f"checkpoint{self.check_point_iota_}.pt"))
         self.check_point_iota_ += 1
 
-    @src.tags.stable_api
+    
     def dump_result(self):
         with open(compose_path("train_loss.txt"), "w") as train_f, \
                 open(compose_path("validate_loss.txt"), "w") as vali_f:
@@ -127,10 +127,6 @@ class TrainApp:
 
         torch.save(self.train_loss, compose_path("train_loss.pt"))
         torch.save(self.validate_loss_, compose_path("validate_loss.pt"))
-
-        # plt.matshow(self.eval_result["confusion_matrix"])
-        # plt.savefig(compose_path("confusion_matrix.png"), dpi=300)
-        # plt.clf()
         log(self.eval_result_)
         plt.plot(self.train_loss.detach().cpu().numpy(), label="train loss")
         plt.plot(self.validate_loss_.detach().cpu().numpy(), label="validate loss")
@@ -141,7 +137,7 @@ class TrainApp:
         plt.savefig(compose_path("train_validate_loss.png"), dpi=300)
         plt.clf()
 
-    @src.tags.stable_api
+    
     def main(self):
         # region log configures
         log(train_config.TRAIN_CONFIG_SUMMARY)
