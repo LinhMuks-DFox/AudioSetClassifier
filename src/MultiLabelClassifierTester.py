@@ -101,3 +101,6 @@ class ClassifierTester:
         self.calculate_f1_score()
         self.calculate_hamming_loss()
         return self.status_map()
+
+    def classification_report(self):
+        return metrics.classification_report(self.y_true_, self.y_predict_binary_)

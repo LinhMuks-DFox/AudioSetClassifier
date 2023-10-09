@@ -4,6 +4,7 @@ import shutil
 import sys
 
 import matplotlib.pyplot as plt
+import pandas as pd
 import torch
 import torch.utils.data
 import tqdm
@@ -102,9 +103,17 @@ class TrainApp:
         self.eval_result_ = (self.classifier_tester_
                              .set_dataloader(self.test_loader_, hyper_para.CLASS_CNT)
                              .evaluate_model())
-        with open(compose_path("eval_result.txt"), "w") as eval_f:
-            for measure, score in self.eval_result_.items():
-                eval_f.write(f"{measure}: {score}\n")
+        # for i, confu in enumerate(self.eval_result_.get("confusion_matrix")):
+        #     df = pd.DataFrame(confu)
+        #     df.to_csv(compose_path(f"/confusion/class{i}_confusion_matrix.csv"))
+
+        with open(compose_path("eval_result.txt"), "w") as f:
+            f.write(f"accuracy: {self.eval_result_.get('accuracy')}\n")
+            f.write(f"precision: {self.eval_result_.get('precision')}\n")
+            f.write(f"recall: {self.eval_result_.get('recall')}\n")
+            f.write(f"f1_score: {self.eval_result_.get('f1_score')}\n")
+            f.write(f"hamming_loss: {self.eval_result_.get('hamming_loss')}\n")
+            f.write(self.classifier_tester_.classification_report())
 
     def dump_checkpoint(self):
         torch.save(self.model_.state_dict(), compose_path(f"checkpoint{self.check_point_iota_}.pt"))
@@ -166,13 +175,12 @@ class TrainApp:
         # endregion
 
         # region eval and dump checkpoint
-        # try:
-        #     self.eval_model_dump_eval_result()
-        # except Exception as e:
-        #     log("Eval failed. Error as follows:\n" + f"{e}", exc_info=True)
-        #     log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
-        #     self.dump_checkpoint()
-        #     exit(-1)
+        try:
+            self.eval_model_dump_eval_result()
+        except Exception as e:
+            log("Eval failed. Error as follows:\n" + f"{e}", exc_info=True)
+            log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
+            self.dump_checkpoint()
         # endregion
 
         # region dump result
