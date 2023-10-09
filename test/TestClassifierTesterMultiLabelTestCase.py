@@ -2,7 +2,6 @@ import unittest
 
 import torch
 import torch.utils.data as tch_data
-import pandas as pd
 import hyper_para
 import train_prepare
 from src.MultiLabelClassifierTester import ClassifierTester
@@ -36,13 +35,7 @@ class TestClassifierTesterMultiLabelTestCase(unittest.TestCase):
 
     def test_confusion_matrix(self):
         self.tester.predict_all()
-        print(self.tester.y_true_.dtype)
-        print(self.tester.y_predict_binary_.dtype)
-        df_true = pd.DataFrame(self.tester.y_true_)
-        df_predict = pd.DataFrame(self.tester.y_predict_binary_)
-        df_true.to_csv("true.csv")
-        df_predict.to_csv("predict.csv")
-        # print(self.tester.calculate_confusion_matrix())
+        print(self.tester.calculate_confusion_matrix())
 
 
 if __name__ == '__main__':

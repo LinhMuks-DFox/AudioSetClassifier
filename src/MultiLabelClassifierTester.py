@@ -38,8 +38,8 @@ class ClassifierTester:
     def set_dataloader(self, dataloader, n_classes: int) -> "ClassifierTester":
         self.dataloader_ = dataloader
         self.n_classes_ = n_classes
-        self.y_true_ = torch.empty(1, n_classes, dtype=torch.int).to(self.device_)
-        self.y_predict_ = torch.empty(1, n_classes, dtype=torch.int).to(self.device_)
+        self.y_true_ = torch.zeros(1, n_classes, dtype=torch.int).to(self.device_)
+        self.y_predict_ = torch.zeros(1, n_classes, dtype=torch.int).to(self.device_)
         return self
 
     def predict_all(self) -> "ClassifierTester":
@@ -47,9 +47,12 @@ class ClassifierTester:
             for x, y in self.dataloader_:
                 y = y.to(self.device_)
                 x = x.to(self.device_)
+                print(y.shape)
                 y_predict = self.model_(x)
                 self.y_true_ = torch.cat((self.y_true_, y))
                 self.y_predict_ = torch.cat((self.y_predict_, y_predict))
+        self.y_predict_ = self.y_predict_[1:]  # cut the first zero row
+        self.y_true_ = self.y_true_[1:]  # cut the first zero row
         self.y_predict_ = self.y_predict_.detach().cpu().numpy()
         self.y_true_ = self.y_true_.to(torch.int).detach().cpu().numpy()
         self.y_predict_binary_ = (self.y_predict_ > self.threshold_).astype(int)
