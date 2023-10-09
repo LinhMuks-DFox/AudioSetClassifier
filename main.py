@@ -101,10 +101,8 @@ class TrainApp:
         self.eval_result_ = (self.classifier_tester_
                              .set_dataloader(self.test_loader_, hyper_para.CLASS_CNT)
                              .evaluate_model())
-        # for i, confu in enumerate(self.eval_result_.get("confusion_matrix")):
-        #     df = pd.DataFrame(confu)
-        #     df.to_csv(compose_path(f"/confusion/class{i}_confusion_matrix.csv"))
-
+        confusion_matrix = torch.tensor(self.eval_result_.get("confusion_matrix"))
+        torch.save(confusion_matrix, compose_path("confusion_matrix.pt"))
         with open(compose_path("eval_result.txt"), "w") as f:
             f.write(f"accuracy: {self.eval_result_.get('accuracy')}\n")
             f.write(f"precision: {self.eval_result_.get('precision')}\n")
