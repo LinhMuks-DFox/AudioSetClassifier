@@ -4,9 +4,7 @@ import torchaudio.transforms as tch_audio_trans
 
 import lib.AudioSet.transform as sc_transforms
 from lib.AudioSet.IO import JsonBasedAudioSet
-from . import tags
 from .util import label_digit2tensor, fix_length
-
 
 
 class FullSpectroAudioSet(data.Dataset):
@@ -40,7 +38,6 @@ class FullSpectroAudioSet(data.Dataset):
         self.amplitude_trans = tch_audio_trans.AmplitudeToDB().to(self.transform_device_)
         self.sample_seconds_ = sample_seconds
 
-
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         sample: torch.Tensor = sample.to(self.transform_device_)
@@ -52,7 +49,6 @@ class FullSpectroAudioSet(data.Dataset):
         spectrogram = self.spectrogram_converter_(resampled_track)
         db_spe = self.amplitude_trans(spectrogram)
         return db_spe, label
-
 
     def __len__(self):
         return len(self.audio_fetcher_)

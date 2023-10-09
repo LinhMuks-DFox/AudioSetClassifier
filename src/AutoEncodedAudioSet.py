@@ -13,7 +13,6 @@ from .util import label_digit2tensor, fix_length
 @tags.stable_api
 class AutoEncodedAudioSet(torch.utils.data.Dataset):
 
-
     def __init__(self, auto_encoder_hypers,
                  encoder_model_path,
                  path: str,
@@ -68,13 +67,11 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         self.auto_encoder.to(self.transform_device_)
         # endregion
 
-
     def __len__(self):
         return len(self.audio_fetcher_)
 
     def __str__(self):
         return f"AutoEncodedAudioSet: length({len(self)}), using device: {self.transform_device_}\n"
-
 
     def _data_shape_(self):
         sample: torch.Tensor = self.audio_fetcher_[0][0]
@@ -86,7 +83,6 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         sample = self.spectrogram_converter_(sample)
         sample = self.amplitude_trans_(sample)
         return sample.shape
-
 
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]

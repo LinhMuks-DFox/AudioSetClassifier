@@ -1,5 +1,7 @@
 import unittest
+
 import torch
+
 import hyper_para
 import train_config
 import train_prepare

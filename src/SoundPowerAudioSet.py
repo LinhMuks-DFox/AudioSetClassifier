@@ -4,9 +4,7 @@ import torchaudio.transforms as tch_audio_trans
 
 import lib.AudioSet.transform as sc_transforms
 from lib.AudioSet.IO import JsonBasedAudioSet
-from . import tags
 from .util import label_digit2tensor, fix_length
-
 
 
 class SoundPowerAudioSet(tch_data.Dataset):
@@ -29,7 +27,6 @@ class SoundPowerAudioSet(tch_data.Dataset):
         self.output_size_ = output_size
         self.sample_length_ = self.sample_seconds_ * self.new_freq_
 
-    
     def __len__(self):
         return len(self.audio_fetcher_)
 
@@ -37,7 +34,6 @@ class SoundPowerAudioSet(tch_data.Dataset):
         return f"SoundPowerAudioSet: {len(self)}, device: {self.transform_device_}, " \
                f"sample length: {self.sample_length_}, output size: {self.output_size_}"
 
-    
     def __getitem__(self, index):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         sample: torch.Tensor = self.track_selector_(sample)

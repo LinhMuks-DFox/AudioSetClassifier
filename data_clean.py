@@ -1,9 +1,9 @@
-import torchaudio.transforms
 import torch.utils.data
+import torchaudio.transforms
 
+import lib.AudioSet.IO as dataset_io
 import lib.AudioSet.transform
 import train_config
-import lib.AudioSet.IO as dataset_io
 
 dataset = dataset_io.JsonBasedAudioSet(
     train_config.DATA_SET_PATH
@@ -21,4 +21,3 @@ with open("error_file.txt", "w") as f:
             cnt += 1
             f.write(f"file: {dataset.splice_audio_path(i)}, shape: {sample.shape}\n")
     f.write(f"Total non 16k*10 sample number:{cnt}\n")
-
