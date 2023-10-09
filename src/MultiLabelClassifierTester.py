@@ -3,17 +3,12 @@ import typing
 import sklearn.metrics as metrics
 import torch
 
-from . import tags
 
-
-@tags.stable_api
-class ClassifierTester:
+class MultiLabelClassifierTester:
 
     def __init__(self, model: torch.nn.Module,
                  device: torch.device,
-                 threshold: float = 0.5,
-                 verbose: bool = True,
-                 verbose_fn=print):
+                 threshold: float):
         self.model_ = model
         self.model_.eval()
         self.dataloader_ = None
@@ -31,23 +26,20 @@ class ClassifierTester:
         self.y_predict_ = None
         self.y_true_ = None
         self.y_predict_binary_ = None
-        self.verbose_ = verbose
-        self.verbose_fn_ = verbose_fn
         self.threshold_ = threshold
 
-    def set_dataloader(self, dataloader, n_classes: int) -> "ClassifierTester":
+    def set_dataloader(self, dataloader, n_classes: int) -> "MultiLabelClassifierTester":
         self.dataloader_ = dataloader
         self.n_classes_ = n_classes
         self.y_true_ = torch.zeros(1, n_classes, dtype=torch.int).to(self.device_)
         self.y_predict_ = torch.zeros(1, n_classes, dtype=torch.int).to(self.device_)
         return self
 
-    def predict_all(self) -> "ClassifierTester":
+    def predict_all(self) -> "MultiLabelClassifierTester":
         with torch.no_grad():
             for x, y in self.dataloader_:
                 y = y.to(self.device_)
                 x = x.to(self.device_)
-                print(y.shape)
                 y_predict = self.model_(x)
                 self.y_true_ = torch.cat((self.y_true_, y))
                 self.y_predict_ = torch.cat((self.y_predict_, y_predict))
@@ -58,27 +50,27 @@ class ClassifierTester:
         self.y_predict_binary_ = (self.y_predict_ > self.threshold_).astype(int)
         return self
 
-    def calculate_confusion_matrix(self) -> "ClassifierTester":
+    def calculate_confusion_matrix(self) -> "MultiLabelClassifierTester":
         self.confusion_matrix_ = metrics.multilabel_confusion_matrix(self.y_true_, self.y_predict_binary_)
         return self
 
-    def calculate_accuracy(self) -> "ClassifierTester":
+    def calculate_accuracy(self) -> "MultiLabelClassifierTester":
         self.accuracy_ = metrics.accuracy_score(self.y_true_, self.y_predict_binary_)
         return self
 
-    def calculate_precision(self) -> "ClassifierTester":
+    def calculate_precision(self) -> "MultiLabelClassifierTester":
         self.precision_ = metrics.precision_score(self.y_true_, self.y_predict_binary_, average='macro')
         return self
 
-    def calculate_recall(self) -> "ClassifierTester":
+    def calculate_recall(self) -> "MultiLabelClassifierTester":
         self.recall_ = metrics.recall_score(self.y_true_, self.y_predict_binary_, average='macro')
         return self
 
-    def calculate_f1_score(self) -> "ClassifierTester":
+    def calculate_f1_score(self) -> "MultiLabelClassifierTester":
         self.f1_score_ = metrics.f1_score(self.y_true_, self.y_predict_binary_, average='macro')
         return self
 
-    def calculate_hamming_loss(self) -> "ClassifierTester":
+    def calculate_hamming_loss(self) -> "MultiLabelClassifierTester":
         self.hamming_loss_ = metrics.hamming_loss(self.y_true_, self.y_predict_binary_)
         return self
 

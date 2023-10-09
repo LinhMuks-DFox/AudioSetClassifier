@@ -13,7 +13,7 @@ import hyper_para
 import train_config
 import train_prepare
 from train_prepare import compose_path
-from src.MultiLabelClassifierTester import ClassifierTester
+from src.MultiLabelClassifierTester import MultiLabelClassifierTester
 
 # region logger config
 
@@ -52,7 +52,9 @@ class TrainApp:
         self.optimizer_ = train_prepare.make_optimizer(self.model_)
         self.scheduler_ = train_prepare.make_scheduler(self.optimizer_)
         self.validate_loss_, self.train_loss = [torch.empty(0).to(self.device_) for _ in range(2)]
-        self.classifier_tester_: ClassifierTester = ClassifierTester(self.model_, self.device_, True)
+        self.classifier_tester_: MultiLabelClassifierTester = MultiLabelClassifierTester(self.model_,
+                                                                                         self.device_,
+                                                                                         threshold=hyper_para.THRESHOLD)
 
         self.model_.to(self.device_)
         self.check_point_iota_: int = 0

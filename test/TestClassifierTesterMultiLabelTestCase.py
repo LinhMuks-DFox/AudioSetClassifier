@@ -4,7 +4,7 @@ import torch
 import torch.utils.data as tch_data
 import hyper_para
 import train_prepare
-from src.MultiLabelClassifierTester import ClassifierTester
+from src.MultiLabelClassifierTester import MultiLabelClassifierTester
 
 
 class TestClassifierTesterMultiLabelTestCase(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestClassifierTesterMultiLabelTestCase(unittest.TestCase):
         self.dataset = tch_data.Subset(self.dataset, list(range(10)))
         self.dataloader = tch_data.DataLoader(self.dataset, shuffle=False, batch_size=2)
 
-        self.tester: ClassifierTester = ClassifierTester(self.model, torch.device("cuda:1"))
+        self.tester: MultiLabelClassifierTester = MultiLabelClassifierTester(self.model, torch.device("cuda:1"))
         self.tester.set_dataloader(self.dataloader, hyper_para.CLASS_CNT)
 
     def test_predict_all(self):
