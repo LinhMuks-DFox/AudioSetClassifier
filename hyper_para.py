@@ -15,6 +15,7 @@ SCHEDULAR_STEP_SIZE = 1
 DATA_SET = "sound_power"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 OPTIMIZER = "Adam"
+CHECK_POINT_INTERVAL = 10
 THRESHOLD = 0.5
 LOSS_FUNCTION = {
     "name": "BCEWithLogitsLoss",

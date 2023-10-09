@@ -86,6 +86,8 @@ class TrainApp:
             log(f"train epoch: {epoch} end, mean loss: {mean_loss}")
             self.epoch_validate()
             self.scheduler_.step()
+            if epoch % hyper_para.CHECK_POINT_INTERVAL == 0:
+                self.dump_checkpoint(f"epoch{epoch}_checkpoint.pt")
 
     def epoch_validate(self):
         log("epoch validate start.")
@@ -111,9 +113,11 @@ class TrainApp:
             f.write(f"hamming_loss: {self.eval_result_.get('hamming_loss')}\n")
             f.write(self.classifier_tester_.classification_report())
 
-    def dump_checkpoint(self):
-        torch.save(self.model_.state_dict(), compose_path(f"checkpoint{self.check_point_iota_}.pt"))
-        self.check_point_iota_ += 1
+    def dump_checkpoint(self, name: str = None):
+        if name is None:
+            name = f"checkpoint{self.check_point_iota_}.pt"
+            self.check_point_iota_ += 1
+        torch.save(self.model_.state_dict(), compose_path(name))
 
     def dump_result(self):
         with open(compose_path("train_loss.txt"), "w") as train_f, \
