@@ -4,7 +4,7 @@ from typing import Tuple
 import torch.nn
 import torch.utils.data as tch_data
 import torchvision
-
+import os
 import hyper_para
 import train_config
 from lib.AutoEncoder.AudioDecoder import AudioDecoder
@@ -13,6 +13,12 @@ from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparam
 from src.AutoEncodedAudioSet import AutoEncodedAudioSet
 from src.FullSpectroAudioSet import FullSpectroAudioSet
 from src.SoundPowerAudioSet import SoundPowerAudioSet
+
+
+def compose_path(file=None):
+    if file is None:
+        return f"{train_config.DUMP_PATH}/{hyper_para.DATA_SET}"
+    return os.path.join(f"{train_config.DUMP_PATH}/{hyper_para.DATA_SET}", file)
 
 
 def make_classifier():

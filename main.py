@@ -12,14 +12,10 @@ import tqdm
 import hyper_para
 import train_config
 import train_prepare
+from train_prepare import compose_path
 from src.MultiLabelClassifierTester import ClassifierTester
 
-
 # region logger config
-def compose_path(file=None):
-    if file is None:
-        return f"{train_config.DUMP_PATH}/{hyper_para.DATA_SET}"
-    return os.path.join(f"{train_config.DUMP_PATH}/{hyper_para.DATA_SET}", file)
 
 
 if not os.path.exists(train_config.DUMP_PATH):
