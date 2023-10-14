@@ -4,7 +4,6 @@ import shutil
 import sys
 
 import matplotlib.pyplot as plt
-import pandas as pd
 import torch
 import torch.utils.data
 import tqdm
@@ -45,17 +44,18 @@ class TrainApp:
         self.model_ = train_prepare.make_classifier()
         self.dataset_ = train_prepare.make_dataset()
         if train_config.DRY_RUN:
-            self.dataset_ = torch.utils.data.Subset(self.dataset_, range(hyper_para.DRY_RUN_DATE_SET_LENGTH))
+            self.dataset_ = torch.utils.data.Subset(self.dataset_,
+                                                    range(hyper_para.DRY_RUN_DATE_SET_LENGTH))
         self.train_loader_, self.validate_loader_, self.test_loader_ = train_prepare.make_dataloader(self.dataset_)
         self.device_ = train_prepare.select_device()
         self.loss_function_ = train_prepare.make_loss_function()
         self.optimizer_ = train_prepare.make_optimizer(self.model_)
         self.scheduler_ = train_prepare.make_scheduler(self.optimizer_)
         self.validate_loss_, self.train_loss = [torch.empty(0).to(self.device_) for _ in range(2)]
-        self.classifier_tester_: MultiLabelClassifierTester = MultiLabelClassifierTester(self.model_,
-                                                                                         self.device_,
-                                                                                         threshold=hyper_para.THRESHOLD)
-
+        self.classifier_tester_ = MultiLabelClassifierTester(self.model_,
+                                                             self.device_,
+                                                             threshold=hyper_para.THRESHOLD,
+                                                             use_sigmoid=hyper_para.USE_SIGMOID)
         self.model_.to(self.device_)
         self.check_point_iota_: int = 0
 
@@ -86,8 +86,6 @@ class TrainApp:
             log(f"train epoch: {epoch} end, mean loss: {mean_loss}")
             self.epoch_validate()
             self.scheduler_.step()
-            if epoch % hyper_para.CHECK_POINT_INTERVAL == 0:
-                self.dump_checkpoint(f"epoch{epoch}_checkpoint.pt")
 
     def epoch_validate(self):
         log("epoch validate start.")
@@ -105,13 +103,17 @@ class TrainApp:
                              .evaluate_model())
         confusion_matrix = torch.tensor(self.eval_result_.get("confusion_matrix"))
         torch.save(confusion_matrix, compose_path("confusion_matrix.pt"))
-        with open(compose_path("eval_result.txt"), "w") as f:
+        with open(compose_path("eval_result.txt"), "w") as f, open(compose_path("confusion_matrix.txt"), "w") as f2:
             f.write(f"accuracy: {self.eval_result_.get('accuracy')}\n")
             f.write(f"precision: {self.eval_result_.get('precision')}\n")
             f.write(f"recall: {self.eval_result_.get('recall')}\n")
             f.write(f"f1_score: {self.eval_result_.get('f1_score')}\n")
             f.write(f"hamming_loss: {self.eval_result_.get('hamming_loss')}\n")
             f.write(self.classifier_tester_.classification_report())
+            for i in range(confusion_matrix.shape[0]):
+                f2.write("Confusion matrix for class " + str(i) + "\n")
+                f2.write("\n".join([str(item) for item in confusion_matrix[i].tolist()]) + "\n")
+                f2.write("--------------------\n")
 
     def dump_checkpoint(self, name: str = None):
         if name is None:
@@ -155,8 +157,8 @@ class TrainApp:
         # endregion
 
         # region backup
-        shutil.copy("train_config.py", compose_path("train_config.py.backup"))
-        shutil.copy("hyper_para.py", compose_path("hyper_para.py.backup"))
+        shutil.copy("train_config.py", compose_path("train_config.py"))
+        shutil.copy("hyper_para.py", compose_path("hyper_para.py"))
         if hyper_para.DATA_SET == "encoded":
             log("Using dataset encoded, copying AutoEncoder model to dump path.")
             shutil.copytree("./lib/AutoEncoder", compose_path("AutoEncoder"))
@@ -176,7 +178,9 @@ class TrainApp:
 
         # region eval and dump checkpoint
         try:
+            log("Evaluating model...")
             self.eval_model_dump_eval_result()
+            log("Evaluated. dump eval result to eval_result.txt.")
         except Exception as e:
             log("Eval failed. Error as follows:\n" + f"{e}", exc_info=True)
             log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
