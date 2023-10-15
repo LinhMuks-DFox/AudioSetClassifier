@@ -73,6 +73,7 @@ class TrainApp:
         epoch_cnt = hyper_para.DRY_RUN_EPOCHS if train_config.DRY_RUN else hyper_para.EPOCHS
         for epoch in range(epoch_cnt):
             log(f"train epoch: {epoch} start.")
+            self.model_.train()
             epoch_loss = torch.empty(0).to(self.device_)
             loss: torch.Tensor
             log(f"learning rate in this epoch: {self.optimizer_.param_groups[0]['lr']}")
@@ -89,6 +90,7 @@ class TrainApp:
 
     def epoch_validate(self):
         log("epoch validate start.")
+        self.model_.eval()
         with torch.no_grad():
             _vali_loss = torch.empty(0).to(self.device_)
             for data, label in tqdm.tqdm(self.validate_loader_):
