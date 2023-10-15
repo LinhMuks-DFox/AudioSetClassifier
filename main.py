@@ -1,3 +1,4 @@
+import json
 import logging
 import os.path
 import shutil
@@ -41,6 +42,7 @@ log = logging.info
 
 class TrainApp:
     def __init__(self):
+        log("Train Init")
         self.model_ = train_prepare.make_classifier()
         self.dataset_ = train_prepare.make_dataset()
         if train_config.DRY_RUN:
@@ -61,6 +63,11 @@ class TrainApp:
 
         self.eval_result_ = None
         train_prepare.set_torch_random_seed()
+
+        log("Loading class_label_indices.json")
+        with open(train_config.CLASS_LABELS_INDICES, "r") as f:
+            self.class2label = json.load(f)
+        log("Init-done")
 
     def one_step_loss(self, data: torch.Tensor, label: torch.Tensor) -> torch.Tensor:
         data = data.to(self.device_)
@@ -113,7 +120,7 @@ class TrainApp:
             f.write(f"hamming_loss: {self.eval_result_.get('hamming_loss')}\n")
             f.write(self.classifier_tester_.classification_report())
             for i in range(confusion_matrix.shape[0]):
-                f2.write("Confusion matrix for class " + str(i) + "\n")
+                f2.write("Confusion matrix for class " + self.class2label[f"{i}"]["display_name"] + "\n")
                 f2.write("\n".join([str(item) for item in confusion_matrix[i].tolist()]) + "\n")
                 f2.write("--------------------\n")
 
