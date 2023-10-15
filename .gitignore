@@ -10,3 +10,4 @@ pre_trained_encoder/
 /pth_bin/
 nohup.out
 *.out
+else/
