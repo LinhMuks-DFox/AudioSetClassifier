@@ -21,7 +21,9 @@ def compose_path(file=None):
     return os.path.join(f"{train_config.DUMP_PATH}/{hyper_para.DATA_SET}", file)
 
 
-def make_classifier():
+def make_classifier(model_type: str = None, class_cnt: int = None):
+    model_type = model_type if model_type is not None else hyper_para.MODEL
+    class_cnt = class_cnt if class_cnt is not None else hyper_para.CLASS_CNT
     _CASE = {
         "RES18": torchvision.models.resnet18,
         "RES34": torchvision.models.resnet34,
@@ -29,9 +31,9 @@ def make_classifier():
     }
     if hyper_para.MODEL not in _CASE.keys():
         raise ValueError("Only support RES18, RES34, RES50")
-    _res_net = _CASE.get(hyper_para.MODEL)
+    _res_net = _CASE.get(model_type)
     _projection = torch.nn.Conv2d(kernel_size=(1, 1), in_channels=1, out_channels=3)
-    return torch.nn.Sequential(_projection, _res_net(num_classes=hyper_para.CLASS_CNT))
+    return torch.nn.Sequential(_projection, _res_net(num_classes=class_cnt))
 
 
 def make_dataset(path: str = None, dataset_type: str = None):
@@ -85,19 +87,23 @@ def make_dataloader(dataset, batch_size: int = None):
     )
 
 
-def make_loss_function():
+def make_loss_function(loss_type: str = None, loss_args: dict = None):
+    loss_type = loss_type if loss_type is not None else hyper_para.LOSS_FUNCTION.get("name")
+    loss_args = loss_args if loss_args is not None else hyper_para.LOSS_FUNCTION.get("arg")
     return {
         "BCEWithLogitsLoss": torch.nn.BCEWithLogitsLoss,
         "BCELoss": torch.nn.BCELoss,
         "MultiLabelSoftMarginLoss": torch.nn.MultiLabelSoftMarginLoss,
-    }.get(hyper_para.LOSS_FUNCTION.get("name"))(**hyper_para.LOSS_FUNCTION.get("arg"))
+    }.get(loss_type)(**loss_args)
 
 
-def make_optimizer(model):
+def make_optimizer(model, optimizer_type: str = None, lr: float = None):
+    optimizer_type = optimizer_type if optimizer_type is not None else hyper_para.OPTIMIZER
+    lr = lr if lr is not None else hyper_para.LEARNING_RATE
     return {
         "Adam": torch.optim.Adam,
         "SGD": torch.optim.SGD,
-    }.get(hyper_para.OPTIMIZER)(model.parameters(), lr=hyper_para.LEARNING_RATE)
+    }.get(optimizer_type)(model.parameters(), lr=lr)
 
 
 def make_scheduler(optimizer):
