@@ -15,12 +15,10 @@ from src.FullSpectroAudioSet import FullSpectroAudioSet
 from src.SoundPowerAudioSet import SoundPowerAudioSet
 
 
-def compose_path(dump_path: str = None, dataset_type: str = None, file_name=None) -> str:
+def compose_path(file_name: str = None, dump_path: str = None, dataset_type: str = None) -> str:
     dump_path = dump_path if dump_path is not None else train_config.DUMP_PATH
     dataset_type = dataset_type if dataset_type is not None else hyper_para.DATA_SET
-    if file_name is None:
-        return os.path.join(dump_path, dataset_type)
-    return os.path.join(dump_path, dataset_type, file_name)
+    return os.path.join(dump_path, dataset_type, file_name if file_name is not None else "")
 
 
 def make_classifier(model_type: str = None, class_cnt: int = None):
