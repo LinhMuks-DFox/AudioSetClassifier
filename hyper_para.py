@@ -3,20 +3,22 @@ import torch
 
 import train_config
 
-MODEL = "RES18"
+MODEL = "RES34"
 CLASS_CNT = 527  # Audio set contains 527 class labels
 TRAIN_DEVICE = "cuda:1"
-DATA_TRANSFORM_DEVICE = "cuda:1"
-BATCH_SIZE = 130
+DATA_TRANSFORM_DEVICE = "cuda:0"
+BATCH_SIZE = 100
 EPOCHS = 100
 LEARNING_RATE = 1e-6
 SCHEDULAR_GAMMA = 0.9
 SCHEDULAR_STEP_SIZE = 1
-DATA_SET = "sound_power"  # "ideal", "sound_power", "encoded"
+DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 OPTIMIZER = "Adam"
 CHECK_POINT_INTERVAL = 10
-THRESHOLD = 0.5
+# BCEWithLogitsLoss -> Sigmoid(output) -> y_predict, but when threshold <- 0, y_predict = (output > threshold)
+THRESHOLD = 0.0
+USE_SIGMOID = True
 LOSS_FUNCTION = {
     "name": "BCEWithLogitsLoss",
     "arg": {"reduction": "mean"}
@@ -97,4 +99,4 @@ dry run data set length: {DRY_RUN_DATE_SET_LENGTH}
 if train_config.DRY_RUN:
     TRAIN_HYPER_PARA_SUMMARY += DRY_RUN_MESSAGE
 
-RANDOM_SEED = 3407
+RANDOM_SEED = 666
