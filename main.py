@@ -112,6 +112,9 @@ class TrainApp:
                              .evaluate_model())
         confusion_matrix = torch.tensor(self.eval_result_.get("confusion_matrix"))
         torch.save(confusion_matrix, compose_path("confusion_matrix.pt"))
+        torch.save(self.classifier_tester_.y_true_, compose_path("tester_y_true.pt"))
+        torch.save(self.classifier_tester_.y_predict_, compose_path("tester_y_predict.pt"))
+        torch.save(self.classifier_tester_.y_predict_binary_, compose_path("tester_y_predict_binary.pt"))
         with open(compose_path("eval_result.txt"), "w") as f, open(compose_path("confusion_matrix.txt"), "w") as f2:
             f.write(f"accuracy: {self.eval_result_.get('accuracy')}\n")
             f.write(f"precision: {self.eval_result_.get('precision')}\n")
