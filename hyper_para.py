@@ -14,6 +14,7 @@ SCHEDULAR_GAMMA = 0.9
 SCHEDULAR_STEP_SIZE = 1
 DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
+VALIDATE_TEST_SPLIT = [0.2, 0.8]
 OPTIMIZER = "Adam"
 CHECK_POINT_INTERVAL = 10
 # BCEWithLogitsLoss -> Sigmoid(output) -> y_predict, but when threshold <- 0, y_predict = (output > threshold)

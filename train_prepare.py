@@ -77,11 +77,15 @@ def make_dataset(path: str = None, dataset_type: str = None):
         raise ValueError("Unknown data set type")
 
 
-def make_dataloader(dataset, batch_size: int = None):
-    train, validate, test = tch_data.random_split(dataset, hyper_para.TRAIN_TEST_VALIDATE_SPLIT)
+def make_train_loader(dataset, batch_size: int = None):
     batch_size = batch_size if batch_size is not None else hyper_para.BATCH_SIZE
+    return tch_data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
+
+
+def make_test_validate_loader(dataset, batch_size: int = None):
+    batch_size = batch_size if batch_size is not None else hyper_para.BATCH_SIZE
+    validate, test = tch_data.random_split(dataset, hyper_para.VALIDATE_TEST_SPLIT)
     return (
-        tch_data.DataLoader(train, batch_size=batch_size, shuffle=True),
         tch_data.DataLoader(validate, batch_size=batch_size, shuffle=False),
         tch_data.DataLoader(test, batch_size=batch_size, shuffle=False)
     )

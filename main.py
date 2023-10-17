@@ -44,11 +44,15 @@ class TrainApp:
     def __init__(self):
         log("Train Init")
         self.model_ = train_prepare.make_classifier()
-        self.dataset_ = train_prepare.make_dataset()
+        self.train_dataset_ = train_prepare.make_dataset(train_config.TRAIN_DATA_SET_PATH)
+        self.validate_test_dataset_ = train_prepare.make_dataset(train_config.EVAL_DATE_SET_PATH)
         if train_config.DRY_RUN:
-            self.dataset_ = torch.utils.data.Subset(self.dataset_,
-                                                    range(hyper_para.DRY_RUN_DATE_SET_LENGTH))
-        self.train_loader_, self.validate_loader_, self.test_loader_ = train_prepare.make_dataloader(self.dataset_)
+            self.train_dataset_ = torch.utils.data.Subset(self.train_dataset_,
+                                                          range(hyper_para.DRY_RUN_DATE_SET_LENGTH))
+            self.validate_test_dataset_ = torch.utils.data.Subset(self.validate_test_dataset_,
+                                                                  range(hyper_para.DRY_RUN_DATE_SET_LENGTH))
+        self.train_loader_ = train_prepare.make_train_loader(self.train_dataset_)
+        self.validate_loader_, self.test_loader_ = train_prepare.make_test_validate_loader(self.validate_test_dataset_)
         self.device_ = train_prepare.select_device()
         self.loss_function_ = train_prepare.make_loss_function()
         self.optimizer_ = train_prepare.make_optimizer(self.model_)
@@ -161,8 +165,8 @@ class TrainApp:
             "Train config summary: \n"
             f"Selected train device(selected by train_prepare.select_device()): {self.device_}\n"
             f"{'Running Dry Run Mode' if train_config.DRY_RUN else 'Running Normal Mode'}\n"
-            f"Dataset: {str(self.dataset_)}\n"
-            f"Datashape: {self.dataset_[0][0].shape}\n"
+            f"Dataset: {str(self.train_dataset_)}\n"
+            f"Datashape: {self.train_dataset_[0][0].shape}\n"
             f"Back up train_config.py and hyper_para.py\n"
             f"Random seed: {hyper_para.RANDOM_SEED}\n"
         )
