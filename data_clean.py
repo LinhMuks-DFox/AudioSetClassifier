@@ -6,7 +6,7 @@ import lib.AudioSet.transform
 import train_config
 
 dataset = dataset_io.JsonBasedAudioSet(
-    train_config.DATA_SET_PATH
+    train_config.TRAIN_DATA_SET_PATH
 )
 resampler = torchaudio.transforms.Resample(44100, 16000)
 sound_track_selector = lib.AudioSet.transform.SoundTrackSelector("mix")

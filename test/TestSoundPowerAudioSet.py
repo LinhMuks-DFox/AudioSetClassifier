@@ -17,7 +17,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_build_up(self):
         self.dataset = SoundPowerAudioSet(
-            path=train_config.DATA_SET_PATH,
+            path=train_config.TRAIN_DATA_SET_PATH,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),

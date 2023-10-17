@@ -5,11 +5,14 @@ import platform
 IN_DOCKER: bool = os.environ.get("IN_DOCKER_CONTAINER", False)
 
 if "win" in (plf := platform.platform().lower()):
-    DATA_SET_PATH: str = r"F:\DataSets\Audioset\balanced\segments\AudioSet.json"
+    TRAIN_DATA_SET_PATH: str = r"F:\DataSets\Audioset\balanced\segments\AudioSet.json"
+    EVAL_DATE_SET_PATH: str = r"F:\DataSets\Audioset\eval\segments\AudioSet.json"
 elif "mac" in plf:
-    DATA_SET_PATH: str = r"/Volumes/PortMux/DataSet/Audioset/segments/AudioSet.json"
+    TRAIN_DATA_SET_PATH: str = r"/Volumes/PortMux/DataSet/Audioset/segments/AudioSet.json"
+    EVAL_DATE_SET_PATH: str = r"/Volumes/PortMux/DataSet/AudiosetEval/segments/AudioSet.json"
 else:
-    DATA_SET_PATH: str = r"data/audio_set/AudioSet.json"
+    TRAIN_DATA_SET_PATH: str = r"data/audio_set/AudioSet.json"
+    EVAL_DATE_SET_PATH: str = r"data/audio_set_eval/AudioSet.json"
 
 PLATFORM: str = plf
 DRY_RUN: bool = False
@@ -21,7 +24,7 @@ AUTO_ENCODER_MODEL_PATH = r"pre_trained_encoder/2023-7-27-ablation/masked/encode
 TRAIN_CONFIG_SUMMARY = f"""
 Train config summary of {TRAIN_ID}:
 IN_DOCKER : {IN_DOCKER}
-DATA_SET_PATH : {DATA_SET_PATH}
+DATA_SET_PATH : {TRAIN_DATA_SET_PATH}
 DRY_RUN : {DRY_RUN}
 DUMP_PATH : {DUMP_PATH}
 PLATFORM : {PLATFORM}

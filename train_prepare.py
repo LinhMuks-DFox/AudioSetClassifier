@@ -35,7 +35,7 @@ def make_classifier():
 
 
 def make_dataset(path: str = None, dataset_type: str = None):
-    path = path if path is not None else train_config.DATA_SET_PATH
+    path = path if path is not None else train_config.TRAIN_DATA_SET_PATH
     dataset_type = dataset_type if dataset_type is not None else hyper_para.DATA_SET
     if dataset_type == "ideal":
         return FullSpectroAudioSet(
