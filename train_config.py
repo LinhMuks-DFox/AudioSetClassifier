@@ -5,14 +5,24 @@ import platform
 IN_DOCKER: bool = os.environ.get("IN_DOCKER_CONTAINER", False)
 
 if "win" in (plf := platform.platform().lower()):
-    TRAIN_DATA_SET_PATH: str = r"F:\DataSets\Audioset\balanced\segments\AudioSet.json"
+    TRAIN_DATA_SET_PATH: str = r"F:\DataSets\Audioset\balanced\segments"
     EVAL_DATE_SET_PATH: str = r"F:\DataSets\Audioset\eval\segments\AudioSet.json"
+
+    EVAL_DATA_SET_JSON: str = r"./subset_json/sub_eval.json"
+    TRAIN_DATA_SET_JSON: str = r"./subset_json/sub_train.json"
+
 elif "mac" in plf:
-    TRAIN_DATA_SET_PATH: str = r"/Volumes/PortMux/DataSet/Audioset/segments/AudioSet.json"
-    EVAL_DATE_SET_PATH: str = r"/Volumes/PortMux/DataSet/AudiosetEval/segments/AudioSet.json"
+    TRAIN_DATA_SET_PATH: str = r"/Volumes/PortMux/DataSet/Audioset/segments"
+    EVAL_DATE_SET_PATH: str = r"/Volumes/PortMux/DataSet/AudiosetEval/segments"
+
+    EVAL_DATA_SET_JSON: str = r"./subset_json/sub_eval.json"
+    TRAIN_DATA_SET_JSON: str = r"./subset_json/sub_train.json"
 else:
-    TRAIN_DATA_SET_PATH: str = r"data/audio_set/AudioSet.json"
-    EVAL_DATE_SET_PATH: str = r"data/audio_set_eval/AudioSet.json"
+    TRAIN_DATA_SET_PATH: str = r"data/audio_set"
+    EVAL_DATE_SET_PATH: str = r"data/audio_set_eval"
+
+    EVAL_DATA_SET_JSON: str = r"./subset_json/sub_eval.json"
+    TRAIN_DATA_SET_JSON: str = r"./subset_json/sub_train.json"
 
 PLATFORM: str = plf
 DRY_RUN: bool = False
