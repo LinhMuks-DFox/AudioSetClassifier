@@ -1,0 +1,4394 @@
+{
+    "0": {
+        "path": "balanced_train_segments4000.csv.splits/-2PDE7hUArE.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "1": {
+        "path": "balanced_train_segments4000.csv.splits/-5-vmt2iKT0.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "2": {
+        "path": "balanced_train_segments4000.csv.splits/-7J4109yM7w.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "3": {
+        "path": "balanced_train_segments4000.csv.splits/-DNkAalo7og.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "4": {
+        "path": "balanced_train_segments4000.csv.splits/-GDC7PuqdOM.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "5": {
+        "path": "balanced_train_segments4000.csv.splits/-JKLmqDk9p8.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "6": {
+        "path": "balanced_train_segments4000.csv.splits/-XVgCqsHi3g.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "7": {
+        "path": "balanced_train_segments4000.csv.splits/-fwZGpmJNhw.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "8": {
+        "path": "balanced_train_segments4000.csv.splits/-i-9C48tduw.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "9": {
+        "path": "balanced_train_segments4000.csv.splits/-jBWkHhQNew.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "10": {
+        "path": "balanced_train_segments4000.csv.splits/-pBquWuzRwE.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "11": {
+        "path": "balanced_train_segments4000.csv.splits/-skhG36uWM0.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "12": {
+        "path": "balanced_train_segments4000.csv.splits/-uSlzn9oPQ4.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "13": {
+        "path": "balanced_train_segments4000.csv.splits/-x2aAKUtNRw.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "14": {
+        "path": "balanced_train_segments4000.csv.splits/0150dZu3Na8.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "15": {
+        "path": "balanced_train_segments4000.csv.splits/02tl_ek8f9I.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "16": {
+        "path": "balanced_train_segments4000.csv.splits/05wEdbchyjM.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "17": {
+        "path": "balanced_train_segments4000.csv.splits/07VlN0dItyc.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "18": {
+        "path": "balanced_train_segments4000.csv.splits/0QzVs8IBn_E.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "19": {
+        "path": "balanced_train_segments4000.csv.splits/0R348vGkjyw.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "20": {
+        "path": "balanced_train_segments4000.csv.splits/0ix_rHxU54w.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "21": {
+        "path": "balanced_train_segments4000.csv.splits/0kdRxEiEGIs.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "22": {
+        "path": "balanced_train_segments4000.csv.splits/0xps9c25LqE.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "23": {
+        "path": "balanced_train_segments4000.csv.splits/0y3tr-QUGY0.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "24": {
+        "path": "balanced_train_segments4000.csv.splits/11Pn3yJifSQ.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "25": {
+        "path": "balanced_train_segments4000.csv.splits/13PjLquqF3U.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "26": {
+        "path": "balanced_train_segments4000.csv.splits/17bfDrV7bvY.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "27": {
+        "path": "balanced_train_segments4000.csv.splits/1Co1uyI6Ulw.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "28": {
+        "path": "balanced_train_segments4000.csv.splits/1JwoLPCIGhs.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "29": {
+        "path": "balanced_train_segments4000.csv.splits/1OHxLcGzhv0.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "30": {
+        "path": "balanced_train_segments4000.csv.splits/1OM5619KGEI.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "31": {
+        "path": "balanced_train_segments4000.csv.splits/1jokDJHu4_s.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "32": {
+        "path": "balanced_train_segments4000.csv.splits/1qLTTdpHEhA.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "33": {
+        "path": "balanced_train_segments4000.csv.splits/1t3Cpx7HYf4.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "34": {
+        "path": "balanced_train_segments4000.csv.splits/2-1wY_Ndtgw.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "35": {
+        "path": "balanced_train_segments4000.csv.splits/207W0v5c-Ns.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "36": {
+        "path": "balanced_train_segments4000.csv.splits/27rCZL5yPU4.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "37": {
+        "path": "balanced_train_segments4000.csv.splits/2LZ0q78OWZE.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "38": {
+        "path": "balanced_train_segments4000.csv.splits/2LnkfTirErI.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "39": {
+        "path": "balanced_train_segments4000.csv.splits/2VMfJymq_lY.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "40": {
+        "path": "balanced_train_segments4000.csv.splits/2mEH2FUWUTg.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "41": {
+        "path": "balanced_train_segments4000.csv.splits/2xATintzaj4.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "42": {
+        "path": "balanced_train_segments4000.csv.splits/33xTgZMTq54.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "43": {
+        "path": "balanced_train_segments4000.csv.splits/34ZTxQaNfis.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "44": {
+        "path": "balanced_train_segments4000.csv.splits/39SDsEWcsLE.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "45": {
+        "path": "balanced_train_segments4000.csv.splits/3GipbHH-nV4.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "46": {
+        "path": "balanced_train_segments4000.csv.splits/3RKZM0WIRbk.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "47": {
+        "path": "balanced_train_segments4000.csv.splits/3WkbOuahBnk.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "48": {
+        "path": "balanced_train_segments4000.csv.splits/3cWI2BD9A1s.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "49": {
+        "path": "balanced_train_segments4000.csv.splits/3xCWI_22Z9A.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "50": {
+        "path": "balanced_train_segments4000.csv.splits/3y2aZEs1F5s.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "51": {
+        "path": "balanced_train_segments4000.csv.splits/483cz_84L1I.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "52": {
+        "path": "balanced_train_segments4000.csv.splits/4LcMAREn89c.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "53": {
+        "path": "balanced_train_segments4000.csv.splits/4M0njWKFsME.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "54": {
+        "path": "balanced_train_segments4000.csv.splits/4PFskMUwfvU.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "55": {
+        "path": "balanced_train_segments4000.csv.splits/4aEtQmXkhns.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "56": {
+        "path": "balanced_train_segments4000.csv.splits/4bXb6GLm6zg.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "57": {
+        "path": "balanced_train_segments4000.csv.splits/4lNM6Ah99hw.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "58": {
+        "path": "balanced_train_segments4000.csv.splits/5190n8RJI_k.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "59": {
+        "path": "balanced_train_segments4000.csv.splits/51Wq8OYk5sU.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "60": {
+        "path": "balanced_train_segments4000.csv.splits/54EJiYdS03s.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "61": {
+        "path": "balanced_train_segments4000.csv.splits/54nXES308NM.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "62": {
+        "path": "balanced_train_segments4000.csv.splits/57Ijq7fWehY.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "63": {
+        "path": "balanced_train_segments4000.csv.splits/5LK5QxIu8xw.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "64": {
+        "path": "balanced_train_segments4000.csv.splits/5UDUNqwWuNs.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "65": {
+        "path": "balanced_train_segments4000.csv.splits/5_PvtlfQLOE.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "66": {
+        "path": "balanced_train_segments4000.csv.splits/5fjmEgwc14E.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "67": {
+        "path": "balanced_train_segments4000.csv.splits/5gO1h5yQUpQ.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "68": {
+        "path": "balanced_train_segments4000.csv.splits/5perV0v6lkk.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "69": {
+        "path": "balanced_train_segments4000.csv.splits/5piIqrQB5rU.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "70": {
+        "path": "balanced_train_segments4000.csv.splits/5znApAp2Gcc.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "71": {
+        "path": "balanced_train_segments4000.csv.splits/60F323_jvtI.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "72": {
+        "path": "balanced_train_segments4000.csv.splits/61xoM9FNEr4.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "73": {
+        "path": "balanced_train_segments4000.csv.splits/66kfjGs-5AA.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "74": {
+        "path": "balanced_train_segments4000.csv.splits/66wgrFPRzZU.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "75": {
+        "path": "balanced_train_segments4000.csv.splits/6BMYu02B24w.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "76": {
+        "path": "balanced_train_segments4000.csv.splits/6O4Zpv-cAXY.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "77": {
+        "path": "balanced_train_segments4000.csv.splits/6OHetw29o_A.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "78": {
+        "path": "balanced_train_segments4000.csv.splits/6OVb3rjcB3Q.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "79": {
+        "path": "balanced_train_segments4000.csv.splits/6X5vLMqdKZo.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "80": {
+        "path": "balanced_train_segments4000.csv.splits/6Xp4hkZctIw.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "81": {
+        "path": "balanced_train_segments4000.csv.splits/6eqjdgiGAsE.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "82": {
+        "path": "balanced_train_segments4000.csv.splits/6j76kSyiOCA.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "83": {
+        "path": "balanced_train_segments4000.csv.splits/6mBd8XtwkvM.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "84": {
+        "path": "balanced_train_segments4000.csv.splits/6qi1KV9MoO0.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "85": {
+        "path": "balanced_train_segments4000.csv.splits/6qmGCfCrU6w.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "86": {
+        "path": "balanced_train_segments4000.csv.splits/6uLtyzRgmyI.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "87": {
+        "path": "balanced_train_segments4000.csv.splits/76pXCH-hvb4.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "88": {
+        "path": "balanced_train_segments4000.csv.splits/78KjO5EH6dk.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "89": {
+        "path": "balanced_train_segments4000.csv.splits/78R6KgsSPRk.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "90": {
+        "path": "balanced_train_segments4000.csv.splits/7KvmusRXFys.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "91": {
+        "path": "balanced_train_segments4000.csv.splits/7KwE08SzlAY.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "92": {
+        "path": "balanced_train_segments4000.csv.splits/7LRr0ZhqRZ0.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "93": {
+        "path": "balanced_train_segments4000.csv.splits/7Leh-jVFjjg.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "94": {
+        "path": "balanced_train_segments4000.csv.splits/7RvYX1eWdbk.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "95": {
+        "path": "balanced_train_segments4000.csv.splits/7mqAY2N9d5o.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "96": {
+        "path": "balanced_train_segments4000.csv.splits/7rk62G1WyG8.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "97": {
+        "path": "balanced_train_segments4000.csv.splits/7sEqD9pB1nI.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "98": {
+        "path": "balanced_train_segments4000.csv.splits/7sSDrDQ0VEU.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "99": {
+        "path": "balanced_train_segments4000.csv.splits/7t7RfDh-YKA.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "100": {
+        "path": "balanced_train_segments4000.csv.splits/7wJc_LpV8E4.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "101": {
+        "path": "balanced_train_segments4000.csv.splits/81vJ4-5ToUg.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "102": {
+        "path": "balanced_train_segments4000.csv.splits/8Bcmyjk3TYk.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "103": {
+        "path": "balanced_train_segments4000.csv.splits/8Bu8CkR1xZY.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "104": {
+        "path": "balanced_train_segments4000.csv.splits/8WfOH_ej_RU.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "105": {
+        "path": "balanced_train_segments4000.csv.splits/8a2OeWS3G-A.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "106": {
+        "path": "balanced_train_segments8000.csv.splits/8jjlkOmWGUo.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "107": {
+        "path": "balanced_train_segments8000.csv.splits/8ltlZZLuf4k.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "108": {
+        "path": "balanced_train_segments8000.csv.splits/8nggB29pv1Q.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "109": {
+        "path": "balanced_train_segments8000.csv.splits/8oa7QzW-IBc.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "110": {
+        "path": "balanced_train_segments8000.csv.splits/8pJUJvPfIx0.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "111": {
+        "path": "balanced_train_segments8000.csv.splits/8udxyD8JwZw.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "112": {
+        "path": "balanced_train_segments8000.csv.splits/90JreF-DDsw.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "113": {
+        "path": "balanced_train_segments8000.csv.splits/9Bg7XK1Uoyw.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "114": {
+        "path": "balanced_train_segments8000.csv.splits/9BkxqopOLQo.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "115": {
+        "path": "balanced_train_segments8000.csv.splits/9FH7i5Q4rGI.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "116": {
+        "path": "balanced_train_segments8000.csv.splits/9UP7L34-zus.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "117": {
+        "path": "balanced_train_segments8000.csv.splits/9ZUzftiN2uw.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "118": {
+        "path": "balanced_train_segments8000.csv.splits/9j4IROLuOkE.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "119": {
+        "path": "balanced_train_segments8000.csv.splits/9nYeNrZ4EPY.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "120": {
+        "path": "balanced_train_segments8000.csv.splits/A6BjDtwRfJ0.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "121": {
+        "path": "balanced_train_segments8000.csv.splits/A8xk5lx7CZw.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "122": {
+        "path": "balanced_train_segments8000.csv.splits/AIthc77KW8w.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "123": {
+        "path": "balanced_train_segments8000.csv.splits/AJzwtVxRLVU.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "124": {
+        "path": "balanced_train_segments8000.csv.splits/APYXZHZPCE4.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "125": {
+        "path": "balanced_train_segments8000.csv.splits/AZDQxoDF5lA.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "126": {
+        "path": "balanced_train_segments8000.csv.splits/AeWRWWba3z4.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "127": {
+        "path": "balanced_train_segments8000.csv.splits/Ah304Vt9l9U.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "128": {
+        "path": "balanced_train_segments8000.csv.splits/AmMeqzVMPRc.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "129": {
+        "path": "balanced_train_segments8000.csv.splits/AmP1CbovFcs.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "130": {
+        "path": "balanced_train_segments8000.csv.splits/AnamA0tQL2g.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "131": {
+        "path": "balanced_train_segments8000.csv.splits/AuJ8X3TK3cU.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "132": {
+        "path": "balanced_train_segments8000.csv.splits/AuwwPMrH5sE.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "133": {
+        "path": "balanced_train_segments8000.csv.splits/AyCtV9mKAmk.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "134": {
+        "path": "balanced_train_segments8000.csv.splits/B6zvUOhpdp0.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "135": {
+        "path": "balanced_train_segments8000.csv.splits/B9GItZg1U_o.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "136": {
+        "path": "balanced_train_segments8000.csv.splits/B9ZQcIBD4rA.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "137": {
+        "path": "balanced_train_segments8000.csv.splits/B9n4a5ciI48.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "138": {
+        "path": "balanced_train_segments8000.csv.splits/BA_nJrD4lQQ.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "139": {
+        "path": "balanced_train_segments8000.csv.splits/BDdBGKVQw_Y.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "140": {
+        "path": "balanced_train_segments8000.csv.splits/BEuIJ5dw5kY.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "141": {
+        "path": "balanced_train_segments8000.csv.splits/BRYojKzC-xY.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "142": {
+        "path": "balanced_train_segments8000.csv.splits/BVch9SzTjZw.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "143": {
+        "path": "balanced_train_segments8000.csv.splits/BbLkppp3QZc.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "144": {
+        "path": "balanced_train_segments8000.csv.splits/Be0z4cALwJo.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "145": {
+        "path": "balanced_train_segments8000.csv.splits/BrvjJPYROMc.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "146": {
+        "path": "balanced_train_segments8000.csv.splits/By8_wPVT4zg.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "147": {
+        "path": "balanced_train_segments8000.csv.splits/C1O7V0jiiNw.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "148": {
+        "path": "balanced_train_segments8000.csv.splits/C223Ktqjrmw.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "149": {
+        "path": "balanced_train_segments8000.csv.splits/C2gkVodtiCs.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "150": {
+        "path": "balanced_train_segments8000.csv.splits/C4-_w6N3plU.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "151": {
+        "path": "balanced_train_segments8000.csv.splits/C72bv2YhZ6A.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "152": {
+        "path": "balanced_train_segments8000.csv.splits/CCHRD-G9sfA.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "153": {
+        "path": "balanced_train_segments8000.csv.splits/CKEPPcaCjbw.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "154": {
+        "path": "balanced_train_segments8000.csv.splits/CM7jMnBXw2Y.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "155": {
+        "path": "balanced_train_segments8000.csv.splits/CNETKbKHhwc.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "156": {
+        "path": "balanced_train_segments8000.csv.splits/CP_Otoy4hhA.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "157": {
+        "path": "balanced_train_segments8000.csv.splits/CRlfJU17byA.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "158": {
+        "path": "balanced_train_segments8000.csv.splits/CTBFPn_S5u0.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "159": {
+        "path": "balanced_train_segments8000.csv.splits/CXFCW_AHFCk.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "160": {
+        "path": "balanced_train_segments8000.csv.splits/CYc-H8Wg-MQ.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "161": {
+        "path": "balanced_train_segments8000.csv.splits/CjvsP_c0NfU.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "162": {
+        "path": "balanced_train_segments8000.csv.splits/Cz7jNYAys-8.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "163": {
+        "path": "balanced_train_segments8000.csv.splits/DIc3zDgrbZg.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "164": {
+        "path": "balanced_train_segments8000.csv.splits/Df6nDjSCGkM.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "165": {
+        "path": "balanced_train_segments8000.csv.splits/DibsRylvT18.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "166": {
+        "path": "balanced_train_segments8000.csv.splits/Dj6vz-bsHXY.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "167": {
+        "path": "balanced_train_segments8000.csv.splits/Dq29NSr8wDA.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "168": {
+        "path": "balanced_train_segments8000.csv.splits/DwaaPVsRUoU.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "169": {
+        "path": "balanced_train_segments8000.csv.splits/DwyOjLK00jQ.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "170": {
+        "path": "balanced_train_segments8000.csv.splits/DytM8WDRqwg.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "171": {
+        "path": "balanced_train_segments8000.csv.splits/DzlD845npq4.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "172": {
+        "path": "balanced_train_segments8000.csv.splits/EGUAZzrdLCE.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "173": {
+        "path": "balanced_train_segments8000.csv.splits/ETiHg0_v210.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "174": {
+        "path": "balanced_train_segments8000.csv.splits/EfzNaAVrqFk.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "175": {
+        "path": "balanced_train_segments8000.csv.splits/EgBaPSjR28M.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "176": {
+        "path": "balanced_train_segments8000.csv.splits/EpX_SYq0ids.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "177": {
+        "path": "balanced_train_segments8000.csv.splits/EpYDzdI5PMU.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "178": {
+        "path": "balanced_train_segments8000.csv.splits/ErZ6S54lpqI.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "179": {
+        "path": "balanced_train_segments8000.csv.splits/F7G3tjsh8rI.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "180": {
+        "path": "balanced_train_segments8000.csv.splits/FCWFhArE1UU.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "181": {
+        "path": "balanced_train_segments8000.csv.splits/FH4fMb7P--w.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "182": {
+        "path": "balanced_train_segments8000.csv.splits/FHU4R4mbyEE.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "183": {
+        "path": "balanced_train_segments8000.csv.splits/FO6arunsodo.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "184": {
+        "path": "balanced_train_segments8000.csv.splits/FPRRNfbcULA.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "185": {
+        "path": "balanced_train_segments8000.csv.splits/FjiCMXDhUas.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "186": {
+        "path": "balanced_train_segments8000.csv.splits/FqQ5QaNPGuU.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "187": {
+        "path": "balanced_train_segments8000.csv.splits/FvX4beQXT9M.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "188": {
+        "path": "balanced_train_segments8000.csv.splits/Fw09tDLa-78.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "189": {
+        "path": "balanced_train_segments8000.csv.splits/G13CgKfhE2s.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "190": {
+        "path": "balanced_train_segments8000.csv.splits/G344XaqIv54.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "191": {
+        "path": "balanced_train_segments8000.csv.splits/GTkKAZSc9gY.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "192": {
+        "path": "balanced_train_segments8000.csv.splits/GXJg8cnsP1k.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "193": {
+        "path": "balanced_train_segments8000.csv.splits/Ga_0YqOBcew.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "194": {
+        "path": "balanced_train_segments8000.csv.splits/GjmJ-66h0Zo.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "195": {
+        "path": "balanced_train_segments8000.csv.splits/GruuEdpYo8A.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "196": {
+        "path": "balanced_train_segments8000.csv.splits/H-QghZBSGjQ.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "197": {
+        "path": "balanced_train_segments8000.csv.splits/H7VNG9Xg4Zc.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "198": {
+        "path": "balanced_train_segments8000.csv.splits/HDws6xj6J40.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "199": {
+        "path": "balanced_train_segments8000.csv.splits/HEh1a-W7rrk.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "200": {
+        "path": "balanced_train_segments8000.csv.splits/HY1KdNS19CM.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "201": {
+        "path": "balanced_train_segments8000.csv.splits/Hn46VuvS88Y.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "202": {
+        "path": "balanced_train_segments8000.csv.splits/HtRjRuKnvjI.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "203": {
+        "path": "balanced_train_segments8000.csv.splits/I515SEYGbIw.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "204": {
+        "path": "balanced_train_segments8000.csv.splits/ICdovrQhhrw.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "205": {
+        "path": "balanced_train_segments8000.csv.splits/IFCYE9YZEbc.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "206": {
+        "path": "balanced_train_segments8000.csv.splits/II-fcvc57Jk.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "207": {
+        "path": "balanced_train_segments8000.csv.splits/IIK0EuHyb6w.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "208": {
+        "path": "balanced_train_segments8000.csv.splits/IXVXGMPG0dA.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "209": {
+        "path": "balanced_train_segments8000.csv.splits/IeW1hoTAXB8.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "210": {
+        "path": "balanced_train_segments8000.csv.splits/IfsJ66GKcr0.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "211": {
+        "path": "balanced_train_segments8000.csv.splits/Ij1-640aafg.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "212": {
+        "path": "balanced_train_segments8000.csv.splits/Inr5glOaBhk.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "213": {
+        "path": "balanced_train_segments8000.csv.splits/IvP-O7API0k.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "214": {
+        "path": "balanced_train_segments8000.csv.splits/JBSCPvwPll4.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "215": {
+        "path": "balanced_train_segments8000.csv.splits/JFyxt67x9Bo.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "216": {
+        "path": "balanced_train_segments8000.csv.splits/JIOdS7XbHys.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "217": {
+        "path": "balanced_train_segments12000.csv.splits/JLYb7DwCaQU.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "218": {
+        "path": "balanced_train_segments12000.csv.splits/JVGj7Bt6Gpg.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "219": {
+        "path": "balanced_train_segments12000.csv.splits/JWZpp-w5TcU.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "220": {
+        "path": "balanced_train_segments12000.csv.splits/JXfP_NbUaRE.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "221": {
+        "path": "balanced_train_segments12000.csv.splits/JpE7tjiOSoA.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "222": {
+        "path": "balanced_train_segments12000.csv.splits/JusleurtLGs.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "223": {
+        "path": "balanced_train_segments12000.csv.splits/JzDXNC3r-FM.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "224": {
+        "path": "balanced_train_segments12000.csv.splits/KEL58ChlXoY.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "225": {
+        "path": "balanced_train_segments12000.csv.splits/KH_Cw66-97Q.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "226": {
+        "path": "balanced_train_segments12000.csv.splits/KOePTJ9eSkQ.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "227": {
+        "path": "balanced_train_segments12000.csv.splits/KlfGpKcg_yM.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "228": {
+        "path": "balanced_train_segments12000.csv.splits/KrO8LpwM70k.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "229": {
+        "path": "balanced_train_segments12000.csv.splits/KsT1OSUHFUY.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "230": {
+        "path": "balanced_train_segments12000.csv.splits/KtKL00vJZFA.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "231": {
+        "path": "balanced_train_segments12000.csv.splits/L2uGhBTTgUI.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "232": {
+        "path": "balanced_train_segments12000.csv.splits/LEzaTWceGDs.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "233": {
+        "path": "balanced_train_segments12000.csv.splits/LGAXSNQdRDo.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "234": {
+        "path": "balanced_train_segments12000.csv.splits/LHcEmRw7PV4.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "235": {
+        "path": "balanced_train_segments12000.csv.splits/LT5mUSYUzHg.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "236": {
+        "path": "balanced_train_segments12000.csv.splits/LVW1oLMQksM.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "237": {
+        "path": "balanced_train_segments12000.csv.splits/LZmF1o7N_fs.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "238": {
+        "path": "balanced_train_segments12000.csv.splits/L_9U6xDeYcU.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "239": {
+        "path": "balanced_train_segments12000.csv.splits/LlZHHCmI2TE.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "240": {
+        "path": "balanced_train_segments12000.csv.splits/MElc-0XqoSw.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "241": {
+        "path": "balanced_train_segments12000.csv.splits/MhwksRHzSEc.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "242": {
+        "path": "balanced_train_segments12000.csv.splits/N-270xmgaO4.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "243": {
+        "path": "balanced_train_segments12000.csv.splits/N00bYlxRgnE.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "244": {
+        "path": "balanced_train_segments12000.csv.splits/N3I0bQOafN8.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "245": {
+        "path": "balanced_train_segments12000.csv.splits/NCmV-aNBFmQ.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "246": {
+        "path": "balanced_train_segments12000.csv.splits/NQnH_JzTxaY.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "247": {
+        "path": "balanced_train_segments12000.csv.splits/NaTFNbn_nks.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "248": {
+        "path": "balanced_train_segments12000.csv.splits/Ngr1yR8S-rY.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "249": {
+        "path": "balanced_train_segments12000.csv.splits/NoBvw3b6L7I.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "250": {
+        "path": "balanced_train_segments12000.csv.splits/NyqqduUCKy0.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "251": {
+        "path": "balanced_train_segments12000.csv.splits/OO4LUcMV25E.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "252": {
+        "path": "balanced_train_segments12000.csv.splits/Oq1ygfvQhj0.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "253": {
+        "path": "balanced_train_segments12000.csv.splits/Oq2w1YoCs1k.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "254": {
+        "path": "balanced_train_segments12000.csv.splits/Ou2LP_2ypQw.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "255": {
+        "path": "balanced_train_segments12000.csv.splits/OuPNy_2AZ48.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "256": {
+        "path": "balanced_train_segments12000.csv.splits/P6qCJ8lf8FQ.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "257": {
+        "path": "balanced_train_segments12000.csv.splits/P8HUzsb7ryY.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "258": {
+        "path": "balanced_train_segments12000.csv.splits/P8O7pnjJfkM.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "259": {
+        "path": "balanced_train_segments12000.csv.splits/PAJwFZ3Vj-A.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "260": {
+        "path": "balanced_train_segments12000.csv.splits/PAyXICWT3mU.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "261": {
+        "path": "balanced_train_segments12000.csv.splits/P_o8okkk3RM.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "262": {
+        "path": "balanced_train_segments12000.csv.splits/PmiH7RnCkhI.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "263": {
+        "path": "balanced_train_segments12000.csv.splits/Po6fQGSFkN0.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "264": {
+        "path": "balanced_train_segments12000.csv.splits/Ptf9D8uflg4.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "265": {
+        "path": "balanced_train_segments12000.csv.splits/QKdx_HqBmII.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "266": {
+        "path": "balanced_train_segments12000.csv.splits/QUndJn0lro4.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "267": {
+        "path": "balanced_train_segments12000.csv.splits/QXNgo7S7Cxw.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "268": {
+        "path": "balanced_train_segments12000.csv.splits/QcIOX_eo7VU.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "269": {
+        "path": "balanced_train_segments12000.csv.splits/QdBf5MKpT2o.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "270": {
+        "path": "balanced_train_segments12000.csv.splits/QkbHH6LQkr4.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "271": {
+        "path": "balanced_train_segments12000.csv.splits/Qtn0GeJPS1c.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "272": {
+        "path": "balanced_train_segments12000.csv.splits/R8WB_-Pfd-I.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "273": {
+        "path": "balanced_train_segments12000.csv.splits/REeHsSo_LbE.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "274": {
+        "path": "balanced_train_segments12000.csv.splits/RbgkNlEuGT0.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "275": {
+        "path": "balanced_train_segments12000.csv.splits/RfGSlaxcN0w.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "276": {
+        "path": "balanced_train_segments12000.csv.splits/RhtCcKDvVIA.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "277": {
+        "path": "balanced_train_segments12000.csv.splits/RqZp717pe-I.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "278": {
+        "path": "balanced_train_segments12000.csv.splits/S4ncYfhH3EI.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "279": {
+        "path": "balanced_train_segments12000.csv.splits/S5ONWWKaMIA.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "280": {
+        "path": "balanced_train_segments12000.csv.splits/SFJm4TVL-gE.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "281": {
+        "path": "balanced_train_segments12000.csv.splits/SHGjVOTXlNc.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "282": {
+        "path": "balanced_train_segments12000.csv.splits/SS2tfY7AXB4.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "283": {
+        "path": "balanced_train_segments12000.csv.splits/SavkOa_GGLs.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "284": {
+        "path": "balanced_train_segments12000.csv.splits/SkhNjq1bU44.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "285": {
+        "path": "balanced_train_segments12000.csv.splits/T8ohX1UzM7Q.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "286": {
+        "path": "balanced_train_segments12000.csv.splits/TAgahC6ZeWM.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "287": {
+        "path": "balanced_train_segments12000.csv.splits/THyp6cmUPxA.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "288": {
+        "path": "balanced_train_segments12000.csv.splits/TYoYRlICcZU.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "289": {
+        "path": "balanced_train_segments12000.csv.splits/TcMhxCxiKzU.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "290": {
+        "path": "balanced_train_segments12000.csv.splits/TeA1puWNGgw.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "291": {
+        "path": "balanced_train_segments12000.csv.splits/TmYBGwKqsrA.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "292": {
+        "path": "balanced_train_segments12000.csv.splits/TpCKwV4kHuU.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "293": {
+        "path": "balanced_train_segments12000.csv.splits/U9NcsYB0p6E.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "294": {
+        "path": "balanced_train_segments12000.csv.splits/UAFLFtJj5Mc.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "295": {
+        "path": "balanced_train_segments12000.csv.splits/ULFhHR0OLSE.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "296": {
+        "path": "balanced_train_segments12000.csv.splits/UM2-bKcMgHQ.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "297": {
+        "path": "balanced_train_segments12000.csv.splits/UWK7tH9GNSg.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "298": {
+        "path": "balanced_train_segments12000.csv.splits/UcpzMSgZobQ.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "299": {
+        "path": "balanced_train_segments12000.csv.splits/UeUVINFMdQQ.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "300": {
+        "path": "balanced_train_segments12000.csv.splits/UelMinLIWSA.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "301": {
+        "path": "balanced_train_segments12000.csv.splits/UhANSJnLXNs.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "302": {
+        "path": "balanced_train_segments12000.csv.splits/Uj266NF1mUk.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "303": {
+        "path": "balanced_train_segments12000.csv.splits/UmOOGxXbEuc.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "304": {
+        "path": "balanced_train_segments16000.csv.splits/VW60j2r8-Zo.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "305": {
+        "path": "balanced_train_segments16000.csv.splits/V_DfQSJ64MI.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "306": {
+        "path": "balanced_train_segments16000.csv.splits/VhklWZMj5dw.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "307": {
+        "path": "balanced_train_segments16000.csv.splits/W2wh7xz-3FM.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "308": {
+        "path": "balanced_train_segments16000.csv.splits/WdD4TtenRPA.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "309": {
+        "path": "balanced_train_segments16000.csv.splits/WpNP4TCeUSs.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "310": {
+        "path": "balanced_train_segments16000.csv.splits/X5s1jA9YJlo.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "311": {
+        "path": "balanced_train_segments16000.csv.splits/X8XwuQX0lWE.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "312": {
+        "path": "balanced_train_segments16000.csv.splits/XOLVI1bgxqk.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "313": {
+        "path": "balanced_train_segments16000.csv.splits/XQdH5n5Cao8.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "314": {
+        "path": "balanced_train_segments16000.csv.splits/XV2YZxYjkUM.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "315": {
+        "path": "balanced_train_segments16000.csv.splits/XdZY2sQ4Xe0.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "316": {
+        "path": "balanced_train_segments16000.csv.splits/Xi-NFemvoIU.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "317": {
+        "path": "balanced_train_segments16000.csv.splits/XpKCBBd1QRs.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "318": {
+        "path": "balanced_train_segments16000.csv.splits/XprqiWeGihg.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "319": {
+        "path": "balanced_train_segments16000.csv.splits/Xyf_kzNG-iA.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "320": {
+        "path": "balanced_train_segments16000.csv.splits/Y5Yz9n5cHNU.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "321": {
+        "path": "balanced_train_segments16000.csv.splits/Y8AB0YA4Jtw.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "322": {
+        "path": "balanced_train_segments16000.csv.splits/YBbvQ0RPrG8.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "323": {
+        "path": "balanced_train_segments16000.csv.splits/YDh36ZdneAU.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "324": {
+        "path": "balanced_train_segments16000.csv.splits/YGYKAG2q19o.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "325": {
+        "path": "balanced_train_segments16000.csv.splits/YMrF9YkALDE.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "326": {
+        "path": "balanced_train_segments16000.csv.splits/YxkYVsE0UdQ.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "327": {
+        "path": "balanced_train_segments16000.csv.splits/Yxt9ASRCnaE.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "328": {
+        "path": "balanced_train_segments16000.csv.splits/ZJ2AHS3pVro.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "329": {
+        "path": "balanced_train_segments16000.csv.splits/ZLX0rdNJsww.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "330": {
+        "path": "balanced_train_segments16000.csv.splits/ZM6krn037N4.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "331": {
+        "path": "balanced_train_segments16000.csv.splits/ZNUTbWD5ddE.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "332": {
+        "path": "balanced_train_segments16000.csv.splits/ZaeARmx4m0k.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "333": {
+        "path": "balanced_train_segments16000.csv.splits/Zc4rX7nbRW4.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "334": {
+        "path": "balanced_train_segments16000.csv.splits/ZgaGheLPXys.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "335": {
+        "path": "balanced_train_segments16000.csv.splits/Zob-z2eLj_4.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "336": {
+        "path": "balanced_train_segments16000.csv.splits/ZtmAFPwKpUw.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "337": {
+        "path": "balanced_train_segments16000.csv.splits/ZuF8hkiuDRQ.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "338": {
+        "path": "balanced_train_segments16000.csv.splits/Zy2LsyinGcY.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "339": {
+        "path": "balanced_train_segments16000.csv.splits/_5LCwcFWi_M.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "340": {
+        "path": "balanced_train_segments16000.csv.splits/_MXjq0eaIVk.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "341": {
+        "path": "balanced_train_segments16000.csv.splits/_VKNhUxcvUw.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "342": {
+        "path": "balanced_train_segments16000.csv.splits/_bYZoZyg8Vo.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "343": {
+        "path": "balanced_train_segments16000.csv.splits/_god5NMRYPw.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "344": {
+        "path": "balanced_train_segments16000.csv.splits/_s9WXTeZccA.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "345": {
+        "path": "balanced_train_segments16000.csv.splits/_yVC_3bglNQ.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "346": {
+        "path": "balanced_train_segments16000.csv.splits/a6HE939n-Jk.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "347": {
+        "path": "balanced_train_segments16000.csv.splits/aBdLzKU3ZW8.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "348": {
+        "path": "balanced_train_segments16000.csv.splits/aLShWsDr7oQ.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "349": {
+        "path": "balanced_train_segments16000.csv.splits/adEy5j4XiJk.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "350": {
+        "path": "balanced_train_segments16000.csv.splits/aeDZVfGk7bk.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "351": {
+        "path": "balanced_train_segments16000.csv.splits/ainzK7QuseU.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "352": {
+        "path": "balanced_train_segments16000.csv.splits/apwQu55-5OI.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "353": {
+        "path": "balanced_train_segments16000.csv.splits/axVAld8h_Lw.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "354": {
+        "path": "balanced_train_segments16000.csv.splits/bNbT4l_bfh8.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "355": {
+        "path": "balanced_train_segments16000.csv.splits/bSmETT8exHg.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "356": {
+        "path": "balanced_train_segments16000.csv.splits/bT-CEaOEGdI.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "357": {
+        "path": "balanced_train_segments16000.csv.splits/bW_PMIAIHBE.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "358": {
+        "path": "balanced_train_segments16000.csv.splits/bcUe0dvaCMs.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "359": {
+        "path": "balanced_train_segments16000.csv.splits/bdmFF7mRFI8.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "360": {
+        "path": "balanced_train_segments16000.csv.splits/bfYSh4090lw.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "361": {
+        "path": "balanced_train_segments16000.csv.splits/bjP0DOt4-VI.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "362": {
+        "path": "balanced_train_segments16000.csv.splits/c31HkFqWLAk.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "363": {
+        "path": "balanced_train_segments16000.csv.splits/c6Fiz5IznkU.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "364": {
+        "path": "balanced_train_segments16000.csv.splits/c9C74iJaS8o.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "365": {
+        "path": "balanced_train_segments16000.csv.splits/cEHnqMIacho.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "366": {
+        "path": "balanced_train_segments16000.csv.splits/cHMDIt3-TsE.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "367": {
+        "path": "balanced_train_segments16000.csv.splits/cYe8zRuowA0.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "368": {
+        "path": "balanced_train_segments16000.csv.splits/cYusHSmZRMY.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "369": {
+        "path": "balanced_train_segments16000.csv.splits/ci0SHipBCMs.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "370": {
+        "path": "balanced_train_segments16000.csv.splits/ctwSBXshFjw.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "371": {
+        "path": "balanced_train_segments16000.csv.splits/cz6oxIlmw_M.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "372": {
+        "path": "balanced_train_segments16000.csv.splits/d5jxfxK6xUg.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "373": {
+        "path": "balanced_train_segments16000.csv.splits/dI9HTTk6Mgs.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "374": {
+        "path": "balanced_train_segments16000.csv.splits/dJudErPaMWI.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "375": {
+        "path": "balanced_train_segments16000.csv.splits/dLEDy35kbEg.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "376": {
+        "path": "balanced_train_segments16000.csv.splits/dOeLFbMH09A.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "377": {
+        "path": "balanced_train_segments16000.csv.splits/dQcv6M8mMGE.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "378": {
+        "path": "balanced_train_segments16000.csv.splits/dZQ1JgziNOc.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "379": {
+        "path": "balanced_train_segments16000.csv.splits/d_D-SttiChM.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "380": {
+        "path": "balanced_train_segments16000.csv.splits/dnrxn74Uur8.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "381": {
+        "path": "balanced_train_segments16000.csv.splits/drVGE2AIbB8.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "382": {
+        "path": "balanced_train_segments16000.csv.splits/dxcs_lpcwj0.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "383": {
+        "path": "balanced_train_segments16000.csv.splits/eSI3y1oXXyw.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "384": {
+        "path": "balanced_train_segments16000.csv.splits/eZvYi9PsAm8.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "385": {
+        "path": "balanced_train_segments16000.csv.splits/ec8nJ0kUK3E.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "386": {
+        "path": "balanced_train_segments16000.csv.splits/eceLeLKCo6A.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "387": {
+        "path": "balanced_train_segments16000.csv.splits/egUQazbWCM4.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "388": {
+        "path": "balanced_train_segments16000.csv.splits/egwB_wWn2ZQ.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "389": {
+        "path": "balanced_train_segments16000.csv.splits/ekix8JsPfXo.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "390": {
+        "path": "balanced_train_segments16000.csv.splits/epGDNMrsQb8.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "391": {
+        "path": "balanced_train_segments16000.csv.splits/fN2-YyThNEg.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "392": {
+        "path": "balanced_train_segments16000.csv.splits/fPIG7nrpgec.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "393": {
+        "path": "balanced_train_segments16000.csv.splits/fWos7Z_zDgg.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "394": {
+        "path": "balanced_train_segments16000.csv.splits/faWvKxwpJX8.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "395": {
+        "path": "balanced_train_segments16000.csv.splits/fcWIVV6iKNw.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "396": {
+        "path": "balanced_train_segments16000.csv.splits/fwLc41q5Sow.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "397": {
+        "path": "balanced_train_segments16000.csv.splits/g1cdo9nKQHY.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "398": {
+        "path": "balanced_train_segments16000.csv.splits/gE4S_Xp0SS0.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "399": {
+        "path": "balanced_train_segments20000.csv.splits/gVgfohZexjk.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "400": {
+        "path": "balanced_train_segments20000.csv.splits/ge8qO4-wBvY.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "401": {
+        "path": "balanced_train_segments20000.csv.splits/gh2cTFdUM74.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "402": {
+        "path": "balanced_train_segments20000.csv.splits/gp_D8r-2hwk.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "403": {
+        "path": "balanced_train_segments20000.csv.splits/gwDxPQDf1Is.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "404": {
+        "path": "balanced_train_segments20000.csv.splits/h6gohkLnAzA.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "405": {
+        "path": "balanced_train_segments20000.csv.splits/h6voPlJG0m0.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "406": {
+        "path": "balanced_train_segments20000.csv.splits/hBLotV-d_gQ.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "407": {
+        "path": "balanced_train_segments20000.csv.splits/hBq7Bdexp-M.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "408": {
+        "path": "balanced_train_segments20000.csv.splits/hOiGqU4KQFA.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "409": {
+        "path": "balanced_train_segments20000.csv.splits/hRQJgZVxRX0.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "410": {
+        "path": "balanced_train_segments20000.csv.splits/hVVrl9FkKnY.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "411": {
+        "path": "balanced_train_segments20000.csv.splits/hZ4d_dQm8jA.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "412": {
+        "path": "balanced_train_segments20000.csv.splits/hcGOcwEtOSo.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "413": {
+        "path": "balanced_train_segments20000.csv.splits/hd0cgaJkNGw.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "414": {
+        "path": "balanced_train_segments20000.csv.splits/hg8hgJqMV40.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "415": {
+        "path": "balanced_train_segments20000.csv.splits/hi6OuLJwvYk.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "416": {
+        "path": "balanced_train_segments20000.csv.splits/hulRc1IzllI.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "417": {
+        "path": "balanced_train_segments20000.csv.splits/i0wWGhgW0Ho.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "418": {
+        "path": "balanced_train_segments20000.csv.splits/i4nAcLHecSM.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "419": {
+        "path": "balanced_train_segments20000.csv.splits/iAXir3Lv6cI.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "420": {
+        "path": "balanced_train_segments20000.csv.splits/iHEboXmVcLM.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "421": {
+        "path": "balanced_train_segments20000.csv.splits/iHQAtkUDdGw.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "422": {
+        "path": "balanced_train_segments20000.csv.splits/iPL76K7w9yc.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "423": {
+        "path": "balanced_train_segments20000.csv.splits/iVIwrkpw3-g.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "424": {
+        "path": "balanced_train_segments20000.csv.splits/iag8d1ENKgk.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "425": {
+        "path": "balanced_train_segments20000.csv.splits/ic_xXsNZ9aM.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "426": {
+        "path": "balanced_train_segments20000.csv.splits/id50FKUBH08.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "427": {
+        "path": "balanced_train_segments20000.csv.splits/iePMcLYozYY.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "428": {
+        "path": "balanced_train_segments20000.csv.splits/izVCz3P43p8.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "429": {
+        "path": "balanced_train_segments20000.csv.splits/j-iPCG26Lsk.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "430": {
+        "path": "balanced_train_segments20000.csv.splits/jDdYqpYoIGY.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "431": {
+        "path": "balanced_train_segments20000.csv.splits/jUaEEsGZ25E.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "432": {
+        "path": "balanced_train_segments20000.csv.splits/j_2mvR7GLK8.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "433": {
+        "path": "balanced_train_segments20000.csv.splits/jiqEmXrsVAw.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "434": {
+        "path": "balanced_train_segments20000.csv.splits/jn5HHrCG9pg.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "435": {
+        "path": "balanced_train_segments20000.csv.splits/k41aX4CmUe0.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "436": {
+        "path": "balanced_train_segments20000.csv.splits/k6xkbOCi7aY.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "437": {
+        "path": "balanced_train_segments20000.csv.splits/kCyFDsP8DC4.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "438": {
+        "path": "balanced_train_segments20000.csv.splits/kHlH-Ys2CSs.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "439": {
+        "path": "balanced_train_segments20000.csv.splits/kh2edY_BH2E.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "440": {
+        "path": "balanced_train_segments20000.csv.splits/kijht7XgElk.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "441": {
+        "path": "balanced_train_segments20000.csv.splits/l4Z5jciACfM.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "442": {
+        "path": "balanced_train_segments20000.csv.splits/lNqK6lfAexI.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "443": {
+        "path": "balanced_train_segments20000.csv.splits/la2OWkKy-5I.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "444": {
+        "path": "balanced_train_segments20000.csv.splits/lvi0RjGP2R8.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "445": {
+        "path": "balanced_train_segments20000.csv.splits/lwCZZEBgqg8.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "446": {
+        "path": "balanced_train_segments20000.csv.splits/m2d1CFe1Ono.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "447": {
+        "path": "balanced_train_segments20000.csv.splits/m3kb8GFAvtI.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "448": {
+        "path": "balanced_train_segments20000.csv.splits/m6d2TTB8VM0.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "449": {
+        "path": "balanced_train_segments20000.csv.splits/mG7ZlbuEcr4.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "450": {
+        "path": "balanced_train_segments20000.csv.splits/mMT1kEejAG8.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "451": {
+        "path": "balanced_train_segments20000.csv.splits/m_39THY6PfY.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "452": {
+        "path": "balanced_train_segments20000.csv.splits/mh3KaP-1oQM.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "453": {
+        "path": "balanced_train_segments20000.csv.splits/mi-s3pLeR3U.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "454": {
+        "path": "balanced_train_segments20000.csv.splits/mm3rBzXQI-k.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "455": {
+        "path": "balanced_train_segments20000.csv.splits/n179cK8EubU.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "456": {
+        "path": "balanced_train_segments20000.csv.splits/n2g-33m8YRw.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "457": {
+        "path": "balanced_train_segments20000.csv.splits/nD_HctFk3Hc.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "458": {
+        "path": "balanced_train_segments20000.csv.splits/nNSPgjtWi60.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "459": {
+        "path": "balanced_train_segments20000.csv.splits/neLgGXf0XJ4.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "460": {
+        "path": "balanced_train_segments20000.csv.splits/nqcVA89BD6I.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "461": {
+        "path": "balanced_train_segments20000.csv.splits/ntzB1zCeVXY.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "462": {
+        "path": "balanced_train_segments20000.csv.splits/nxPSJZT5qYU.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "463": {
+        "path": "balanced_train_segments20000.csv.splits/nyoCE83Lg-c.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "464": {
+        "path": "balanced_train_segments20000.csv.splits/o28FYkti1eQ.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "465": {
+        "path": "balanced_train_segments20000.csv.splits/o4OMrBqHTRc.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "466": {
+        "path": "balanced_train_segments20000.csv.splits/ouVuF-y8bog.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "467": {
+        "path": "balanced_train_segments20000.csv.splits/oyVNxOhE1WA.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "468": {
+        "path": "balanced_train_segments20000.csv.splits/oyY8u4I6iAU.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "469": {
+        "path": "balanced_train_segments20000.csv.splits/p1CtK4P7B-w.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "470": {
+        "path": "balanced_train_segments20000.csv.splits/pFELfBxfUk8.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "471": {
+        "path": "balanced_train_segments20000.csv.splits/pIQulLl44zs.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "472": {
+        "path": "balanced_train_segments20000.csv.splits/paBYh4Sgs64.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "473": {
+        "path": "balanced_train_segments20000.csv.splits/po-tnKZAzdg.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "474": {
+        "path": "balanced_train_segments20000.csv.splits/qDvjPPKHZlI.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "475": {
+        "path": "balanced_train_segments20000.csv.splits/qF90ezvPe14.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "476": {
+        "path": "balanced_train_segments20000.csv.splits/qIL5wSF-jII.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "477": {
+        "path": "balanced_train_segments20000.csv.splits/qScYFWGGrU0.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "478": {
+        "path": "balanced_train_segments20000.csv.splits/qY_T4zhWvA8.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "479": {
+        "path": "balanced_train_segments20000.csv.splits/qj5EUKfbk3A.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "480": {
+        "path": "balanced_train_segments20000.csv.splits/qp4Ubx7WOAQ.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "481": {
+        "path": "balanced_train_segments20000.csv.splits/qs7Ni4jPr0w.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "482": {
+        "path": "balanced_train_segments20000.csv.splits/rHFOwlMCdto.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "483": {
+        "path": "balanced_train_segments20000.csv.splits/rIjLO1KLFSs.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "484": {
+        "path": "balanced_train_segments20000.csv.splits/rJPsrRPLVK0.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "485": {
+        "path": "balanced_train_segments20000.csv.splits/rSCgpeQ-Df8.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "486": {
+        "path": "balanced_train_segments20000.csv.splits/rWFoLECDwcc.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "487": {
+        "path": "balanced_train_segments20000.csv.splits/rrGbQeCIQEc.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "488": {
+        "path": "balanced_train_segments20000.csv.splits/rwm1ZWo5vMs.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "489": {
+        "path": "balanced_train_segments20000.csv.splits/ry-udTprO4o.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "490": {
+        "path": "balanced_train_segments20000.csv.splits/ry4PXhwNgI4.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "491": {
+        "path": "balanced_train_segments20000.csv.splits/s4nhamYDOwY.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "492": {
+        "path": "balanced_train_segments20000.csv.splits/s5JPbWkRXKs.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "493": {
+        "path": "balanced_train_segments20000.csv.splits/sG3Z4mGbIyY.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "494": {
+        "path": "balanced_train_segments20000.csv.splits/sVpj-evVHxs.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "495": {
+        "path": "balanced_train_segments20000.csv.splits/scgXjJOykRA.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "496": {
+        "path": "balanced_train_segments20000.csv.splits/sj238FA4c3s.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "497": {
+        "path": "balanced_train_segments24000.csv.splits/syZIjIfvd_0.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "498": {
+        "path": "balanced_train_segments24000.csv.splits/t-OfBs9eVZ0.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "499": {
+        "path": "balanced_train_segments24000.csv.splits/t05lg7ASVYg.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "500": {
+        "path": "balanced_train_segments24000.csv.splits/tR2SF1LdMuk.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "501": {
+        "path": "balanced_train_segments24000.csv.splits/tVZzdtnZaJk.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "502": {
+        "path": "balanced_train_segments24000.csv.splits/tY0blkKvjPg.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "503": {
+        "path": "balanced_train_segments24000.csv.splits/t_oA_XzhcIs.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "504": {
+        "path": "balanced_train_segments24000.csv.splits/tbnhnN-Ffe8.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "505": {
+        "path": "balanced_train_segments24000.csv.splits/th3g-Xa6tqk.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "506": {
+        "path": "balanced_train_segments24000.csv.splits/tuZYdoic2lk.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "507": {
+        "path": "balanced_train_segments24000.csv.splits/uDgi0fzGgr0.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    },
+    "508": {
+        "path": "balanced_train_segments24000.csv.splits/uEi6_KxjeO4.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "509": {
+        "path": "balanced_train_segments24000.csv.splits/u_KQFX8hZyk.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "510": {
+        "path": "balanced_train_segments24000.csv.splits/ugSJHtv-C0A.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "511": {
+        "path": "balanced_train_segments24000.csv.splits/uxQaC0zvWow.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "512": {
+        "path": "balanced_train_segments24000.csv.splits/uy-U2xwM2WY.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "513": {
+        "path": "balanced_train_segments24000.csv.splits/vMpHFiS2Xek.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "514": {
+        "path": "balanced_train_segments24000.csv.splits/vOiDwXo-SuM.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "515": {
+        "path": "balanced_train_segments24000.csv.splits/vXuulzjQP8k.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "516": {
+        "path": "balanced_train_segments24000.csv.splits/vZSU_WAWw-Q.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "517": {
+        "path": "balanced_train_segments24000.csv.splits/vmCvyAgLJWc.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "518": {
+        "path": "balanced_train_segments24000.csv.splits/vyNstX5b1V8.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "519": {
+        "path": "balanced_train_segments24000.csv.splits/w-F1wMdijkQ.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "520": {
+        "path": "balanced_train_segments24000.csv.splits/w2AKKeN2otQ.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "521": {
+        "path": "balanced_train_segments24000.csv.splits/w82xpBR_Z4A.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "522": {
+        "path": "balanced_train_segments24000.csv.splits/wBzsyNqC3qQ.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "523": {
+        "path": "balanced_train_segments24000.csv.splits/wFjSlWd1R8U.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "524": {
+        "path": "balanced_train_segments24000.csv.splits/wQp18rtRUPI.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "525": {
+        "path": "balanced_train_segments24000.csv.splits/wRO3h_zt1b4.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "526": {
+        "path": "balanced_train_segments24000.csv.splits/wWfhy9kndn0.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "527": {
+        "path": "balanced_train_segments24000.csv.splits/x9Kkv8j42mI.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "528": {
+        "path": "balanced_train_segments24000.csv.splits/xWAU3j4ebM0.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "529": {
+        "path": "balanced_train_segments24000.csv.splits/xXjmPTooKvs.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "530": {
+        "path": "balanced_train_segments24000.csv.splits/xlFw8AYvE8I.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "531": {
+        "path": "balanced_train_segments24000.csv.splits/y2A1Pmiu7yw.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "532": {
+        "path": "balanced_train_segments24000.csv.splits/yA_HhB94RK0.wav",
+        "onto": "/m/0ngt1",
+        "label_display": "Thunder",
+        "label_digits": [
+            8
+        ]
+    },
+    "533": {
+        "path": "balanced_train_segments24000.csv.splits/yFmmu6irQrk.wav",
+        "onto": "/m/014zdl",
+        "label_display": "Explosion",
+        "label_digits": [
+            5
+        ]
+    },
+    "534": {
+        "path": "balanced_train_segments24000.csv.splits/yOelIR7hiMc.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "535": {
+        "path": "balanced_train_segments24000.csv.splits/yU6pPAt0cBw.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "536": {
+        "path": "balanced_train_segments24000.csv.splits/yaUK4XvVGTg.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "537": {
+        "path": "balanced_train_segments24000.csv.splits/yfSBqp5IZSM.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "538": {
+        "path": "balanced_train_segments24000.csv.splits/yfaW1-iSYEA.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "539": {
+        "path": "balanced_train_segments24000.csv.splits/ylaJ6AqoTR4.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "540": {
+        "path": "balanced_train_segments24000.csv.splits/yq84OepE8uw.wav",
+        "onto": "/m/07pb8fc",
+        "label_display": "idling",
+        "label_digits": [
+            3
+        ]
+    },
+    "541": {
+        "path": "balanced_train_segments24000.csv.splits/z8Dy5CNoNxc.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "542": {
+        "path": "balanced_train_segments24000.csv.splits/zF_DBcU9p4U.wav",
+        "onto": "/m/05kq4",
+        "label_display": "Ocean",
+        "label_digits": [
+            9
+        ]
+    },
+    "543": {
+        "path": "balanced_train_segments24000.csv.splits/zLo1mkKE4sw.wav",
+        "onto": "/m/02zsn",
+        "label_display": "Female Speech",
+        "label_digits": [
+            0
+        ]
+    },
+    "544": {
+        "path": "balanced_train_segments24000.csv.splits/zPMNJ0sLm38.wav",
+        "onto": "/m/09d5_",
+        "label_display": "Owl",
+        "label_digits": [
+            6
+        ]
+    },
+    "545": {
+        "path": "balanced_train_segments24000.csv.splits/zTlx6nlVg8o.wav",
+        "onto": "/m/02sgy",
+        "label_display": "Electric guitar",
+        "label_digits": [
+            1
+        ]
+    },
+    "546": {
+        "path": "balanced_train_segments24000.csv.splits/zp4dKTwnQ2c.wav",
+        "onto": "/m/01z5f",
+        "label_display": "Canidae, dogs, wolve",
+        "label_digits": [
+            7
+        ]
+    },
+    "547": {
+        "path": "balanced_train_segments24000.csv.splits/zuvd1uhmi88.wav",
+        "onto": "/t/dd00130",
+        "label_display": "Engine staring",
+        "label_digits": [
+            2
+        ]
+    },
+    "548": {
+        "path": "balanced_train_segments24000.csv.splits/zxZLB2AJj3A.wav",
+        "onto": "/m/046dlr",
+        "label_display": "Alarm clock",
+        "label_digits": [
+            4
+        ]
+    }
+}
