@@ -15,7 +15,9 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
 
     def __init__(self, auto_encoder_hypers,
                  encoder_model_path,
-                 path: str,
+                 json_path: str,
+                 n_class: int,
+                 audio_sample_path: str,
                  sound_track: str,
                  orig_freq: int,
                  new_freq: int,
@@ -29,7 +31,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                  ):
         # region data fetch-transform
         self.transform_device_ = transform_device
-        self.audio_fetcher_ = JsonBasedAudioSet(path)
+        self.audio_fetcher_ = JsonBasedAudioSet(json_path, audio_sample_path)
         self.track_selector_ = sc_transforms.SoundTrackSelector(sound_track)
         self.resampler_ = tch_audio_trans.Resample(orig_freq=orig_freq, new_freq=new_freq)
         self.spectrogram_converter_ = tch_audio_trans.Spectrogram(n_fft=n_fft,
@@ -56,6 +58,8 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         self._split_i = self.sample_seconds_ * self.new_freq_ // 2
         self.output_size_ = output_size
         self.sample_length_ = self.sample_seconds_ * self.new_freq_
+
+        self.n_class = n_class
         # endregion
 
         # region load encoder
@@ -86,7 +90,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
 
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
-        label = label_digit2tensor(label_digits)
+        label = label_digit2tensor(label_digits, self.n_class)
         sample: torch.Tensor = sample.to(self.transform_device_)
         track = self.track_selector_(sample)
         track = self.resampler_(track)

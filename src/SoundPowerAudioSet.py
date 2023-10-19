@@ -8,7 +8,9 @@ from .util import label_digit2tensor, fix_length
 
 
 class SoundPowerAudioSet(tch_data.Dataset):
-    def __init__(self, path: str,
+    def __init__(self, json_path: str,
+                 audio_sample_path: str,
+                 n_class: int,
                  sound_track: str,
                  orig_freq: int,
                  new_freq: int,
@@ -17,7 +19,7 @@ class SoundPowerAudioSet(tch_data.Dataset):
                  transform_device: torch.device = torch.device('cpu')
                  ):
         self.transform_device_ = transform_device
-        self.audio_fetcher_ = JsonBasedAudioSet(path)
+        self.audio_fetcher_ = JsonBasedAudioSet(json_path, audio_sample_path)
         self.track_selector_ = sc_transforms.SoundTrackSelector(sound_track)
         self.resampler_ = (tch_audio_trans.Resample(orig_freq=orig_freq, new_freq=new_freq)
                            .to(self.transform_device_))
@@ -26,6 +28,7 @@ class SoundPowerAudioSet(tch_data.Dataset):
         self.reshape_size_ = (800, 200)
         self.output_size_ = output_size
         self.sample_length_ = self.sample_seconds_ * self.new_freq_
+        self.n_class = n_class
 
     def __len__(self):
         return len(self.audio_fetcher_)
@@ -43,5 +46,5 @@ class SoundPowerAudioSet(tch_data.Dataset):
         # split sample to 800 chunks
         reshaped_sample = sample.reshape(*self.reshape_size_)  # 16000Hz * 10s // 800 = 200
         sound_power = torch.sum(reshaped_sample ** 2, dim=1)
-        label = label_digit2tensor(label_digits)
+        label = label_digit2tensor(label_digits, self.n_class)
         return sound_power.reshape(self.output_size_), label

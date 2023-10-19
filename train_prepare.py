@@ -36,12 +36,19 @@ def make_classifier(model_type: str = None, class_cnt: int = None):
     return torch.nn.Sequential(_projection, _res_net(num_classes=class_cnt))
 
 
-def make_dataset(path: str = None, dataset_type: str = None):
-    path = path if path is not None else train_config.TRAIN_DATA_SET_PATH
+def make_dataset(json_path: str = None,
+                 audio_sample_path: str = None,
+                 dataset_type: str = None,
+                 n_class: int = None):
+    json_path = json_path if json_path is not None else train_config.TRAIN_DATA_SET_JSON
+    audio_sample_path = audio_sample_path if audio_sample_path is not None else train_config.TRAIN_DATA_SET_PATH
     dataset_type = dataset_type if dataset_type is not None else hyper_para.DATA_SET
+    n_class = n_class if n_class is not None else hyper_para.CLASS_CNT
     if dataset_type == "ideal":
         return FullSpectroAudioSet(
-            path=path,
+            json_path=json_path,
+            n_class=n_class,
+            audio_sample_path=audio_sample_path,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
@@ -52,7 +59,9 @@ def make_dataset(path: str = None, dataset_type: str = None):
         )
     elif dataset_type == "sound_power":
         return SoundPowerAudioSet(
-            path=path,
+            json_path=json_path,
+            audio_sample_path=audio_sample_path,
+            n_class=n_class,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
@@ -62,7 +71,9 @@ def make_dataset(path: str = None, dataset_type: str = None):
         return AutoEncodedAudioSet(
             auto_encoder_hypers=hyper_para.AUTO_ENCODER_MODEL,
             encoder_model_path=train_config.AUTO_ENCODER_MODEL_PATH,
-            path=path,
+            audio_sample_path=audio_sample_path,
+            n_class=n_class,
+            json_path=json_path,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),

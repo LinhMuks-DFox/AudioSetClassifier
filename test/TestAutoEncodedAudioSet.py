@@ -3,6 +3,7 @@ import unittest
 import torch
 
 import hyper_para
+import train_config
 import train_prepare
 from src.AutoEncodedAudioSet import AutoEncodedAudioSet
 
@@ -19,7 +20,9 @@ class MyTestCase(unittest.TestCase):
         self.dataset = AutoEncodedAudioSet(
             auto_encoder_hypers=hyper_para.AUTO_ENCODER_MODEL,
             encoder_model_path=r"../pre_trained_encoder/2023-08-04-09-49-03/encoder.pth",
-            path=r"../data/audio_set/AudioSet.json",
+            n_class=hyper_para.CLASS_CNT,
+            json_path=train_config.TRAIN_DATA_SET_JSON,
+            audio_sample_path=train_config.TRAIN_DATA_SET_PATH,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
