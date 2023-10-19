@@ -6,7 +6,7 @@ IN_DOCKER: bool = os.environ.get("IN_DOCKER_CONTAINER", False)
 
 if "win" in (plf := platform.platform().lower()):
     TRAIN_DATA_SET_PATH: str = r"F:\DataSets\Audioset\balanced\segments"
-    EVAL_DATE_SET_PATH: str = r"F:\DataSets\Audioset\eval\segments\AudioSet.json"
+    EVAL_DATE_SET_PATH: str = r"F:\DataSets\Audioset\eval\segments"
 
     EVAL_DATA_SET_JSON: str = r"./subset_json/sub_eval.json"
     TRAIN_DATA_SET_JSON: str = r"./subset_json/sub_train.json"

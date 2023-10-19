@@ -44,8 +44,10 @@ class TrainApp:
     def __init__(self):
         log("Train Init")
         self.model_ = train_prepare.make_classifier()
-        self.train_dataset_ = train_prepare.make_dataset(train_config.TRAIN_DATA_SET_PATH)
-        self.validate_test_dataset_ = train_prepare.make_dataset(train_config.EVAL_DATE_SET_PATH)
+        self.train_dataset_ = train_prepare.make_dataset(json_path=train_config.TRAIN_DATA_SET_JSON,
+                                                         audio_sample_path=train_config.TRAIN_DATA_SET_PATH)
+        self.validate_test_dataset_ = train_prepare.make_dataset(json_path=train_config.EVAL_DATA_SET_JSON,
+                                                                 audio_sample_path=train_config.EVAL_DATE_SET_PATH)
         if train_config.DRY_RUN:
             self.train_dataset_ = torch.utils.data.Subset(self.train_dataset_,
                                                           range(hyper_para.DRY_RUN_DATE_SET_LENGTH))
