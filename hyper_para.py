@@ -4,7 +4,7 @@ import torch
 import train_config
 
 MODEL = "RES34"
-CLASS_CNT = 527  # Audio set contains 527 class labels
+CLASS_CNT = 10  # Audio set contains 527 class labels
 TRAIN_DEVICE = "cuda:1"
 DATA_TRANSFORM_DEVICE = "cuda:0"
 BATCH_SIZE = 100
