@@ -1,0 +1,42 @@
+label 2: 
+	onto: /m/02zsn
+	display name: Female Speech
+	sample count(train:49, eval:57)
+label 141: 
+	onto: /m/02sgy
+	display name: Electric guitar
+	sample count(train:60, eval:115)
+label 351: 
+	onto: /t/dd00130
+	display name: Engine staring
+	sample count(train:55, eval:55)
+label 352: 
+	onto: /m/07pb8fc
+	display name: idling
+	sample count(train:51, eval:67)
+label 395: 
+	onto: /m/046dlr
+	display name: Alarm clock
+	sample count(train:50, eval:52)
+label 426: 
+	onto: /m/014zdl
+	display name: Explosion
+	sample count(train:53, eval:45)
+label 119: 
+	onto: /m/09d5_
+	display name: Owl
+	sample count(train:57, eval:54)
+label 122: 
+	onto: /m/01z5f
+	display name: Canidae, dogs, wolve
+	sample count(train:53, eval:52)
+label 287: 
+	onto: /m/0ngt1
+	display name: Thunder
+	sample count(train:57, eval:52)
+label 294: 
+	onto: /m/05kq4
+	display name: Ocean
+	sample count(train:64, eval:60)
+Train dataset length: 549
+Eval dataset length: 609
