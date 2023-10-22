@@ -46,6 +46,9 @@ class OneHotClassificationTester:
                 data = data.to(self.device_)
                 label = label.to(self.device_)
                 predicted_y = torch.argmax(self.model_(data), dim=1)
+                # if label is one-hot, convert it to int
+                if len(label.shape) > 1:
+                    label = torch.argmax(label, dim=1)
                 self.y_true_ = torch.cat([self.y_true_, label])
                 self.y_predict_ = torch.cat([self.y_predict_, predicted_y])
 
@@ -62,15 +65,15 @@ class OneHotClassificationTester:
         return self
 
     def calculate_precision(self, ) -> "OneHotClassificationTester":
-        self.precision_ = metrics.precision_score(self.y_true_, self.y_predict_, average="macro")
+        self.precision_ = metrics.precision_score(self.y_true_, self.y_predict_, average="macro", zero_division=np.nan)
         return self
 
     def calculate_recall(self, ) -> "OneHotClassificationTester":
-        self.recall_ = metrics.recall_score(self.y_true_, self.y_predict_, average="macro")
+        self.recall_ = metrics.recall_score(self.y_true_, self.y_predict_, average="macro", zero_division=np.nan)
         return self
 
     def calculate_f1_score(self, ) -> "OneHotClassificationTester":
-        self.f1_score_ = metrics.f1_score(self.y_true_, self.y_predict_, average="macro")
+        self.f1_score_ = metrics.f1_score(self.y_true_, self.y_predict_, average="macro", zero_division=np.nan)
         return self
 
     def calculate_hamming_loss(self, ) -> "OneHotClassificationTester":
@@ -116,4 +119,4 @@ class OneHotClassificationTester:
         return self
 
     def classification_report(self, ):
-        return metrics.classification_report(self.y_true_, self.y_predict_)
+        return metrics.classification_report(self.y_true_, self.y_predict_, zero_division=np.nan)

@@ -13,7 +13,7 @@ import hyper_para
 import train_config
 import train_prepare
 from train_prepare import compose_path
-from src.MultiLabelClassifierTester import MultiLabelClassifierTester
+from src.OneHotClassifcationTester import OneHotClassificationTester
 
 # region logger config
 
@@ -60,10 +60,7 @@ class TrainApp:
         self.optimizer_ = train_prepare.make_optimizer(self.model_)
         self.scheduler_ = train_prepare.make_scheduler(self.optimizer_)
         self.validate_loss_, self.train_loss = [torch.empty(0).to(self.device_) for _ in range(2)]
-        self.classifier_tester_ = MultiLabelClassifierTester(self.model_,
-                                                             self.device_,
-                                                             threshold=hyper_para.THRESHOLD,
-                                                             use_sigmoid=hyper_para.USE_SIGMOID)
+        self.classifier_tester_ = OneHotClassificationTester(self.model_, self.device_)
         self.model_.to(self.device_)
         self.check_point_iota_: int = 0
 
@@ -120,7 +117,6 @@ class TrainApp:
         torch.save(confusion_matrix, compose_path("confusion_matrix.pt"))
         torch.save(self.classifier_tester_.y_true_, compose_path("tester_y_true.pt"))
         torch.save(self.classifier_tester_.y_predict_, compose_path("tester_y_predict.pt"))
-        torch.save(self.classifier_tester_.y_predict_binary_, compose_path("tester_y_predict_binary.pt"))
         with open(compose_path("eval_result.txt"), "w") as f, open(compose_path("confusion_matrix.txt"), "w") as f2:
             f.write(f"accuracy: {self.eval_result_.get('accuracy')}\n")
             f.write(f"precision: {self.eval_result_.get('precision')}\n")
@@ -129,9 +125,7 @@ class TrainApp:
             f.write(f"hamming_loss: {self.eval_result_.get('hamming_loss')}\n")
             f.write(self.classifier_tester_.classification_report())
             for i in range(confusion_matrix.shape[0]):
-                f2.write("Confusion matrix for class " + self.class2label[f"{i}"]["display_name"] + "\n")
-                f2.write("\n".join([str(item) for item in confusion_matrix[i].tolist()]) + "\n")
-                f2.write("--------------------\n")
+                f2.write(" ".join([str(item) for item in confusion_matrix[i].tolist()]) + "\n")
 
     def dump_checkpoint(self, name: str = None):
         if name is None:
