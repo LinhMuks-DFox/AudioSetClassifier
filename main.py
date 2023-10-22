@@ -126,7 +126,10 @@ class TrainApp:
             f.write(self.classifier_tester_.classification_report())
             for i in range(confusion_matrix.shape[0]):
                 f2.write(" ".join([str(item) for item in confusion_matrix[i].tolist()]) + "\n")
-
+        with open(compose_path("true_prediction.txt"), "w") as f:
+            f.write("true_label predict_label\n")
+            for y_true, y_predict in zip(self.classifier_tester_.y_true_, self.classifier_tester_.y_predict_):
+                f.write("{} {}\n".format(y_true, y_predict))
         plt.matshow(self.classifier_tester_.confusion_matrix_)
         plt.title("Confusion Matrix")
         plt.xlabel("Predicted Label")
