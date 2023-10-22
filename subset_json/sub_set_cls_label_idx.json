@@ -1,0 +1,42 @@
+{
+  "0": {
+    "display_name": "Female Speech",
+    "mid": "/m/02zsn"
+  },
+  "1": {
+    "display_name": "Electric guitar",
+    "mid": "/m/02sgy"
+  },
+  "2": {
+    "display_name": "Engine staring",
+    "mid": "/t/dd00130"
+  },
+  "3": {
+    "display_name": "idling",
+    "mid": "/m/07pb8fc"
+  },
+  "4": {
+    "display_name": "Alarm clock",
+    "mid": "/m/046dlr"
+  },
+  "5": {
+    "display_name": "Explosion",
+    "mid": "/m/014zdl"
+  },
+  "6": {
+    "display_name": "Owl",
+    "mid": "/m/09d5_"
+  },
+  "7": {
+    "display_name": "Canidae, dogs, wolve",
+    "mid": "/m/01z5f"
+  },
+  "8": {
+    "display_name": "Thunder",
+    "mid": "/m/0ngt1"
+  },
+  "9": {
+    "display_name": "Ocean",
+    "mid": "/m/05kq4"
+  }
+}
