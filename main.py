@@ -127,6 +127,13 @@ class TrainApp:
             for i in range(confusion_matrix.shape[0]):
                 f2.write(" ".join([str(item) for item in confusion_matrix[i].tolist()]) + "\n")
 
+        plt.matshow(self.classifier_tester_.confusion_matrix_)
+        plt.title("Confusion Matrix")
+        plt.xlabel("Predicted Label")
+        plt.ylabel("True Label")
+        plt.savefig(compose_path("confusion_matrix.png"), dpi=300)
+        plt.clf()
+
     def dump_checkpoint(self, name: str = None):
         if name is None:
             name = f"checkpoint{self.check_point_iota_}.pt"
