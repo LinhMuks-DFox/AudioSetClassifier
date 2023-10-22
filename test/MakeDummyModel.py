@@ -27,14 +27,22 @@ class DummyModelForMNIST(nn.Module):
         return self.model(x)
 
 
+def get_transformer():
+    return transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.1307,), (0.3081,)),
+        transforms.Lambda(lambda x: x.view(-1))
+    ])
+
+
+def get_dataset():
+    return datasets.MNIST(root='data', train=True, transform=get_transformer(), download=True)
+
+
 class Trainer:
     def __init__(self):
-        self.transform = transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize((0.1307,), (0.3081,)),
-            transforms.Lambda(lambda x: x.view(-1))
-        ])
-        self.dataset = datasets.MNIST(root='data', train=True, transform=self.transform, download=True)
+        self.transform = get_transformer()
+        self.dataset = get_dataset()
         self.train_set, self.test_set, self.validate_set = (
             torch.utils.data.random_split(self.dataset, [0.6, 0.2, 0.2]))
         self.train_loader = torch.utils.data.DataLoader(self.train_set, batch_size=64, shuffle=True)
