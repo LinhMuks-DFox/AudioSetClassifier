@@ -17,11 +17,8 @@ TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 VALIDATE_TEST_SPLIT = [0.2, 0.8]
 OPTIMIZER = "Adam"
 CHECK_POINT_INTERVAL = 10
-# BCEWithLogitsLoss -> Sigmoid(output) -> y_predict, but when threshold <- 0, y_predict = (output > threshold)
-THRESHOLD = 0.0
-USE_SIGMOID = True
 LOSS_FUNCTION = {
-    "name": "BCEWithLogitsLoss",
+    "name": "CrossEntropy",
     "arg": {"reduction": "mean"}
 }
 SCHEDULER = "StepLR"

@@ -109,6 +109,7 @@ def make_loss_function(loss_type: str = None, loss_args: dict = None):
         "BCEWithLogitsLoss": torch.nn.BCEWithLogitsLoss,
         "BCELoss": torch.nn.BCELoss,
         "MultiLabelSoftMarginLoss": torch.nn.MultiLabelSoftMarginLoss,
+        "CrossEntropy": torch.nn.CrossEntropyLoss
     }.get(loss_type)(**loss_args)
 
 
