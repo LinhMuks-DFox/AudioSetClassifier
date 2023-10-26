@@ -132,7 +132,7 @@ def make_scheduler(optimizer):
     return {
         "StepLR": torch.optim.lr_scheduler.StepLR,
         "MultiStepLR": torch.optim.lr_scheduler.MultiStepLR,
-    }.get(hyper_para.SCHEDULER)(optimizer, step_size=hyper_para.SCHEDULAR_STEP_SIZE, gamma=hyper_para.SCHEDULAR_GAMMA)
+    }.get(hyper_para.SCHEDULER)(optimizer, **hyper_para.SCHEDULER_PARAMETER)
 
 
 def select_device(device=None):

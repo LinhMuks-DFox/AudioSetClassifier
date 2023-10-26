@@ -11,8 +11,10 @@ BATCH_SIZE = 130
 EPOCHS = 100
 LEARNING_RATE = 1e-6
 SCHEDULER = "MultiStepLR"
-SCHEDULAR_GAMMA = 0.9
-SCHEDULAR_STEP_SIZE = 1
+SCHEDULER_PARAMETER = {
+    "gmma": 0.9,
+    "milestones": [50, 75, 85, 90],
+}
 SCHEDULER_INTERVAL = 10
 DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
