@@ -38,6 +38,8 @@ def get_transformer():
 def get_dataset():
     return datasets.MNIST(root='data', train=True, transform=get_transformer(), download=True)
 
+def get_loss_function():
+    return nn.CrossEntropyLoss()
 
 class Trainer:
     def __init__(self):
@@ -50,7 +52,7 @@ class Trainer:
         self.validate_loader = torch.utils.data.DataLoader(self.validate_set, batch_size=64, shuffle=True)
 
         self.model = DummyModelForMNIST()
-        self.loss = nn.CrossEntropyLoss()
+        self.loss = get_loss_function()
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.001)
         self.device = train_prepare.select_device()
 
