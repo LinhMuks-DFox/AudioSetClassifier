@@ -130,7 +130,8 @@ def make_optimizer(model, optimizer_type: str = None, lr: float = None):
 
 def make_scheduler(optimizer):
     return {
-        "StepLR": torch.optim.lr_scheduler.StepLR
+        "StepLR": torch.optim.lr_scheduler.StepLR,
+        "MultiStepLR": torch.optim.lr_scheduler.MultiStepLR,
     }.get(hyper_para.SCHEDULER)(optimizer, step_size=hyper_para.SCHEDULAR_STEP_SIZE, gamma=hyper_para.SCHEDULAR_GAMMA)
 
 

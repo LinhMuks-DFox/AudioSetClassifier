@@ -7,11 +7,12 @@ MODEL = "RES18"
 CLASS_CNT = 2
 TRAIN_DEVICE = "cuda:0"
 DATA_TRANSFORM_DEVICE = "cuda:1"
-BATCH_SIZE = 100
-EPOCHS = 100
+BATCH_SIZE = 80
+EPOCHS = 30
 LEARNING_RATE = 1e-6
+SCHEDULER = "MultiStepLR"
 SCHEDULAR_GAMMA = 0.9
-SCHEDULAR_STEP_SIZE = 1
+SCHEDULAR_STEP_SIZE = 10
 DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 VALIDATE_TEST_SPLIT = [0.5, 0.5]
@@ -22,7 +23,6 @@ LOSS_FUNCTION = {
     "name": "CrossEntropy",
     "arg": {"reduction": "mean"}
 }
-SCHEDULER = "StepLR"
 AUDIO_PRE_TRANSFORM = {
     "sound_track": "mix",
     "resample": {

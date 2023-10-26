@@ -98,7 +98,6 @@ class TrainApp:
             self.optimizer_.step()
             epoch_loss = torch.hstack((epoch_loss, loss.detach().clone()))
         self.train_loss = torch.hstack((self.train_loss, mean_loss := torch.mean(epoch_loss)))
-        self.scheduler_.step()
         return mean_loss
 
     def one_epoch_validate(self):
@@ -113,7 +112,9 @@ class TrainApp:
         log(f"Epoch: {epoch_iota} start.")
         train_loss = self.one_epoch_train()
         validate_loss = self.one_epoch_validate()
-        log(f"Epoch({epoch_iota}) end. train loss: {train_loss}, validate loss: {validate_loss}")
+        log(f"Epoch({epoch_iota}) end. train loss: {train_loss}, "
+            f"validate loss: {validate_loss}, "
+            f"learning rate: {self.optimizer_.param_groups[0]['lr']}")
 
     def final_test_and_dump_result(self):
         train_loss, validate_loss = [x.detach().cpu().numpy() for x in [self.train_loss, self.validate_loss_]]
@@ -141,8 +142,6 @@ class TrainApp:
         plt.title("Final test confusion matrix")
         plt.savefig(compose_path("final_test_confusion_matrix.png"), dpi=300)
         plt.clf()
-
-
 
     def dump_checkpoint(self, name: str = None):
         if name is None:
@@ -180,6 +179,8 @@ class TrainApp:
         try:
             for epoch_iota in range(self.epoch_cnt):
                 self.one_epoch(epoch_iota)
+                if epoch_iota % hyper_para.SCHEDULAR_STEP_SIZE == 0 and epoch_iota != 0:
+                    self.scheduler_.step()
         except Exception as e:
             log("Training failed. Error as follows:\n" + f"{e}", exc_info=True)
             log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
