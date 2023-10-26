@@ -3,11 +3,11 @@ import torch
 
 import train_config
 
-MODEL = "RES18"
+MODEL = "RES34"
 CLASS_CNT = 10  # Audio set contains 527 class labels
 TRAIN_DEVICE = "cuda:0"
 DATA_TRANSFORM_DEVICE = "cuda:1"
-BATCH_SIZE = 130
+BATCH_SIZE = 100
 EPOCHS = 100
 LEARNING_RATE = 1e-6
 SCHEDULAR_GAMMA = 0.9
@@ -19,7 +19,7 @@ OPTIMIZER = "Adam"
 CHECK_POINT_INTERVAL = 10
 ONT_HOT_LABEL = True
 LOSS_FUNCTION = {
-    "name": "CrossEntropy",
+    "name": "NLLLoss",
     "arg": {"reduction": "mean"}
 }
 SCHEDULER = "StepLR"
