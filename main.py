@@ -74,7 +74,6 @@ class TrainApp:
         self.classifier_tester_.set_loss_function(self.loss_function_)
         self.model_.to(self.device_)
         self.check_point_iota_: int = 0
-        self.eval_result_ = None
         self.epoch_cnt = hyper_para.DRY_RUN_EPOCHS if train_config.DRY_RUN else hyper_para.EPOCHS
         train_prepare.set_torch_random_seed()
         log("Loading class_label_indices.json")
@@ -88,7 +87,6 @@ class TrainApp:
         output = self.model_(data)
         loss = self.loss_function_(output, label)
         return loss
-
 
     def one_epoch_train(self):
         self.model_.train()
@@ -107,6 +105,8 @@ class TrainApp:
         self.model_.eval()
         self.classifier_tester_.set_dataloader(self.validate_loader_, n_class=hyper_para.CLASS_CNT)
         self.classifier_tester_.evaluate_model()
+        self.validate_loss_ = torch.hstack((self.validate_loss_,
+                                            torch.mean(self.classifier_tester_.loss_)))
         return torch.mean(self.classifier_tester_.loss_)
 
     def one_epoch(self, epoch_iota: int):
@@ -115,64 +115,40 @@ class TrainApp:
         validate_loss = self.one_epoch_validate()
         log(f"Epoch({epoch_iota}) end. train loss: {train_loss}, validate loss: {validate_loss}")
 
-
     def final_test_and_dump_result(self):
-        self.eval_result_ = (self.classifier_tester_
-                             .set_dataloader(self.test_loader_, hyper_para.CLASS_CNT)
-                             .evaluate_model())
-        confusion_matrix = torch.tensor(self.eval_result_.get("confusion_matrix"))
-        torch.save(confusion_matrix, compose_path("confusion_matrix.pt"))
-        torch.save(self.classifier_tester_.y_true_, compose_path("tester_y_true.pt"))
-        torch.save(self.classifier_tester_.y_predict_, compose_path("tester_y_predict.pt"))
-        with open(compose_path("eval_result.txt"), "w") as f, open(compose_path("confusion_matrix.txt"), "w") as f2:
-            f.write(f"accuracy: {self.eval_result_.get('accuracy')}\n")
-            f.write(f"precision: {self.eval_result_.get('precision')}\n")
-            f.write(f"recall: {self.eval_result_.get('recall')}\n")
-            f.write(f"f1_score: {self.eval_result_.get('f1_score')}\n")
-            f.write(f"hamming_loss: {self.eval_result_.get('hamming_loss')}\n")
-            f.write(self.classifier_tester_.classification_report())
-            for i in range(confusion_matrix.shape[0]):
-                f2.write(" ".join([str(item) for item in confusion_matrix[i].tolist()]) + "\n")
-        with open(compose_path("true_prediction.txt"), "w") as f:
-            f.write("true_label predict_label\n")
-            for y_true, y_predict in zip(self.classifier_tester_.y_true_, self.classifier_tester_.y_predict_):
-                f.write("{} {}\n".format(y_true, y_predict))
-        plt.matshow(self.classifier_tester_.confusion_matrix_)
-        plt.title("Confusion Matrix")
-        plt.xlabel("Predicted Label")
-        plt.ylabel("True Label")
-        plt.savefig(compose_path("confusion_matrix.png"), dpi=300)
+        train_loss, validate_loss = [x.detach().cpu().numpy() for x in [self.train_loss, self.validate_loss_]]
+        plt.plot(train_loss, label="train_loss")
+        plt.plot(validate_loss, label="validate_loss")
+        plt.legend()
+        plt.xlabel("epoch(int)")
+        plt.ylabel("loss(float)")
+        plt.savefig(compose_path("train_validate_loss.png"), dpi=300)
         plt.clf()
+
+        e = self.classifier_tester_.set_dataloader(
+            self.test_loader_,
+            n_class=hyper_para.CLASS_CNT
+        ).evaluate_model()
+        torch.save(e, compose_path("final_test_eval_result.pt"))
+        with open(compose_path("final_test_eval_result.txt"), "w") as f:
+            f.write("accuracy: " + str(self.classifier_tester_.accuracy_) + "\n")
+            f.write("precision: " + str(self.classifier_tester_.precision_) + "\n")
+            f.write("recall: " + str(self.classifier_tester_.recall_) + "\n")
+            f.write("f1_score: " + str(self.classifier_tester_.f1_score_) + "\n")
+            f.write("hamming_loss: " + str(self.classifier_tester_.hamming_loss_) + "\n")
+            f.write("\n".join([str(row) for row in self.classifier_tester_.confusion_matrix_]))
+        plt.matshow(self.classifier_tester_.confusion_matrix_)
+        plt.title("Final test confusion matrix")
+        plt.savefig(compose_path("final_test_confusion_matrix.png"), dpi=300)
+        plt.clf()
+
+
 
     def dump_checkpoint(self, name: str = None):
         if name is None:
             name = f"checkpoint{self.check_point_iota_}.pt"
             self.check_point_iota_ += 1
         torch.save(self.model_.state_dict(), compose_path(name))
-
-    def dump_result(self):
-        with open(compose_path("train_loss.txt"), "w") as train_f, \
-                open(compose_path("validate_loss.txt"), "w") as vali_f:
-            train_f.write("\n".join([f"epoch: {idx}, train loss: {item}"
-                                     for idx, item in enumerate(self.train_loss.tolist())]))
-            vali_f.write("\n".join([f"epoch: {idx}, validate loss: {item}"
-                                    for idx, item in enumerate(self.validate_loss_.tolist())]))
-
-        torch.save(self.train_loss, compose_path("train_loss.pt"))
-        torch.save(self.validate_loss_, compose_path("validate_loss.pt"))
-
-        log(
-            "\n".join([f"{k}:\n{v}" for k, v in self.eval_result_.items()])
-        )
-
-        plt.plot(self.train_loss.detach().cpu().numpy(), label="train loss")
-        plt.plot(self.validate_loss_.detach().cpu().numpy(), label="validate loss")
-        plt.title("Train and Validate Loss")
-        plt.xlabel("epoch")
-        plt.ylabel("loss")
-        plt.legend()
-        plt.savefig(compose_path("train_validate_loss.png"), dpi=300)
-        plt.clf()
 
     def main(self):
         # region log configures
@@ -220,18 +196,6 @@ class TrainApp:
             log("Eval failed. Error as follows:\n" + f"{e}", exc_info=True)
             log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
             self.dump_checkpoint()
-        # endregion
-
-        # region dump result
-        try:
-            self.dump_result()
-        except Exception as e:
-            log("Dump result failed. Error as follows:\n" + f"{e}", exc_info=True)
-            log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
-            self.dump_checkpoint()
-            exit(-1)
-        # endregion
-        log("Training finished.")
 
         try:
             log("Dumping train model's checkpoint...")

@@ -3,6 +3,7 @@ import typing
 import numpy as np
 import sklearn.metrics as metrics
 import torch
+import tqdm
 
 
 class MonoLabelClassificationTester:
@@ -48,7 +49,7 @@ class MonoLabelClassificationTester:
         with torch.no_grad():
             data: torch.Tensor
             label: torch.Tensor
-            for data, label in self.dataloader_:
+            for data, label in tqdm.tqdm(self.dataloader_):
                 data = data.to(self.device_)
                 label = label.to(self.device_)
                 model_out = self.model_(data)
