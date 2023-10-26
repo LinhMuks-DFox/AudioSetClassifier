@@ -6,8 +6,8 @@ import train_config
 MODEL = "RES18"
 CLASS_CNT = 10  # Audio set contains 527 class labels
 TRAIN_DEVICE = "cuda:0"
-DATA_TRANSFORM_DEVICE = "cuda:0"
-BATCH_SIZE = 100
+DATA_TRANSFORM_DEVICE = "cuda:1"
+BATCH_SIZE = 130
 EPOCHS = 100
 LEARNING_RATE = 1e-6
 SCHEDULAR_GAMMA = 0.9
@@ -17,6 +17,7 @@ TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 VALIDATE_TEST_SPLIT = [0.2, 0.8]
 OPTIMIZER = "Adam"
 CHECK_POINT_INTERVAL = 10
+ONT_HOT_LABEL = True
 LOSS_FUNCTION = {
     "name": "CrossEntropy",
     "arg": {"reduction": "mean"}

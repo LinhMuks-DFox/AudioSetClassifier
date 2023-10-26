@@ -39,11 +39,13 @@ def make_classifier(model_type: str = None, class_cnt: int = None):
 def make_dataset(json_path: str = None,
                  audio_sample_path: str = None,
                  dataset_type: str = None,
-                 n_class: int = None):
+                 n_class: int = None,
+                 ont_hot_label=None):
     json_path = json_path if json_path is not None else train_config.TRAIN_DATA_SET_JSON
     audio_sample_path = audio_sample_path if audio_sample_path is not None else train_config.TRAIN_DATA_SET_PATH
     dataset_type = dataset_type if dataset_type is not None else hyper_para.DATA_SET
     n_class = n_class if n_class is not None else hyper_para.CLASS_CNT
+    ont_hot_label = ont_hot_label if ont_hot_label is not None else hyper_para.ONT_HOT_LABEL
     if dataset_type == "ideal":
         return FullSpectroAudioSet(
             json_path=json_path,
@@ -56,6 +58,7 @@ def make_dataset(json_path: str = None,
             hop_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("hop_length"),
             win_length=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("win_length"),
             normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
+            one_hot_label=ont_hot_label
         )
     elif dataset_type == "sound_power":
         return SoundPowerAudioSet(
@@ -65,7 +68,8 @@ def make_dataset(json_path: str = None,
             sound_track=hyper_para.AUDIO_PRE_TRANSFORM.get("sound_track"),
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
-            output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE
+            output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE,
+            one_hot_label=ont_hot_label
         )
     elif dataset_type == "encoded":
         return AutoEncodedAudioSet(
@@ -83,6 +87,7 @@ def make_dataset(json_path: str = None,
             normalized=hyper_para.AUDIO_PRE_TRANSFORM.get("fft").get("normalized"),
             output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE,
             transform_device=select_device(hyper_para.DATA_TRANSFORM_DEVICE),
+            one_hot_label=ont_hot_label
         )
     else:
         raise ValueError("Unknown data set type")

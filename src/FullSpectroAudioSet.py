@@ -20,7 +20,8 @@ class FullSpectroAudioSet(data.Dataset):
                  win_length: int,
                  normalized: bool,
                  sample_seconds: int = 10,
-                 transform_device: torch.device = torch.device("cpu")
+                 transform_device: torch.device = torch.device("cpu"),
+                 one_hot_label: bool = False
                  ):
         super().__init__()
         self.transform_device_ = transform_device
@@ -40,12 +41,13 @@ class FullSpectroAudioSet(data.Dataset):
         self.normalized_ = normalized
         self.amplitude_trans = tch_audio_trans.AmplitudeToDB().to(self.transform_device_)
         self.sample_seconds_ = sample_seconds
-        self.n_class = n_class
+        self.n_class_ = n_class
+        self.one_hot_label_ = one_hot_label
 
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         sample: torch.Tensor = sample.to(self.transform_device_)
-        label = label_digit2tensor(label_digits, self.n_class)
+        label = label_digit2tensor(label_digits, self.n_class_) if self.one_hot_label_ else torch.tensor(label_digits)
         track = self.track_selector_(sample)
         resampled_track = self.resampler_(track)
         resampled_track = fix_length(resampled_track, self.new_freq_ * self.sample_seconds_)

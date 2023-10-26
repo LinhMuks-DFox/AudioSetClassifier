@@ -28,6 +28,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                  sample_seconds: int = 10,
                  output_size: tuple = (10, 80),
                  transform_device: torch.device = torch.device('cpu'),
+                 one_hot_label: bool = True
                  ):
         # region data fetch-transform
         self.transform_device_ = transform_device
@@ -69,6 +70,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
             torch.load(encoder_model_path, map_location=self.transform_device_)
         )
         self.auto_encoder.to(self.transform_device_)
+        self.one_hot_label_ = one_hot_label
         # endregion
 
     def __len__(self):
@@ -90,7 +92,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
 
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
-        label = label_digit2tensor(label_digits, self.n_class)
+        label = label_digit2tensor(label_digits, self.n_class) if self.one_hot_label_ else torch.tensor(label_digits)
         sample: torch.Tensor = sample.to(self.transform_device_)
         track = self.track_selector_(sample)
         track = self.resampler_(track)
