@@ -89,7 +89,7 @@ loss function: {LOSS_FUNCTION}
 schedular: {SCHEDULER}
 epochs: {EPOCHS}
 learning rate: {LEARNING_RATE}
-schedular gamma: {SCHEDULAR_GAMMA}
+schedular parameter: {SCHEDULER_PARAMETER}
 data set: {DATA_SET}
 train test validate split: {TRAIN_TEST_VALIDATE_SPLIT}
 """
