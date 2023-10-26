@@ -14,7 +14,7 @@ class OneHotClassificationTester:
         self.model_ = model
         self.dataloader_ = None
         self.device_ = device
-
+        self.loss_fn_ = None
         self.n_classes_ = None
 
         self.confusion_matrix_ = None
@@ -26,12 +26,18 @@ class OneHotClassificationTester:
 
         self.y_predict_ = None
         self.y_true_ = None
+        self.loss_ = None
+
+    def set_loss_function(self, loss: typing.Callable) -> "OneHotClassificationTester":
+        self.loss_fn_ = loss
+        return self
 
     def set_dataloader(self, dataloader, n_class: int) -> "OneHotClassificationTester":
         self.dataloader_ = dataloader
         self.n_classes_ = n_class
         self.y_predict_ = torch.zeros(0, dtype=torch.int32).to(self.device_)
         self.y_true_ = torch.zeros(0, dtype=torch.int32).to(self.device_)
+        self.loss_ = torch.zeros(0, dtype=torch.int32).to(self.device_)
         return self
 
     def predict_all(self) -> "OneHotClassificationTester":
@@ -45,7 +51,10 @@ class OneHotClassificationTester:
             for data, label in self.dataloader_:
                 data = data.to(self.device_)
                 label = label.to(self.device_)
-                predicted_y = torch.argmax(self.model_(data), dim=1)
+                model_out = self.model_(data)
+                predicted_y = torch.argmax(model_out, dim=1)
+                if self.loss_fn_ is not None:
+                    self.loss_ = torch.hstack([self.loss_, self.loss_fn_(model_out, label)])
                 # if label is one-hot, convert it to int
                 if len(label.shape) > 1:
                     label = torch.argmax(label, dim=1)
@@ -54,6 +63,7 @@ class OneHotClassificationTester:
 
         self.y_true_: np.ndarray = self.y_true_.detach().cpu().numpy()
         self.y_predict_: np.ndarray = self.y_predict_.detach().cpu().numpy()
+        self.loss_: np.ndarray = self.loss_.detach().cpu().numpy()
         return self
 
     def calculate_confusion_matrix(self) -> "OneHotClassificationTester":

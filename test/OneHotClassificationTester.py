@@ -7,7 +7,7 @@ import MakeDummyModel
 from src.OneHotClassifcationTester import OneHotClassificationTester
 
 
-class MyTestCase(unittest.TestCase):
+class OneHotClassificationTesterUnitTest(unittest.TestCase):
 
     def setUp(self):
         self.dummy_model = MakeDummyModel.DummyModelForMNIST()
@@ -20,6 +20,9 @@ class MyTestCase(unittest.TestCase):
 
         self.one_hot_tester = OneHotClassificationTester(self.dummy_model, torch.device("cuda:0"))
         self.one_hot_tester.set_dataloader(self.dataloader, 10)
+        self.one_hot_tester.set_loss_function(
+            MakeDummyModel.get_loss_function()
+        )
 
     def test_predict(self):
         self.one_hot_tester.predict_all()
@@ -31,6 +34,12 @@ class MyTestCase(unittest.TestCase):
     def test_status_map(self):
         self.one_hot_tester.predict_all().calculate_all_metrics()
         print(self.one_hot_tester.status_map())
+
+
+    def test_loss(self):
+        print(self.one_hot_tester.loss_fn_)
+        self.one_hot_tester.predict_all().calculate_all_metrics()
+        print(self.one_hot_tester.loss_.shape)
 
 
 if __name__ == '__main__':
