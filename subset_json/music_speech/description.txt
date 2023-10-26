@@ -1,0 +1,12 @@
+label 0: 
+	onto: /m/09x0r
+	display name: Speech
+	sample count(train:3558, eval:3207)
+	label_digits: [0]
+label 137: 
+	onto: /m/04rlf
+	display name: Music
+	sample count(train:4007, eval:3492)
+	label_digits: [1]
+Train dataset length: 7565
+Eval dataset length: 6699
