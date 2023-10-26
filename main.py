@@ -13,7 +13,7 @@ import hyper_para
 import train_config
 import train_prepare
 from train_prepare import compose_path
-from src.OneHotClassifcationTester import OneHotClassificationTester
+from src.MonoLabelClassifcationTester import MonoLabelClassificationTester
 
 # region logger config
 
@@ -49,24 +49,34 @@ class TrainApp:
         self.validate_test_dataset_ = train_prepare.make_dataset(json_path=train_config.EVAL_DATA_SET_JSON,
                                                                  audio_sample_path=train_config.EVAL_DATE_SET_PATH)
         if train_config.DRY_RUN:
-            self.train_dataset_ = torch.utils.data.Subset(self.train_dataset_,
-                                                          range(hyper_para.DRY_RUN_DATE_SET_LENGTH))
-            self.validate_test_dataset_ = torch.utils.data.Subset(self.validate_test_dataset_,
-                                                                  range(hyper_para.DRY_RUN_DATE_SET_LENGTH))
-        self.train_loader_ = train_prepare.make_train_loader(self.train_dataset_)
-        self.validate_loader_, self.test_loader_ = train_prepare.make_test_validate_loader(self.validate_test_dataset_)
+            self.train_dataset_ = torch.utils.data.Subset(
+                self.train_dataset_,
+                range(hyper_para.DRY_RUN_DATE_SET_LENGTH)
+            )
+            self.validate_test_dataset_ = torch.utils.data.Subset(
+                self.validate_test_dataset_,
+                range(hyper_para.DRY_RUN_DATE_SET_LENGTH)
+            )
+        self.train_loader_ = train_prepare.make_train_loader(
+            self.train_dataset_,
+            hyper_para.DYR_RUN_BATCH_SIZE if train_config.DRY_RUN else None
+        )
+        self.validate_loader_, self.test_loader_ = train_prepare.make_test_validate_loader(
+            self.validate_test_dataset_,
+            hyper_para.DYR_RUN_BATCH_SIZE if train_config.DRY_RUN else None
+        )
         self.device_ = train_prepare.select_device()
         self.loss_function_ = train_prepare.make_loss_function()
         self.optimizer_ = train_prepare.make_optimizer(self.model_)
         self.scheduler_ = train_prepare.make_scheduler(self.optimizer_)
         self.validate_loss_, self.train_loss = [torch.empty(0).to(self.device_) for _ in range(2)]
-        self.classifier_tester_ = OneHotClassificationTester(self.model_, self.device_)
+        self.classifier_tester_ = MonoLabelClassificationTester(self.model_, self.device_)
+        self.classifier_tester_.set_loss_function(self.loss_function_)
         self.model_.to(self.device_)
         self.check_point_iota_: int = 0
-
         self.eval_result_ = None
+        self.epoch_cnt = hyper_para.DRY_RUN_EPOCHS if train_config.DRY_RUN else hyper_para.EPOCHS
         train_prepare.set_torch_random_seed()
-
         log("Loading class_label_indices.json")
         with open(train_config.CLASS_LABELS_INDICES, "r") as f:
             self.class2label = json.load(f)
@@ -79,37 +89,34 @@ class TrainApp:
         loss = self.loss_function_(output, label)
         return loss
 
-    def train(self):
-        epoch_cnt = hyper_para.DRY_RUN_EPOCHS if train_config.DRY_RUN else hyper_para.EPOCHS
-        for epoch in range(epoch_cnt):
-            log(f"train epoch: {epoch} start.")
-            self.model_.train()
-            epoch_loss = torch.empty(0).to(self.device_)
-            loss: torch.Tensor
-            log(f"learning rate in this epoch: {self.optimizer_.param_groups[0]['lr']}")
-            for x, y in tqdm.tqdm(self.train_loader_):
-                loss = self.one_step_loss(x, y)
-                self.optimizer_.zero_grad()
-                loss.backward()
-                self.optimizer_.step()
-                epoch_loss = torch.hstack((epoch_loss, loss.detach().clone()))
-            self.train_loss = torch.hstack((self.train_loss, mean_loss := torch.mean(epoch_loss)))
-            log(f"train epoch: {epoch} end, mean loss: {mean_loss}")
-            self.epoch_validate()
-            self.scheduler_.step()
 
-    def epoch_validate(self):
-        log("epoch validate start.")
+    def one_epoch_train(self):
+        self.model_.train()
+        epoch_loss = torch.empty(0).to(self.device_)
+        for x, y in tqdm.tqdm(self.train_loader_):
+            self.optimizer_.zero_grad()
+            loss = self.one_step_loss(x, y)
+            loss.backward()
+            self.optimizer_.step()
+            epoch_loss = torch.hstack((epoch_loss, loss.detach().clone()))
+        self.train_loss = torch.hstack((self.train_loss, mean_loss := torch.mean(epoch_loss)))
+        self.scheduler_.step()
+        return mean_loss
+
+    def one_epoch_validate(self):
         self.model_.eval()
-        with torch.no_grad():
-            _vali_loss = torch.empty(0).to(self.device_)
-            for data, label in tqdm.tqdm(self.validate_loader_):
-                loss = self.one_step_loss(data, label)
-                _vali_loss = torch.hstack((_vali_loss, loss))
-            self.validate_loss_ = torch.hstack((self.validate_loss_, torch.mean(_vali_loss)))
-            log(f"validate done, validate loss: {torch.mean(_vali_loss)}")
+        self.classifier_tester_.set_dataloader(self.validate_loader_, n_class=hyper_para.CLASS_CNT)
+        self.classifier_tester_.evaluate_model()
+        return torch.mean(self.classifier_tester_.loss_)
 
-    def eval_model_dump_eval_result(self):
+    def one_epoch(self, epoch_iota: int):
+        log(f"Epoch: {epoch_iota} start.")
+        train_loss = self.one_epoch_train()
+        validate_loss = self.one_epoch_validate()
+        log(f"Epoch({epoch_iota}) end. train loss: {train_loss}, validate loss: {validate_loss}")
+
+
+    def final_test_and_dump_result(self):
         self.eval_result_ = (self.classifier_tester_
                              .set_dataloader(self.test_loader_, hyper_para.CLASS_CNT)
                              .evaluate_model())
@@ -153,7 +160,11 @@ class TrainApp:
 
         torch.save(self.train_loss, compose_path("train_loss.pt"))
         torch.save(self.validate_loss_, compose_path("validate_loss.pt"))
-        log(self.eval_result_)
+
+        log(
+            "\n".join([f"{k}:\n{v}" for k, v in self.eval_result_.items()])
+        )
+
         plt.plot(self.train_loss.detach().cpu().numpy(), label="train loss")
         plt.plot(self.validate_loss_.detach().cpu().numpy(), label="validate loss")
         plt.title("Train and Validate Loss")
@@ -191,7 +202,8 @@ class TrainApp:
         # region train
         log("Start training.")
         try:
-            self.train()
+            for epoch_iota in range(self.epoch_cnt):
+                self.one_epoch(epoch_iota)
         except Exception as e:
             log("Training failed. Error as follows:\n" + f"{e}", exc_info=True)
             log(f"Dumping checkpoint... to checkpoint_{self.check_point_iota_}.pt")
@@ -202,7 +214,7 @@ class TrainApp:
         # region eval and dump checkpoint
         try:
             log("Evaluating model...")
-            self.eval_model_dump_eval_result()
+            self.final_test_and_dump_result()
             log("Evaluated. dump eval result to eval_result.txt.")
         except Exception as e:
             log("Eval failed. Error as follows:\n" + f"{e}", exc_info=True)

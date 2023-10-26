@@ -4,7 +4,7 @@ import torch
 import torch.utils.data as tch_data
 
 import MakeDummyModel
-from src.OneHotClassifcationTester import OneHotClassificationTester
+from src.MonoLabelClassifcationTester import MonoLabelClassificationTester
 
 
 class OneHotClassificationTesterUnitTest(unittest.TestCase):
@@ -18,7 +18,7 @@ class OneHotClassificationTesterUnitTest(unittest.TestCase):
         self.dataset, _, _ = tch_data.random_split(self.dataset, [0.2, 0.2, 0.6])
         self.dataloader = tch_data.DataLoader(self.dataset, batch_size=100)
 
-        self.one_hot_tester = OneHotClassificationTester(self.dummy_model, torch.device("cuda:0"))
+        self.one_hot_tester = MonoLabelClassificationTester(self.dummy_model, torch.device("cuda:0"))
         self.one_hot_tester.set_dataloader(self.dataloader, 10)
         self.one_hot_tester.set_loss_function(
             MakeDummyModel.get_loss_function()

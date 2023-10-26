@@ -5,7 +5,7 @@ import sklearn.metrics as metrics
 import torch
 
 
-class OneHotClassificationTester:
+class MonoLabelClassificationTester:
 
     def __init__(self,
                  model: torch.nn.Module,
@@ -24,15 +24,15 @@ class OneHotClassificationTester:
         self.f1_score_ = None
         self.hamming_loss_ = None
 
-        self.y_predict_ = None
-        self.y_true_ = None
-        self.loss_ = None
+        self.y_predict_ = None  # np.ndarray
+        self.y_true_ = None  # np.ndarray
+        self.loss_ = None  # torch.Tensor
 
-    def set_loss_function(self, loss: typing.Callable) -> "OneHotClassificationTester":
+    def set_loss_function(self, loss: typing.Callable) -> "MonoLabelClassificationTester":
         self.loss_fn_ = loss
         return self
 
-    def set_dataloader(self, dataloader, n_class: int) -> "OneHotClassificationTester":
+    def set_dataloader(self, dataloader, n_class: int) -> "MonoLabelClassificationTester":
         self.dataloader_ = dataloader
         self.n_classes_ = n_class
         self.y_predict_ = torch.zeros(0, dtype=torch.int32).to(self.device_)
@@ -40,7 +40,7 @@ class OneHotClassificationTester:
         self.loss_ = torch.zeros(0, dtype=torch.int32).to(self.device_)
         return self
 
-    def predict_all(self) -> "OneHotClassificationTester":
+    def predict_all(self) -> "MonoLabelClassificationTester":
         if self.dataloader_ is None or self.y_predict_ is None or self.y_true_ is None:
             raise ValueError("dataloader, y_predict, y_true is None, use set_dataloader() before calling predict_all")
         self.model_.eval()
@@ -63,30 +63,29 @@ class OneHotClassificationTester:
 
         self.y_true_: np.ndarray = self.y_true_.detach().cpu().numpy()
         self.y_predict_: np.ndarray = self.y_predict_.detach().cpu().numpy()
-        self.loss_: np.ndarray = self.loss_.detach().cpu().numpy()
         return self
 
-    def calculate_confusion_matrix(self) -> "OneHotClassificationTester":
+    def calculate_confusion_matrix(self) -> "MonoLabelClassificationTester":
         self.confusion_matrix_ = metrics.confusion_matrix(self.y_true_, self.y_predict_)
         return self
 
-    def calculate_accuracy(self, ) -> "OneHotClassificationTester":
+    def calculate_accuracy(self, ) -> "MonoLabelClassificationTester":
         self.accuracy_ = metrics.accuracy_score(self.y_true_, self.y_predict_)
         return self
 
-    def calculate_precision(self, ) -> "OneHotClassificationTester":
+    def calculate_precision(self, ) -> "MonoLabelClassificationTester":
         self.precision_ = metrics.precision_score(self.y_true_, self.y_predict_, average="macro", zero_division=np.nan)
         return self
 
-    def calculate_recall(self, ) -> "OneHotClassificationTester":
+    def calculate_recall(self, ) -> "MonoLabelClassificationTester":
         self.recall_ = metrics.recall_score(self.y_true_, self.y_predict_, average="macro", zero_division=np.nan)
         return self
 
-    def calculate_f1_score(self, ) -> "OneHotClassificationTester":
+    def calculate_f1_score(self, ) -> "MonoLabelClassificationTester":
         self.f1_score_ = metrics.f1_score(self.y_true_, self.y_predict_, average="macro", zero_division=np.nan)
         return self
 
-    def calculate_hamming_loss(self, ) -> "OneHotClassificationTester":
+    def calculate_hamming_loss(self, ) -> "MonoLabelClassificationTester":
         self.hamming_loss_ = metrics.hamming_loss(self.y_true_, self.y_predict_)
         return self
 
@@ -115,7 +114,7 @@ class OneHotClassificationTester:
         self.calculate_all_metrics()
         return self.status_map()
 
-    def calculate_all_metrics(self) -> "OneHotClassificationTester":
+    def calculate_all_metrics(self) -> "MonoLabelClassificationTester":
         if self.y_true_ is None or self.y_predict_ is None:
             raise ValueError("y_true, y_predict is None, use predict_all() before calling calculate_all_metrics")
         if isinstance(self.y_true_, torch.Tensor) or isinstance(self.y_predict_, torch.Tensor):
