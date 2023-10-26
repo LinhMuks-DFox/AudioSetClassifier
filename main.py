@@ -179,7 +179,7 @@ class TrainApp:
         try:
             for epoch_iota in range(self.epoch_cnt):
                 self.one_epoch(epoch_iota)
-                if epoch_iota % hyper_para.SCHEDULAR_STEP_SIZE == 0 and epoch_iota != 0:
+                if epoch_iota % hyper_para.SCHEDULER_INTERVAL == 0 and epoch_iota != 0:
                     self.scheduler_.step()
         except Exception as e:
             log("Training failed. Error as follows:\n" + f"{e}", exc_info=True)
