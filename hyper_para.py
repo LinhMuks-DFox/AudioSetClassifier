@@ -3,8 +3,8 @@ import torch
 
 import train_config
 
-MODEL = "RES34"
-CLASS_CNT = 10  # Audio set contains 527 class labels
+MODEL = "RES18"
+CLASS_CNT = 2
 TRAIN_DEVICE = "cuda:0"
 DATA_TRANSFORM_DEVICE = "cuda:1"
 BATCH_SIZE = 100
@@ -14,12 +14,12 @@ SCHEDULAR_GAMMA = 0.9
 SCHEDULAR_STEP_SIZE = 1
 DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
-VALIDATE_TEST_SPLIT = [0.2, 0.8]
+VALIDATE_TEST_SPLIT = [0.5, 0.5]
 OPTIMIZER = "Adam"
 CHECK_POINT_INTERVAL = 10
 ONT_HOT_LABEL = True
 LOSS_FUNCTION = {
-    "name": "NLLLoss",
+    "name": "CrossEntropy",
     "arg": {"reduction": "mean"}
 }
 SCHEDULER = "StepLR"
@@ -98,4 +98,4 @@ dry run data set length: {DRY_RUN_DATE_SET_LENGTH}
 if train_config.DRY_RUN:
     TRAIN_HYPER_PARA_SUMMARY += DRY_RUN_MESSAGE
 
-RANDOM_SEED = 666
+RANDOM_SEED = 777
