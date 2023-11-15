@@ -123,7 +123,8 @@ class TrainApp:
         plt.legend()
         plt.xlabel("epoch(int)")
         plt.ylabel("loss(float)")
-        plt.savefig(compose_path("train_validate_loss.png"), dpi=300)
+        plt.title(f"Train and validate loss({hyper_para.DATA_SET})")
+        plt.savefig(compose_path(f"{hyper_para.DATA_SET}_train_validate_loss.png"), dpi=300)
         plt.clf()
 
         e = self.classifier_tester_.set_dataloader(
@@ -140,7 +141,7 @@ class TrainApp:
             f.write("\n".join([str(row) for row in self.classifier_tester_.confusion_matrix_]))
         plt.matshow(self.classifier_tester_.confusion_matrix_)
         plt.title("Final test confusion matrix")
-        plt.savefig(compose_path("final_test_confusion_matrix.png"), dpi=300)
+        plt.savefig(compose_path(f"{hyper_para.DATA_SET}_final_test_confusion_matrix.png"), dpi=300)
         plt.clf()
 
     def dump_checkpoint(self, name: str = None):
