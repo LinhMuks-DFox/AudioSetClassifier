@@ -69,7 +69,14 @@ def make_dataset(json_path: str = None,
             orig_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("orig_freq"),
             new_freq=hyper_para.AUDIO_PRE_TRANSFORM.get("resample").get("new_freq"),
             output_size=hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE,
-            one_hot_label=ont_hot_label
+            one_hot_label=ont_hot_label,
+            light_dis=hyper_para.LIGHT_PROPA.get("distance"),
+            light_bias=hyper_para.LIGHT_PROPA.get("bias"),
+            light_std=hyper_para.LIGHT_PROPA.get("std"),
+            camera_source_sr=hyper_para.CAMERA_RESPONSE.get("source_sample_rate"),
+            camera_frame_rate=hyper_para.CAMERA_RESPONSE.get("camera_sample_rate"),
+            camera_temperature=hyper_para.CAMERA_RESPONSE.get("temperature"),
+            sound_power_data_count=hyper_para.AUTO_ENCODER_MODEL.get("encoder_output_feature"),
         )
     elif dataset_type == "encoded":
         return AutoEncodedAudioSet(
