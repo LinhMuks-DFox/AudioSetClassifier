@@ -5,8 +5,8 @@ import train_config
 
 MODEL = "RES18"
 CLASS_CNT = 2
-TRAIN_DEVICE = "cuda:1"
-DATA_TRANSFORM_DEVICE = "cuda:1"
+TRAIN_DEVICE = "cpu"
+DATA_TRANSFORM_DEVICE = "cpu"
 BATCH_SIZE = 140
 EPOCHS = 60
 LEARNING_RATE = 1e-6
@@ -18,7 +18,7 @@ SCHEDULER_PARAMETER = {
 
 }
 SCHEDULER_INTERVAL = 10
-DATA_SET = "encoded"  # "ideal", "sound_power", "encoded"
+DATA_SET = "sound_power"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 VALIDATE_TEST_SPLIT = [0.5, 0.5]
 OPTIMIZER = "Adam"
@@ -42,7 +42,15 @@ AUDIO_PRE_TRANSFORM = {
     }
 
 }
-
+CAMERA_RESPONSE = {
+    "source_sample_rate": 15,
+    "camera_sample_rate": 30
+}
+LIGHT_PROPA = {
+    "distance": 5,  # 5m
+    "bias": 0.1,  # 10% bias from env
+    "std": 0.05
+}
 AUTO_ENCODER_MODEL = {
     "conv_kernel_size": np.array([[3, 3],
                                   [5, 5],
