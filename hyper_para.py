@@ -44,7 +44,8 @@ AUDIO_PRE_TRANSFORM = {
 }
 CAMERA_RESPONSE = {
     "source_sample_rate": 15,
-    "camera_sample_rate": 30
+    "camera_sample_rate": 30,
+    "temperature": 0.1
 }
 LIGHT_PROPA = {
     "distance": 5,  # 5m
@@ -81,7 +82,7 @@ AUTO_ENCODER_MODEL = {
     "conv_output_channel": np.array([1, 8, 64, 32, 8, 1]),
     "conv_type": torch.nn.Conv2d
 }
-ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE = (1, 10, 80)  # 5s -> 400, 10s -> 800; 10 * 80 => 80floats per second
+ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE = (1, 30, 40)  # 5s -> 300, 10s -> 600; 10 * 80 => 80floats per second
 # region DRY_RUN
 DRY_RUN_EPOCHS = 3
 DYR_RUN_BATCH_SIZE = 30
