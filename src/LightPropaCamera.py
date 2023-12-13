@@ -33,7 +33,7 @@ class CameraResponse(nn.Module):
         self.resample = torchaudio.transforms.Resample(
             orig_freq=signal_source_sample_rate,
             new_freq=frame_rate,
-            resampling_method='sinc_interpolation'
+            resampling_method='sinc_interp_hann'
         )
 
     def forward(self, x):
@@ -64,3 +64,20 @@ class LightToCamera(nn.Module):
 
     def forward(self, x):
         return self.camera(self.light_propa(x))
+
+
+if __name__ == "__main__":
+    dummy_data = torch.arange(600)
+    dummy_data = dummy_data.reshape((4, -1))
+    light = LightPropagation(
+        distance=5, bias=0.1, std=0.05
+    )
+    camera = CameraResponse(
+        signal_source_sample_rate=15, frame_rate=30,
+    )
+    dummy_data = light(dummy_data)
+    print("before camera:", dummy_data.shape)
+    dummy_data = camera(dummy_data)
+    print("After camera", dummy_data.shape)
+    # print(dummy_data.shape)
+    dummy_data.reshape((40, 30))
