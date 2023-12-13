@@ -13,3 +13,9 @@ def label_digit2tensor(label_digits: typing.List[int], class_num=527) -> torch.T
 
 def fix_length(audio_data: torch.Tensor, sample_length: int) -> torch.Tensor:
     return torch.nn.functional.pad(audio_data, (0, sample_length - audio_data.shape[1]))
+
+
+def blinky_data_normalize(data: torch.Tensor):
+    data_min = torch.min(data)
+    de_min = data - data_min
+    return de_min / torch.max(de_min)
