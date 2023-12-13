@@ -5,18 +5,20 @@ import train_config
 
 MODEL = "RES18"
 CLASS_CNT = 2
-TRAIN_DEVICE = "cuda:0"
+TRAIN_DEVICE = "cuda:1"
 DATA_TRANSFORM_DEVICE = "cuda:1"
-BATCH_SIZE = 130
-EPOCHS = 100
+BATCH_SIZE = 140
+EPOCHS = 60
 LEARNING_RATE = 1e-6
 SCHEDULER = "MultiStepLR"
 SCHEDULER_PARAMETER = {
     "gamma": 0.1,
-    "milestones": [50, 75, 85, 90],
+    # "milestones": [50, 100, 125, 145, 160, 170, 180, 175, 180, 185, 190, 195, 197],
+    "milestones": [10, 20, 30, 35, 40, 45, 50, 55],
+
 }
 SCHEDULER_INTERVAL = 10
-DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
+DATA_SET = "encoded"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 VALIDATE_TEST_SPLIT = [0.5, 0.5]
 OPTIMIZER = "Adam"
