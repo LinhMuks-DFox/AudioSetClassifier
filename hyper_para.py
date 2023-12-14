@@ -5,8 +5,8 @@ import train_config
 
 MODEL = "RES18"
 CLASS_CNT = 2
-TRAIN_DEVICE = "cpu"
-DATA_TRANSFORM_DEVICE = "cpu"
+TRAIN_DEVICE = "cuda:0"
+DATA_TRANSFORM_DEVICE = "cuda:0"
 BATCH_SIZE = 140
 EPOCHS = 60
 LEARNING_RATE = 1e-6
@@ -18,7 +18,7 @@ SCHEDULER_PARAMETER = {
 
 }
 SCHEDULER_INTERVAL = 10
-DATA_SET = "sound_power"  # "ideal", "sound_power", "encoded"
+DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 VALIDATE_TEST_SPLIT = [0.5, 0.5]
 OPTIMIZER = "Adam"
@@ -77,7 +77,7 @@ AUTO_ENCODER_MODEL = {
                                (1, 1),
                                (1, 1),
                                (1, 1),)),
-    "encoder_output_feature": 400,  # ((CAMERA_FPS * FIX_LENGTH) // 3) * 2 * BLINKY_LED_CNT
+    "encoder_output_feature": 300,  # ((CAMERA_FPS * FIX_LENGTH) // 3) * 2 * BLINKY_LED_CNT
     "convolution_times": 6,
     "conv_output_channel": np.array([1, 8, 64, 32, 8, 1]),
     "conv_type": torch.nn.Conv2d
