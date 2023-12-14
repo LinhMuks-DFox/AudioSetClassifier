@@ -101,6 +101,7 @@ def make_dataset(json_path: str = None,
             camera_source_sr=hyper_para.CAMERA_RESPONSE.get("source_sample_rate"),
             camera_frame_rate=hyper_para.CAMERA_RESPONSE.get("camera_sample_rate"),
             camera_temperature=hyper_para.CAMERA_RESPONSE.get("temperature"),
+            compile_model=train_config.COMPILE_MODEL
         )
     else:
         raise ValueError("Unknown data set type")
