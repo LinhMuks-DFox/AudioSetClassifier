@@ -7,18 +7,18 @@ MODEL = "RES18"
 CLASS_CNT = 2
 TRAIN_DEVICE = "cuda:0"
 DATA_TRANSFORM_DEVICE = "cuda:0"
-BATCH_SIZE = 140
-EPOCHS = 60
+BATCH_SIZE = 215
+EPOCHS = 80
 LEARNING_RATE = 1e-6
 SCHEDULER = "MultiStepLR"
 SCHEDULER_PARAMETER = {
     "gamma": 0.1,
     # "milestones": [50, 100, 125, 145, 160, 170, 180, 175, 180, 185, 190, 195, 197],
-    "milestones": [10, 20, 30, 35, 40, 45, 50, 55],
+    "milestones": [10, 20, 30, 40, 50, 60, 70],
 
 }
 SCHEDULER_INTERVAL = 10
-DATA_SET = "ideal"  # "ideal", "sound_power", "encoded"
+DATA_SET = "encoded"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 VALIDATE_TEST_SPLIT = [0.5, 0.5]
 OPTIMIZER = "Adam"
@@ -48,9 +48,9 @@ CAMERA_RESPONSE = {
     "temperature": 0.1
 }
 LIGHT_PROPA = {
-    "distance": 5,  # 5m
-    "bias": 0.1,  # 10% bias from env
-    "std": 0.05
+    "distance": 1,  # 5m
+    "bias": 0,  # 10% bias from env
+    "std": 0
 }
 AUTO_ENCODER_MODEL = {
     "conv_kernel_size": np.array([[3, 3],
