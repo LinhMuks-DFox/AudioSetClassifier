@@ -30,7 +30,7 @@ CPU_N_WORKERS: int = 23
 TRAIN_ID = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
 DUMP_PATH = f"./pth_bin/latent600-ablation/{TRAIN_ID}"
 CLASS_LABELS_INDICES = r"subset_json/music_speech/sub_set_cls_label_idx.json"
-AUTO_ENCODER_MODEL_PATH = r"pre_trained_encoder/2023-7-27-ablation/normal/encoder.pth"
+AUTO_ENCODER_MODEL_PATH = r"pre_trained_encoder/latent600/encoder.pth"
 TRAIN_CONFIG_SUMMARY = f"""
 Train config summary of {TRAIN_ID}:
 IN_DOCKER : {IN_DOCKER}
