@@ -79,6 +79,10 @@ class TrainApp:
         log("Loading class_label_indices.json")
         with open(train_config.CLASS_LABELS_INDICES, "r") as f:
             self.class2label = json.load(f)
+
+        if train_config.COMPILE_MODEL:
+            log("Compiling model")
+            torch.compile(self.model_)
         log("Init-done")
 
     def one_step_loss(self, data: torch.Tensor, label: torch.Tensor) -> torch.Tensor:
@@ -165,7 +169,6 @@ class TrainApp:
             f"Random seed: {hyper_para.RANDOM_SEED}\n"
         )
         # endregion
-
         # region backup
         shutil.copy("train_config.py", compose_path("train_config.py"))
         shutil.copy("hyper_para.py", compose_path("hyper_para.py"))

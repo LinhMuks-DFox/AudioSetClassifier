@@ -37,7 +37,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                  output_size: tuple = (10, 80),
                  transform_device: torch.device = torch.device('cpu'),
                  one_hot_label: bool = True,
-
+                 compile_model: bool = False
                  ):
         # region data fetch-transform
         self.transform_device_ = transform_device
@@ -88,8 +88,9 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
             signal_source_sample_rate=camera_source_sr,
             frame_rate=camera_frame_rate,
             temperature=camera_temperature
-        )
-        self.light_camera_.to(self.transform_device_)
+        ).to(self.transform_device_)
+        if compile_model:
+            torch.compile(self.auto_encoder)
 
     def __len__(self):
         return len(self.audio_fetcher_)

@@ -2,6 +2,8 @@ import datetime
 import os.path
 import platform
 
+import torch
+
 IN_DOCKER: bool = os.environ.get("IN_DOCKER_CONTAINER", False)
 
 if "win" in (plf := platform.platform().lower()):
@@ -25,7 +27,7 @@ else:
     TRAIN_DATA_SET_JSON: str = r"./subset_json/music_speech/sub_train.json"
 
 PLATFORM: str = plf
-DRY_RUN: bool = True
+DRY_RUN: bool = False
 CPU_N_WORKERS: int = 23
 TRAIN_ID = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
 DUMP_PATH = f"./pth_bin/latent600-ablation/{TRAIN_ID}"
@@ -39,3 +41,6 @@ DRY_RUN : {DRY_RUN}
 DUMP_PATH : {DUMP_PATH}
 PLATFORM : {PLATFORM}
 """
+
+if torch.version.__version__[0] == "2" and "linux" in PLATFORM:
+    COMPILE_MODEL = True
