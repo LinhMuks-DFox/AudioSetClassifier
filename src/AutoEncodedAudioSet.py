@@ -8,7 +8,7 @@ from lib.AutoEncoder.AudioEncoder import AudioEncoder
 from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparameter
 from . import tags
 from .LightPropaCamera import LightToCamera
-from .util import label_digit2tensor, fix_length
+from .util import label_digit2tensor, fix_length, blinky_data_normalize
 from typing import Union
 
 
@@ -125,6 +125,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         pres5s_auto_encoded = self.auto_encoder(prev5s_spe_db)
         posts5s_auto_encoded = self.auto_encoder(post5s_spe_db)
         x = torch.hstack([pres5s_auto_encoded, posts5s_auto_encoded])
+        x = blinky_data_normalize(x)  # normalize to [0, 1]
         x = x.reshape((4, -1))  # for 4 LED
         x = self.light_camera_(x)
         x = x.reshape((-1,))  # flatten
