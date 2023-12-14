@@ -47,7 +47,7 @@ class SoundPowerAudioSet(tch_data.Dataset):
             signal_source_sample_rate=camera_source_sr,
             frame_rate=camera_frame_rate,
             temperature=camera_temperature
-        )
+        ).to(self.transform_device_)
 
     def __len__(self):
         return len(self.audio_fetcher_)
@@ -68,7 +68,11 @@ class SoundPowerAudioSet(tch_data.Dataset):
         sound_power = blinky_data_normalize(sound_power)
         # reshape them to 4 * N tensor, cause blinky has 4 LED.
         sound_power = sound_power.reshape((4, -1))
-        # propagate value by light, and capture it with camera
+        # propagate value by light, and capture it with camera, (4 * 150) -> (4 * 300)
         sound_power = self.light_camera_(sound_power)
+        # flatten the tensor, for now, we have 4 * 300 = 1200 floats
+        sound_power = sound_power.reshape((-1,))
+        # reshape to the output size
+        sound_power = sound_power.reshape(self.output_size_)
         label = label_digit2tensor(label_digits, self.n_class) if self.one_hot_label_ else torch.tensor(label_digits)
         return torch.reshape(sound_power, self.output_size_), label
