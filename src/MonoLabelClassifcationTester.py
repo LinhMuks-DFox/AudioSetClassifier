@@ -75,15 +75,15 @@ class MonoLabelClassificationTester:
         return self
 
     def calculate_precision(self, ) -> "MonoLabelClassificationTester":
-        self.precision_ = metrics.precision_score(self.y_true_, self.y_predict_, average="macro", zero_division=np.nan)
+        self.precision_ = metrics.precision_score(self.y_true_, self.y_predict_, average="macro", zero_division=0)
         return self
 
     def calculate_recall(self, ) -> "MonoLabelClassificationTester":
-        self.recall_ = metrics.recall_score(self.y_true_, self.y_predict_, average="macro", zero_division=np.nan)
+        self.recall_ = metrics.recall_score(self.y_true_, self.y_predict_, average="macro", zero_division=0)
         return self
 
     def calculate_f1_score(self, ) -> "MonoLabelClassificationTester":
-        self.f1_score_ = metrics.f1_score(self.y_true_, self.y_predict_, average="macro", zero_division=np.nan)
+        self.f1_score_ = metrics.f1_score(self.y_true_, self.y_predict_, average="macro", zero_division=0)
         return self
 
     def calculate_hamming_loss(self, ) -> "MonoLabelClassificationTester":
