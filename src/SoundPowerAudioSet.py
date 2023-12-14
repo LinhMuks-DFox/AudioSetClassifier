@@ -39,12 +39,11 @@ class SoundPowerAudioSet(tch_data.Dataset):
         self.sample_length_ = self.sample_seconds_ * self.new_freq_
         self.n_class = n_class
         self.one_hot_label_ = one_hot_label
-
         self.light_camera_ = LightToCamera(
             distance=light_dis,
             bias=light_bias,
             std=light_std,
-            signal_source_sample_rate=camera_source_sr,
+            signal_source_sample_rate=self.new_freq_ // 4,
             frame_rate=camera_frame_rate,
             temperature=camera_temperature
         ).to(self.transform_device_)
@@ -58,21 +57,18 @@ class SoundPowerAudioSet(tch_data.Dataset):
 
     def __getitem__(self, index):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
+        # print(torch.min(sample), torch.max(sample))
         sample: torch.Tensor = self.track_selector_(sample)
         sample = sample.to(self.transform_device_)
         sample = self.resampler_(sample)
-        sample = fix_length(sample, self.sample_length_)
-        # split sample to 800 chunks
-        reshaped_sample = sample.view((self.sound_power_data_count_, -1))  # 16000Hz * 10s // 800 = 200
-        sound_power = torch.sum(reshaped_sample ** 2, dim=1)
-        sound_power = blinky_data_normalize(sound_power)
-        # reshape them to 4 * N tensor, cause blinky has 4 LED.
+        sample = fix_length(sample, self.sample_length_)  # 16k * 10s
+        # sample = sample.reshape((4, -1))
+        sound_power = sample ** 2
+        # sound_power = blinky_data_normalize(sound_power)
         sound_power = sound_power.reshape((4, -1))
-        # propagate value by light, and capture it with camera, (4 * 150) -> (4 * 300)
         sound_power = self.light_camera_(sound_power)
-        # flatten the tensor, for now, we have 4 * 300 = 1200 floats
-        sound_power = sound_power.reshape((-1,))
-        # reshape to the output size
-        sound_power = sound_power.reshape(self.output_size_)
+        # print(sound_power.shape)
+        sound_power = sound_power.reshape((-1, ))
+        # print(sound_power.shape)
         label = label_digit2tensor(label_digits, self.n_class) if self.one_hot_label_ else torch.tensor(label_digits)
         return torch.reshape(sound_power, self.output_size_), label
