@@ -7,7 +7,9 @@ from lib.AudioSet.IO import JsonBasedAudioSet
 from lib.AutoEncoder.AudioEncoder import AudioEncoder
 from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparameter
 from . import tags
+from .LightPropaCamera import LightToCamera
 from .util import label_digit2tensor, fix_length
+from typing import Union
 
 
 @tags.stable_api
@@ -25,10 +27,17 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
                  hop_length: int,
                  win_length: int,
                  normalized: bool,
+                 light_dis: float,
+                 light_bias: Union[float, None],
+                 light_std: float,
+                 camera_source_sr: int,
+                 camera_frame_rate: int,
+                 camera_temperature: float = 0.1,
                  sample_seconds: int = 10,
                  output_size: tuple = (10, 80),
                  transform_device: torch.device = torch.device('cpu'),
-                 one_hot_label: bool = True
+                 one_hot_label: bool = True,
+
                  ):
         # region data fetch-transform
         self.transform_device_ = transform_device
@@ -72,6 +81,15 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         self.auto_encoder.to(self.transform_device_)
         self.one_hot_label_ = one_hot_label
         # endregion
+        self.light_camera_ = LightToCamera(
+            distance=light_dis,
+            bias=light_bias,
+            std=light_std,
+            signal_source_sample_rate=camera_source_sr,
+            frame_rate=camera_frame_rate,
+            temperature=camera_temperature
+        )
+        self.light_camera_.to(self.transform_device_)
 
     def __len__(self):
         return len(self.audio_fetcher_)
@@ -98,16 +116,17 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         track = self.resampler_(track)
         track = fix_length(track, self.sample_length_)
         prev5s, post5s = track[:, :80000], track[:, 80000:]  # 10s * 16000Hz = 160000 samples
-
         prev5s_spe = self.spectrogram_converter_(prev5s)
         post5s_spe = self.spectrogram_converter_(post5s)
-
         prev5s_spe_db = self.amplitude_trans_(prev5s_spe)
         post5s_spe_db = self.amplitude_trans_(post5s_spe)
         prev5s_spe_db, post5s_spe_db = prev5s_spe_db.to(self.transform_device_), post5s_spe_db.to(
             self.transform_device_)
         pres5s_auto_encoded = self.auto_encoder(prev5s_spe_db)
         posts5s_auto_encoded = self.auto_encoder(post5s_spe_db)
-
         x = torch.hstack([pres5s_auto_encoded, posts5s_auto_encoded])
-        return x.reshape(*self.output_size_), label
+        x = x.reshape((4, -1))  # for 4 LED
+        x = self.light_camera_(x)
+        x = x.reshape((-1,))  # flatten
+        x = x.reshape(self.output_size_)
+        return x, label
