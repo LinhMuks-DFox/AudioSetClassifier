@@ -70,6 +70,7 @@ class TrainApp:
         self.optimizer_ = train_prepare.make_optimizer(self.model_)
         self.scheduler_ = train_prepare.make_scheduler(self.optimizer_)
         self.validate_loss_, self.train_loss = [torch.empty(0).to(self.device_) for _ in range(2)]
+        self.precision_log_, self.recall_log_, self.acc_log_ = [], [], []
         self.classifier_tester_ = MonoLabelClassificationTester(self.model_, self.device_)
         self.classifier_tester_.set_loss_function(self.loss_function_)
         self.model_.to(self.device_)
@@ -110,15 +111,22 @@ class TrainApp:
         self.classifier_tester_.evaluate_model()
         self.validate_loss_ = torch.hstack((self.validate_loss_,
                                             torch.mean(self.classifier_tester_.loss_)))
-        return torch.mean(self.classifier_tester_.loss_)
+        return torch.mean(self.classifier_tester_.loss_), self.classifier_tester_.status_map()
 
     def one_epoch(self, epoch_iota: int):
         log(f"Epoch: {epoch_iota} start.")
         train_loss = self.one_epoch_train()
-        validate_loss = self.one_epoch_validate()
+        validate_loss, evaluator_status_map = self.one_epoch_validate()
+        self.acc_log_.append(acc := evaluator_status_map['accuracy'])
+        self.recall_log_.append(rec := evaluator_status_map['recall'])
+        self.precision_log_.append(prec := evaluator_status_map['precision'])
         log(f"Epoch({epoch_iota}) end. train loss: {train_loss}, "
-            f"validate loss: {validate_loss}, "
-            f"learning rate: {self.optimizer_.param_groups[0]['lr']}")
+            f"Validate loss: {validate_loss}, "
+            f"Learning rate: {self.optimizer_.param_groups[0]['lr']}, "
+            f"Acc:{acc}, "
+            f"Precision:{prec}, "
+            f"Recall: {rec}"
+            )
 
     def final_test_and_dump_result(self):
         train_loss, validate_loss = [x.detach().cpu().numpy() for x in [self.train_loss, self.validate_loss_]]
@@ -131,6 +139,14 @@ class TrainApp:
         plt.savefig(compose_path(f"{hyper_para.DATA_SET}_train_validate_loss.png"), dpi=300)
         plt.clf()
 
+        plt.plot(self.acc_log_, label="acc.")
+        plt.plot(self.recall_log_, label="recall")
+        plt.plot(self.precision_log_, label="precision")
+        plt.legend()
+        plt.title("Acc., Recall, Precision")
+        plt.xlabel("epoch(int)")
+        plt.ylabel("Value(0~100%)")
+        plt.savefig(compose_path(f"{hyper_para.DATA_SET}_acc_pre_rec.png"), dpi=300)
         e = self.classifier_tester_.set_dataloader(
             self.test_loader_,
             n_class=hyper_para.CLASS_CNT
