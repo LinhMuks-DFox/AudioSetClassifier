@@ -15,7 +15,7 @@ SCHEDULER_PARAMETER = {
     "gamma": 0.5,
     # "milestones": [50, 100, 125, 145, 160, 170, 180, 175, 180, 185, 190, 195, 197],
     # "milestones": [10, 20, 30, 40, 45, 50, 55],
-    "milestones": [15, 30, 45,],
+    "milestones": [20, 30, 45,],
 
 }
 SCHEDULER_INTERVAL = 10
