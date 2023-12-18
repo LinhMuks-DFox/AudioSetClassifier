@@ -186,8 +186,8 @@ class TrainApp:
         )
         # endregion
         # region backup
-        shutil.copy("train_config.py", compose_path("train_config.py"))
-        shutil.copy("hyper_para.py", compose_path("hyper_para.py"))
+        shutil.copy("train_config.py", compose_path("train_config_bkp.py"))
+        shutil.copy("hyper_para.py", compose_path("hyper_para_bkp.py"))
         if hyper_para.DATA_SET == "encoded":
             log("Using dataset encoded, copying AutoEncoder model to dump path.")
             shutil.copytree("./lib/AutoEncoder", compose_path("AutoEncoder"))
