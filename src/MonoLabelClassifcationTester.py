@@ -41,26 +41,26 @@ class MonoLabelClassificationTester:
         self.loss_ = torch.zeros(0, dtype=torch.int32).to(self.device_)
         return self
 
+    @torch.no_grad()
     def predict_all(self) -> "MonoLabelClassificationTester":
         if self.dataloader_ is None or self.y_predict_ is None or self.y_true_ is None:
             raise ValueError("dataloader, y_predict, y_true is None, use set_dataloader() before calling predict_all")
         self.model_.eval()
         self.model_.to(self.device_)
-        with torch.no_grad():
-            data: torch.Tensor
-            label: torch.Tensor
-            for data, label in tqdm.tqdm(self.dataloader_):
-                data = data.to(self.device_)
-                label = label.to(self.device_)
-                model_out = self.model_(data)
-                predicted_y = torch.argmax(model_out, dim=1)
-                if self.loss_fn_ is not None:
-                    self.loss_ = torch.hstack([self.loss_, self.loss_fn_(model_out, label)])
-                # if label is one-hot, convert it to int
-                if len(label.shape) > 1:
-                    label = torch.argmax(label, dim=1)
-                self.y_true_ = torch.cat([self.y_true_, label])
-                self.y_predict_ = torch.cat([self.y_predict_, predicted_y])
+        data: torch.Tensor
+        label: torch.Tensor
+        for data, label in tqdm.tqdm(self.dataloader_):
+            data = data.to(self.device_)
+            label = label.to(self.device_)
+            model_out = self.model_(data)
+            predicted_y = torch.argmax(model_out, dim=1)
+            if self.loss_fn_ is not None:
+                self.loss_ = torch.hstack([self.loss_, self.loss_fn_(model_out, label)])
+            # if label is one-hot, convert it to int
+            if len(label.shape) > 1:
+                label = torch.argmax(label, dim=1)
+            self.y_true_ = torch.cat([self.y_true_, label])
+            self.y_predict_ = torch.cat([self.y_predict_, predicted_y])
 
         self.y_true_: np.ndarray = self.y_true_.detach().cpu().numpy()
         self.y_predict_: np.ndarray = self.y_predict_.detach().cpu().numpy()

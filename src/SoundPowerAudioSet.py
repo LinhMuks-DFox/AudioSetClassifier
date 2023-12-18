@@ -55,6 +55,7 @@ class SoundPowerAudioSet(tch_data.Dataset):
         return f"SoundPowerAudioSet: {len(self)}, device: {self.transform_device_}, " \
                f"sample length: {self.sample_length_}, output size: {self.output_size_}"
 
+    @torch.no_grad()
     def __getitem__(self, index):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         # print(torch.min(sample), torch.max(sample))
@@ -68,7 +69,7 @@ class SoundPowerAudioSet(tch_data.Dataset):
         sound_power = sound_power.reshape((4, -1))
         sound_power = self.light_camera_(sound_power)
         # print(sound_power.shape)
-        sound_power = sound_power.reshape((-1, ))
+        sound_power = sound_power.reshape((-1,))
         # print(sound_power.shape)
         label = label_digit2tensor(label_digits, self.n_class) if self.one_hot_label_ else torch.tensor(label_digits)
         return torch.reshape(sound_power, self.output_size_), label

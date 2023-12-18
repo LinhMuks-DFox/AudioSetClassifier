@@ -109,6 +109,7 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         sample = self.amplitude_trans_(sample)
         return sample.shape
 
+    @torch.no_grad()
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         label = label_digit2tensor(label_digits, self.n_class) if self.one_hot_label_ else torch.tensor(label_digits)
@@ -127,8 +128,8 @@ class AutoEncodedAudioSet(torch.utils.data.Dataset):
         posts5s_auto_encoded = self.auto_encoder(post5s_spe_db)
         x = torch.hstack([pres5s_auto_encoded, posts5s_auto_encoded])
         x = blinky_data_normalize(x)  # normalize to [0, 1]
-        x = x.reshape((4, -1))  # for 4 LED
+        x = x.reshape((4, -1))  # for 4 LED, 4 *
         x = self.light_camera_(x)
-        x = x.reshape((-1,))  # flatten
+        # x = x.reshape((-1,))  # flatten
         x = x.reshape(self.output_size_)
         return x, label

@@ -44,6 +44,7 @@ class FullSpectroAudioSet(data.Dataset):
         self.n_class_ = n_class
         self.one_hot_label_ = one_hot_label
 
+    @torch.no_grad()
     def __getitem__(self, index: int):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
         sample: torch.Tensor = sample.to(self.transform_device_)
