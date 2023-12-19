@@ -7,24 +7,25 @@ MODEL = "RES18"
 CLASS_CNT = 2
 TRAIN_DEVICE = "cuda:0"
 DATA_TRANSFORM_DEVICE = "cuda:0"
-BATCH_SIZE = 220
-EPOCHS = 60
+BATCH_SIZE = 1000
+EPOCHS = 30
 LEARNING_RATE = 1e-6
 SCHEDULER = "MultiStepLR"
 SCHEDULER_PARAMETER = {
-    "gamma": 0.5,
+    "gamma": 0.9,
     # "milestones": [50, 100, 125, 145, 160, 170, 180, 175, 180, 185, 190, 195, 197],
-    # "milestones": [10, 20, 30, 40, 45, 50, 55],
-    "milestones": [20, 30, 45,],
+    "milestones": [10, 20, 30, 40, 45, 50, 55],
+    # "milestones": [20, 30, 45,],
 
 }
-SCHEDULER_INTERVAL = 10
-DATA_SET = "encoded"  # "ideal", "sound_power", "encoded"
+DATA_SET = "sound_power"  # "ideal", "sound_power", "encoded"
 TRAIN_TEST_VALIDATE_SPLIT = [0.8, 0.1, 0.1]
 VALIDATE_TEST_SPLIT = [0.5, 0.5]
 OPTIMIZER = "Adam"
 CHECK_POINT_INTERVAL = 10
 ONT_HOT_LABEL = True
+MODEL_SELECT_MILESTONE = 20  # from milestone 10, selected
+
 LOSS_FUNCTION = {
     "name": "CrossEntropy",
     "arg": {"reduction": "mean"}
@@ -83,34 +84,29 @@ AUTO_ENCODER_MODEL = {
     "conv_output_channel": np.array([1, 8, 64, 32, 8, 1]),
     "conv_type": torch.nn.Conv2d
 }
-ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE = (1, 30, 40)  # 5s -> 300, 10s -> 600; 10 * 80 => 80floats per second
+ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE = (1, 4, 300)  # 5s -> 300, 10s -> 600; 10 * 80 => 80floats per second
 # region DRY_RUN
-DRY_RUN_EPOCHS = 3
+DRY_RUN_EPOCHS = 10
 DYR_RUN_BATCH_SIZE = 30
 DRY_RUN_DATE_SET_LENGTH: int = 80
-
+DRY_MODEL_SELECT_MILESTONE = 2
 TRAIN_HYPER_PARA_SUMMARY = \
     f"""Hyperparameter summary: 
 model: {MODEL}
 class count: {CLASS_CNT}
 train device(in-hyperparameter): {TRAIN_DEVICE}
 data transforming device(in-hyperparameter): {DATA_TRANSFORM_DEVICE}
-batch size: {BATCH_SIZE}
+batch size: {BATCH_SIZE if not train_config.DRY_RUN else DYR_RUN_BATCH_SIZE}
 optimizer: {OPTIMIZER}
 loss function: {LOSS_FUNCTION}
 schedular: {SCHEDULER}
-epochs: {EPOCHS}
+epochs: {EPOCHS if not train_config.DRY_RUN else DRY_RUN_EPOCHS}
 learning rate: {LEARNING_RATE}
 schedular parameter: {SCHEDULER_PARAMETER}
 data set: {DATA_SET}
 train test validate split: {TRAIN_TEST_VALIDATE_SPLIT}
-"""
-DRY_RUN_MESSAGE = \
-    f"""dry run epochs: {DRY_RUN_EPOCHS}
-dry run batch size: {DYR_RUN_BATCH_SIZE}
-dry run data set length: {DRY_RUN_DATE_SET_LENGTH}
-"""
-if train_config.DRY_RUN:
-    TRAIN_HYPER_PARA_SUMMARY += DRY_RUN_MESSAGE
+validate test split: {VALIDATE_TEST_SPLIT}
+model select milestone: {MODEL_SELECT_MILESTONE if not train_config.DRY_RUN else DRY_MODEL_SELECT_MILESTONE}
+""" + f"dry run dataset length: {DRY_RUN_DATE_SET_LENGTH}" if train_config.DRY_RUN else ""
 
-RANDOM_SEED = 777
+RANDOM_SEED = 65536

@@ -44,6 +44,7 @@ class TrainApp:
     def __init__(self):
         log("Train Init")
         self.model_ = train_prepare.make_classifier()
+        # self.model_ = Classifier(1200, 2)
         self.train_dataset_ = train_prepare.make_dataset(json_path=train_config.TRAIN_DATA_SET_JSON,
                                                          audio_sample_path=train_config.TRAIN_DATA_SET_PATH)
         self.validate_test_dataset_ = train_prepare.make_dataset(json_path=train_config.EVAL_DATA_SET_JSON,
@@ -70,12 +71,19 @@ class TrainApp:
         self.optimizer_ = train_prepare.make_optimizer(self.model_)
         self.scheduler_ = train_prepare.make_scheduler(self.optimizer_)
         self.validate_loss_, self.train_loss = [torch.empty(0).to(self.device_) for _ in range(2)]
-        self.precision_log_, self.recall_log_, self.acc_log_ = [], [], []
+        self.precision_log_, self.recall_log_, self.acc_log_, self.f1_score_log_ = [], [], [], []
         self.classifier_tester_ = MonoLabelClassificationTester(self.model_, self.device_)
         self.classifier_tester_.set_loss_function(self.loss_function_)
         self.model_.to(self.device_)
         self.check_point_iota_: int = 0
         self.epoch_cnt = hyper_para.DRY_RUN_EPOCHS if train_config.DRY_RUN else hyper_para.EPOCHS
+        self.model_selection_milestone = \
+            hyper_para.DRY_MODEL_SELECT_MILESTONE \
+                if train_config.DRY_RUN else \
+                hyper_para.MODEL_SELECT_MILESTONE
+
+        self.best_f1_score_ = .0  # for selecting best model
+        self.best_model_occurred_epoch_ = -1  # for selecting best model
         train_prepare.set_torch_random_seed()
         log("Loading class_label_indices.json")
         with open(train_config.CLASS_LABELS_INDICES, "r") as f:
@@ -120,15 +128,19 @@ class TrainApp:
         self.acc_log_.append(acc := evaluator_status_map['accuracy'])
         self.recall_log_.append(rec := evaluator_status_map['recall'])
         self.precision_log_.append(prec := evaluator_status_map['precision'])
-        log(f"Epoch({epoch_iota}) end. train loss: {train_loss}, "
-            f"Validate loss: {validate_loss}, "
-            f"Learning rate: {self.optimizer_.param_groups[0]['lr']}, "
-            f"Acc:{acc}, "
-            f"Precision:{prec}, "
-            f"Recall: {rec}"
+        self.f1_score_log_.append(f1 := evaluator_status_map['f1_score_'])
+        log(f"Epoch({epoch_iota}) end.\nTrain loss: {train_loss}, "
+            f"Validate loss: {validate_loss}\n"
+            f"Learning rate: {self.optimizer_.param_groups[0]['lr']}\n"
+            f"Acc:{acc}\n"
+            f"Precision:{prec}\n"
+            f"Recall: {rec}\n"
+            f"F1 score: {evaluator_status_map['f1_score_']}\n"
             )
+        return train_loss, validate_loss, acc, rec, prec, f1
 
-    def final_test_and_dump_result(self):
+    def final_test_and_dump_result(self, epoch_iota: int = None):
+        prefix = "final" if epoch_iota is None else f"epoch_{epoch_iota}"
         train_loss, validate_loss = [x.detach().cpu().numpy() for x in [self.train_loss, self.validate_loss_]]
         plt.plot(train_loss, label="train_loss")
         plt.plot(validate_loss, label="validate_loss")
@@ -136,7 +148,7 @@ class TrainApp:
         plt.xlabel("epoch(int)")
         plt.ylabel("loss(float)")
         plt.title(f"Train and validate loss({hyper_para.DATA_SET})")
-        plt.savefig(compose_path(f"{hyper_para.DATA_SET}_train_validate_loss.png"), dpi=300)
+        plt.savefig(compose_path(f"{prefix}_{hyper_para.DATA_SET}_train_validate_loss.png"), dpi=300)
         plt.clf()
 
         plt.plot(self.acc_log_, label="acc.")
@@ -146,13 +158,13 @@ class TrainApp:
         plt.title("Acc., Recall, Precision")
         plt.xlabel("epoch(int)")
         plt.ylabel("Value(0~100%)")
-        plt.savefig(compose_path(f"{hyper_para.DATA_SET}_acc_pre_rec.png"), dpi=300)
+        plt.savefig(compose_path(f"{prefix}_{hyper_para.DATA_SET}_acc_pre_rec.png"), dpi=300)
         e = self.classifier_tester_.set_dataloader(
             self.test_loader_,
             n_class=hyper_para.CLASS_CNT
         ).evaluate_model()
-        torch.save(e, compose_path("final_test_eval_result.pt"))
-        with open(compose_path("final_test_eval_result.txt"), "w") as f:
+        torch.save(e, compose_path(f"{prefix}_test_eval_result.pt"))
+        with open(compose_path(f"{prefix}_test_eval_result.txt"), "w") as f:
             f.write("accuracy: " + str(self.classifier_tester_.accuracy_) + "\n")
             f.write("precision: " + str(self.classifier_tester_.precision_) + "\n")
             f.write("recall: " + str(self.classifier_tester_.recall_) + "\n")
@@ -161,14 +173,27 @@ class TrainApp:
             f.write("\n".join([str(row) for row in self.classifier_tester_.confusion_matrix_]))
         plt.matshow(self.classifier_tester_.confusion_matrix_)
         plt.title("Final test confusion matrix")
-        plt.savefig(compose_path(f"{hyper_para.DATA_SET}_final_test_confusion_matrix.png"), dpi=300)
+        plt.savefig(compose_path(f"{prefix}_{hyper_para.DATA_SET}_final_test_confusion_matrix.png"), dpi=300)
         plt.clf()
 
     def dump_checkpoint(self, name: str = None):
         if name is None:
-            name = f"checkpoint{self.check_point_iota_}.pt"
+            name = f"checkpoint_{self.check_point_iota_}.pt"
             self.check_point_iota_ += 1
         torch.save(self.model_.state_dict(), compose_path(name))
+
+    def select_model_and_final_test(self, f1, epoch_iota):
+        msg = "Checking model is the best or not..."
+        if f1 >= self.best_f1_score_:  # greedy select
+            msg += f"\nBest model occurred at {epoch_iota} with validate f1 score: {f1}\n"
+            log(msg)
+            self.best_f1_score_ = f1
+            self.final_test_and_dump_result(epoch_iota)
+            self.dump_checkpoint(f"best_model_at_epoch{epoch_iota}.pt")
+            self.best_model_occurred_epoch_ = epoch_iota
+        else:
+            msg += "\nNot the best model.\n"
+            log(msg)
 
     def main(self):
         # region log configures
@@ -192,13 +217,16 @@ class TrainApp:
             log("Using dataset encoded, copying AutoEncoder model to dump path.")
             shutil.copytree("./lib/AutoEncoder", compose_path("AutoEncoder"))
             shutil.copy(train_config.AUTO_ENCODER_MODEL_PATH, compose_path("auto_encoder_model.pt"))
+        log(self.model_)
         # endregion
 
         # region train
         log("Start training.")
         try:
             for epoch_iota in range(self.epoch_cnt):
-                self.one_epoch(epoch_iota)
+                train_loss, validate_loss, acc, rec, prec, f1 = self.one_epoch(epoch_iota)
+                if epoch_iota >= self.model_selection_milestone:
+                    self.select_model_and_final_test(f1, epoch_iota)
                 self.scheduler_.step()
         except Exception as e:
             log("Training failed. Error as follows:\n" + f"{e}", exc_info=True)
@@ -221,6 +249,7 @@ class TrainApp:
             log("Dumping train model's checkpoint...")
             self.dump_checkpoint()
             log("Dump done.")
+            log(f"Best model occurred at epoch: {self.best_model_occurred_epoch_}")
         except Exception as e:
             log("Dump checkpoint failed. Error as follows:\n" + f"{e}", exc_info=True)
             exit(-1)
@@ -228,4 +257,9 @@ class TrainApp:
 
 if __name__ == '__main__':
     train_app = TrainApp()
-    train_app.main()
+    try:
+        train_app.main()
+    except KeyboardInterrupt:
+        train_app.final_test_and_dump_result()
+        train_app.dump_checkpoint()
+        exit(0)
