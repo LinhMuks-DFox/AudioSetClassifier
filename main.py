@@ -175,6 +175,7 @@ class TrainApp:
         plt.title("Final test confusion matrix")
         plt.savefig(compose_path(f"{prefix}_{hyper_para.DATA_SET}_final_test_confusion_matrix.png"), dpi=300)
         plt.clf()
+        plt.close()
 
     def dump_checkpoint(self, name: str = None):
         if name is None:
