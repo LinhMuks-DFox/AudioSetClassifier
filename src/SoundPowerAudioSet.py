@@ -9,23 +9,24 @@ from .LightPropaCamera import LightToCamera
 
 
 class SoundPowerAudioSet(tch_data.Dataset):
-    def __init__(self, json_path: str,
+    def __init__(self,
                  audio_sample_path: str,
-                 n_class: int,
-                 sound_track: str,
-                 orig_freq: int,
-                 new_freq: int,
-                 light_dis: float,
-                 light_bias: Union[float, None],
-                 light_std: float,
-                 camera_source_sr: int,
                  camera_frame_rate: int,
+                 camera_source_sr: int,
+                 json_path: str,
+                 light_bias: Union[float, None],
+                 light_dis: float,
+                 light_std: float,
+                 n_class: int,
+                 new_freq: int,
+                 orig_freq: int,
+                 sound_track: str,
                  camera_temperature: float = 0.1,
-                 sound_power_data_count: int = 800,
+                 one_hot_label: bool = True,
                  output_size: tuple = (10, 80),
                  sample_seconds: int = 10,
+                 sound_power_data_count: int = 800,
                  transform_device: torch.device = torch.device('cpu'),
-                 one_hot_label: bool = True,
                  ):
         self.transform_device_ = transform_device
         self.audio_fetcher_ = JsonBasedAudioSet(json_path, audio_sample_path)
@@ -58,18 +59,12 @@ class SoundPowerAudioSet(tch_data.Dataset):
     @torch.no_grad()
     def __getitem__(self, index):
         sample, sample_rate, onto, label_digits, label_display = self.audio_fetcher_[index]
-        # print(torch.min(sample), torch.max(sample))
         sample: torch.Tensor = self.track_selector_(sample)
         sample = sample.to(self.transform_device_)
         sample = self.resampler_(sample)
         sample = fix_length(sample, self.sample_length_)  # 16k * 10s
-        # sample = sample.reshape((4, -1))
         sound_power = sample ** 2
-        # sound_power = blinky_data_normalize(sound_power)
         sound_power = sound_power.reshape((4, -1))
         sound_power = self.light_camera_(sound_power)
-        # print(sound_power.shape)
-        sound_power = sound_power.reshape((-1,))
-        # print(sound_power.shape)
         label = label_digit2tensor(label_digits, self.n_class) if self.one_hot_label_ else torch.tensor(label_digits)
         return torch.reshape(sound_power, self.output_size_), label
