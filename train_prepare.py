@@ -13,6 +13,11 @@ from lib.AutoEncoder.AutoEncoderPrepare import make_auto_encoder_from_hyperparam
 from src.AutoEncodedAudioSet import AutoEncodedAudioSet
 from src.FullSpectroAudioSet import FullSpectroAudioSet
 from src.SoundPowerAudioSet import SoundPowerAudioSet
+from src.Classifier import Classifier
+
+
+def create_simple_cnn_classifier(num_classes):
+    return Classifier(hyper_para.ENCODED_AND_SOUND_POWER_DATASET_RESHAPE_SIZE, num_classes)
 
 
 def compose_path(file_name: str = None, dump_path: str = None, dataset_type: str = None) -> str:
@@ -28,12 +33,13 @@ def make_classifier(model_type: str = None, class_cnt: int = None):
         "RES18": torchvision.models.resnet18,
         "RES34": torchvision.models.resnet34,
         "RES50": torchvision.models.resnet50,
+        "SIMPLE_CNN": create_simple_cnn_classifier
     }
     if hyper_para.MODEL not in _CASE.keys():
         raise ValueError("Only support RES18, RES34, RES50")
-    _res_net = _CASE.get(model_type)
+    _net_constructor = _CASE.get(model_type)
     _projection = torch.nn.Conv2d(kernel_size=(1, 1), in_channels=1, out_channels=3)
-    return torch.nn.Sequential(_projection, _res_net(num_classes=class_cnt))
+    return torch.nn.Sequential(_projection, _net_constructor(num_classes=class_cnt))
 
 
 def make_dataset(json_path: str = None,
