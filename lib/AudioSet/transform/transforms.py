@@ -41,7 +41,7 @@ class TimeSequenceLengthFixer(torch.nn.Module):
         if audio_data.shape[1] < self.fixed_length:
             audio_data = torch.nn.functional.pad(audio_data,
                                                  (0, self.fixed_length - audio_data.shape[1]))
-        return audio_data[: start_time: start_time + self.fixed_length], start_time
+        return audio_data[:, start_time: start_time + self.fixed_length], start_time
 
 
 class SoundTrackSelector(torch.nn.Module):
